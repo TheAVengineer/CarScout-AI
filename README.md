@@ -82,59 +82,155 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed system design.
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Docker and Docker Compose
-- Python 3.11+
-- Telegram Bot Token
-- OpenAI API Key
-- Stripe Account (optional)
+- **Docker Desktop** - For containerized services
+- **Python 3.11+** - Core runtime
+- **Telegram Bot Token** - From [@BotFather](https://t.me/botfather)
+- **OpenAI API Key** - For GPT-4 risk analysis
+- **Stripe Account** - (Optional) For payment processing
 
-### Installation
+### Automated Setup (Recommended)
 
-1. **Clone the repository:**
+The easiest way to get started:
+
 ```bash
+# Clone the repository
 git clone https://github.com/TheAVengineer/CarScout-AI.git
 cd CarScout-AI
+
+# Run the automated setup script
+./scripts/dev_setup.sh
 ```
 
-2. **Set up environment:**
+This script will:
+1. ✅ Start PostgreSQL and Redis with Docker
+2. ✅ Create a Python virtual environment
+3. ✅ Install all dependencies
+4. ✅ Run database migrations
+5. ✅ Seed initial data (sources, plans, brand/model mappings)
+6. ✅ Start all services (API, bot, workers, scraper)
+
+### Manual Setup
+
+If you prefer step-by-step control:
+
+1. **Create environment file:**
 ```bash
 cp .env.example .env
-# Edit .env with your credentials
 ```
 
-3. **Start services:**
-```bash
-make docker-up
+2. **Update `.env` with your credentials:**
+```env
+# Database
+POSTGRES_USER=carscout
+POSTGRES_PASSWORD=your_secure_password
+POSTGRES_DB=carscout
+
+# OpenAI
+OPENAI_API_KEY=sk-...
+
+# Telegram
+TELEGRAM_BOT_TOKEN=123456:ABC-DEF...
+TELEGRAM_CHANNEL_ID=@your_channel
+
+# Stripe (optional)
+STRIPE_SECRET_KEY=sk_test_...
+STRIPE_WEBHOOK_SECRET=whsec_...
 ```
 
-4. **Run migrations:**
+3. **Start infrastructure:**
 ```bash
-make migrate
+docker-compose up -d postgres redis
 ```
 
-5. **Access the application:**
-- API: http://localhost:8000
-- API Docs: http://localhost:8000/docs
-- Prometheus: http://localhost:9090
+4. **Setup Python environment:**
+```bash
+python3 -m venv venv
+source venv/bin/activate
+pip install -e ".[dev]"
+```
 
-### Development Setup
+5. **Initialize database:**
+```bash
+# Run migrations
+alembic upgrade head
+
+# Seed data
+python scripts/seed_database.py
+```
+
+6. **Start all services:**
+```bash
+docker-compose up -d
+```
+
+7. **Verify setup:**
+```bash
+python scripts/test_setup.py
+```
+
+### Access Points
+
+Once running, access these URLs:
+
+- 🌐 **API**: http://localhost:8000
+- 📚 **API Docs**: http://localhost:8000/docs
+- 📊 **Prometheus**: http://localhost:9090
+- 🌸 **Flower** (Task Monitor): http://localhost:5555
+
+### Quick Commands
 
 ```bash
-# Install dependencies
-make dev-install
+# View all service logs
+docker-compose logs -f
 
-# Format code
-make format
+# Run the Mobile.bg scraper
+docker-compose exec worker scrapy crawl mobile_bg
 
-# Run linters
-make lint
+# Open Python shell with database access
+docker-compose exec api python
 
 # Run tests
-make test
+docker-compose exec api pytest
 
-# Clean up
-make clean
+# Stop all services
+docker-compose down
+
+# Rebuild and restart
+docker-compose up -d --build
 ```
+
+### Verify Setup
+
+Test that everything is working:
+
+```bash
+# Run system tests
+python scripts/test_setup.py
+
+# Expected output:
+# ✅ Database Connection
+# ✅ Sources (3 found)
+# ✅ Plans (Free, Premium, Pro)
+# ✅ Brand/Model Mappings (17+ mappings)
+# ✅ User Creation
+# ✅ Normalization
+# ✅ Risk Evaluation
+# 🎉 All tests passed!
+```
+
+### First Scrape
+
+Test the scraper manually:
+
+```bash
+# Scrape Mobile.bg listings
+docker-compose exec worker scrapy crawl mobile_bg -a pages=1
+
+# Check the database
+docker-compose exec postgres psql -U carscout -c "SELECT COUNT(*) FROM listing_raw;"
+```
+
+You should see new listings in the database within ~30 seconds!
 
 ## 📖 Documentation
 
@@ -282,6 +378,99 @@ Prometheus metrics available at `/metrics`:
 - `carscout_channel_posts_total` - Channel posts
 - `carscout_ai_api_calls_total` - OpenAI API usage
 
+## 🔧 Troubleshooting
+
+### PostgreSQL connection issues
+```bash
+# Check if PostgreSQL is running
+docker-compose ps postgres
+
+# View PostgreSQL logs
+docker-compose logs postgres
+
+# Restart PostgreSQL
+docker-compose restart postgres
+```
+
+### Celery workers not processing tasks
+```bash
+# Check worker status
+docker-compose logs worker
+
+# Restart worker
+docker-compose restart worker
+
+# View task queue in Flower
+open http://localhost:5555
+```
+
+### Scraper not finding listings
+```bash
+# Test scraper with verbose output
+docker-compose exec worker scrapy crawl mobile_bg -a pages=1 -L DEBUG
+
+# Check if site structure changed
+curl https://www.mobile.bg/pcgi/mobile.cgi | grep 'tabHead'
+```
+
+### Import errors in Python
+```bash
+# Reinstall dependencies
+source venv/bin/activate
+pip install -e ".[dev]" --force-reinstall
+```
+
+### Database migration issues
+```bash
+# Check migration status
+alembic current
+
+# Rollback migration
+alembic downgrade -1
+
+# Re-run migrations
+alembic upgrade head
+```
+
+### OpenAI API errors
+```bash
+# Verify API key is set
+echo $OPENAI_API_KEY
+
+# Test API key
+docker-compose exec api python -c "
+from openai import OpenAI
+client = OpenAI()
+print(client.models.list())
+"
+```
+
+### Telegram bot not responding
+```bash
+# Verify bot token
+echo $TELEGRAM_BOT_TOKEN
+
+# Check bot logs
+docker-compose logs bot
+
+# Test webhook
+curl https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/getMe
+```
+
+### Common Error Messages
+
+**"No module named 'libs'"**
+- Solution: Make sure you're in the project root and run `pip install -e .`
+
+**"Connection refused" (PostgreSQL)**
+- Solution: Wait a few seconds for PostgreSQL to fully start, or check `.env` credentials
+
+**"alembic.util.exc.CommandError: Can't locate revision"**
+- Solution: Delete `alembic/versions/*.py` except the initial migration and re-run
+
+**"Task timeout" in Celery**
+- Solution: Increase timeout in task decorator or check for infinite loops
+
 ## 🧪 Testing
 
 ```bash
@@ -294,6 +483,9 @@ pytest tests/integration/
 
 # With coverage
 pytest --cov=apps --cov=workers --cov=libs --cov-report=html
+
+# Run system verification tests
+python scripts/test_setup.py
 ```
 
 ## 🚢 Deployment
