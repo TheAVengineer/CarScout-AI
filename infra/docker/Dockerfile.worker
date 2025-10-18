@@ -1,0 +1,26 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Install system dependencies including Playwright dependencies
+RUN apt-get update && apt-get install -y \
+    gcc \
+    postgresql-client \
+    wget \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements
+COPY pyproject.toml /app/
+
+# Install Python dependencies
+RUN pip install --no-cache-dir -e .
+
+# Install Playwright browsers
+RUN playwright install --with-deps chromium
+
+# Copy application code
+COPY workers/ /app/workers/
+COPY libs/ /app/libs/
+COPY configs/ /app/configs/
+
+CMD ["celery", "-A", "workers.pipeline.celery_app", "worker", "--loglevel=info"]

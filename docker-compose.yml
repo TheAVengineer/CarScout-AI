@@ -1,0 +1,164 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: carscout-postgres
+    environment:
+      POSTGRES_USER: carscout
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: carscout_ai
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./infra/docker/init-db.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U carscout"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: carscout-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: .
+      dockerfile: infra/docker/Dockerfile.api
+    container_name: carscout-api
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./apps:/app/apps
+      - ./libs:/app/libs
+      - ./configs:/app/configs
+    command: uvicorn apps.api.main:app --host 0.0.0.0 --port 8000 --reload
+
+  bot:
+    build:
+      context: .
+      dockerfile: infra/docker/Dockerfile.bot
+    container_name: carscout-bot
+    env_file:
+      - .env
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./apps:/app/apps
+      - ./libs:/app/libs
+      - ./configs:/app/configs
+    command: python -m apps.bot.main
+
+  worker-scrape:
+    build:
+      context: .
+      dockerfile: infra/docker/Dockerfile.worker
+    container_name: carscout-worker-scrape
+    env_file:
+      - .env
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./workers:/app/workers
+      - ./libs:/app/libs
+      - ./configs:/app/configs
+    command: celery -A workers.pipeline.celery_app worker -Q scrape.new_raw -n worker-scrape@%h --concurrency=4
+
+  worker-pipeline:
+    build:
+      context: .
+      dockerfile: infra/docker/Dockerfile.worker
+    container_name: carscout-worker-pipeline
+    env_file:
+      - .env
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./workers:/app/workers
+      - ./libs:/app/libs
+      - ./configs:/app/configs
+    command: celery -A workers.pipeline.celery_app worker -Q parse.extract_fields,normalize.apply,dedupe.check,price.estimate,ai.classify,ai.llm_eval,score.rank_filter -n worker-pipeline@%h --concurrency=4
+
+  worker-notify:
+    build:
+      context: .
+      dockerfile: infra/docker/Dockerfile.worker
+    container_name: carscout-worker-notify
+    env_file:
+      - .env
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./workers:/app/workers
+      - ./libs:/app/libs
+      - ./configs:/app/configs
+    command: celery -A workers.pipeline.celery_app worker -Q notify.channel,notify.user -n worker-notify@%h --concurrency=2
+
+  scheduler:
+    build:
+      context: .
+      dockerfile: infra/docker/Dockerfile.worker
+    container_name: carscout-scheduler
+    env_file:
+      - .env
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./workers:/app/workers
+      - ./libs:/app/libs
+      - ./configs:/app/configs
+    command: celery -A workers.pipeline.celery_app beat --loglevel=info
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: carscout-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./infra/docker/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+
+volumes:
+  postgres_data:
+  redis_data:
+  prometheus_data:
+
+networks:
+  default:
+    name: carscout-network

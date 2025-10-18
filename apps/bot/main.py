@@ -1,0 +1,34 @@
+"""
+CarScout AI - Telegram Bot
+"""
+import asyncio
+import logging
+from aiogram import Bot, Dispatcher
+from aiogram.enums import ParseMode
+
+from apps.bot.handlers import start, watch, plan
+from configs.settings import settings
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+# Initialize bot and dispatcher
+bot = Bot(token=settings.TELEGRAM_BOT_TOKEN, parse_mode=ParseMode.HTML)
+dp = Dispatcher()
+
+# Register handlers
+dp.include_router(start.router)
+dp.include_router(watch.router)
+dp.include_router(plan.router)
+
+
+async def main():
+    """Main bot entry point"""
+    logger.info("Starting CarScout AI Telegram Bot...")
+    
+    # Start polling
+    await dp.start_polling(bot)
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
