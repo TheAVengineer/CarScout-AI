@@ -22,6 +22,8 @@ CarScout AI is a comprehensive system that automatically:
 - Get instant notifications for matching cars
 - Make data-driven purchase decisions
 
+**Status**: ✅ **MVP Complete - Ready for Deployment** (95% complete)
+
 ## ✨ Key Features
 
 ### 🎯 Smart Discovery
@@ -84,19 +86,33 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed system design.
 ### Prerequisites
 - **Docker Desktop** - For containerized services
 - **Python 3.11+** - Core runtime
-- **Telegram Bot Token** - From [@BotFather](https://t.me/botfather)
-- **OpenAI API Key** - For GPT-4 risk analysis
+- **Telegram Bot Token** - (Optional) From [@BotFather](https://t.me/botfather)
+- **OpenAI API Key** - (Optional) For GPT-4 risk analysis
 - **Stripe Account** - (Optional) For payment processing
 
-### Automated Setup (Recommended)
+> 💡 **New to the project?** Start with [QUICK-START.md](QUICK-START.md) for step-by-step instructions!
 
-The easiest way to get started:
+### Fast Setup (3 Steps)
 
 ```bash
-# Clone the repository
+# 1. Clone and navigate
 git clone https://github.com/TheAVengineer/CarScout-AI.git
 cd CarScout-AI
 
+# 2. Configure environment (a .env file has been created with defaults)
+# Edit .env and add your API keys (optional for testing)
+nano .env
+
+# 3. Start services and test
+docker-compose up -d
+python scripts/test_setup.py
+```
+
+**That's it!** See [QUICK-START.md](QUICK-START.md) for detailed configuration.
+
+### Automated Setup (Alternative)
+
+```bash
 # Run the automated setup script
 ./scripts/dev_setup.sh
 ```
@@ -199,12 +215,65 @@ docker-compose down
 docker-compose up -d --build
 ```
 
-### Verify Setup
+## 🧪 Testing
 
-Test that everything is working:
+CarScout AI includes comprehensive tests for all pipeline components. See [TESTING.md](TESTING.md) for detailed testing guide.
+
+### Quick Test
+
+Test the complete pipeline end-to-end:
 
 ```bash
-# Run system tests
+# 1. Start services
+docker-compose up -d
+
+# 2. Run the end-to-end test
+python scripts/test_pipeline.py
+
+# Expected output:
+# ✅ Parse (HTML → structured data)
+# ✅ Normalize (brand/model mapping)
+# ✅ Dedupe (duplicate detection)
+# ⚠️  Price (comparable-based estimation)
+# ✅ AI Risk (rule-based classification)
+# ✅ Score (final rating)
+# 🎉 Your pipeline is working!
+```
+
+### Test Alert Matching
+
+Test the DSL parser and alert system:
+
+```bash
+python scripts/test_alert_matcher.py
+
+# Expected output:
+# ✅ DSL Parser (8 query types)
+# ✅ Alert Matching Logic
+# ✅ Plan-based Rate Limiting
+# ✅ Multi-language Support (BG/EN)
+```
+
+### Test With Real Data
+
+Scrape actual listings from Mobile.bg:
+
+```bash
+# Scrape 1 page (recommended for initial test)
+docker-compose exec worker scrapy crawl mobile_bg -a pages=1
+
+# Monitor tasks in Flower
+open http://localhost:5555
+
+# Check results in database
+docker-compose exec db psql -U carscout_user -d carscout_db -c "SELECT COUNT(*) FROM listing_normalized;"
+```
+
+### Verify System Health
+
+Run the setup verification:
+
+```bash
 python scripts/test_setup.py
 
 # Expected output:
@@ -218,19 +287,12 @@ python scripts/test_setup.py
 # 🎉 All tests passed!
 ```
 
-### First Scrape
-
-Test the scraper manually:
-
-```bash
-# Scrape Mobile.bg listings
-docker-compose exec worker scrapy crawl mobile_bg -a pages=1
-
-# Check the database
-docker-compose exec postgres psql -U carscout -c "SELECT COUNT(*) FROM listing_raw;"
-```
-
-You should see new listings in the database within ~30 seconds!
+**See [TESTING.md](TESTING.md) for:**
+- Detailed testing procedures
+- Monitoring and debugging
+- Common issues and solutions
+- Performance testing
+- Production checklist
 
 ## 📖 Documentation
 

@@ -18,6 +18,9 @@ RUN pip install --no-cache-dir -e .
 COPY apps/ /app/apps/
 COPY libs/ /app/libs/
 COPY configs/ /app/configs/
+COPY migrations/ /app/migrations/
+COPY alembic.ini /app/
+COPY scripts/ /app/scripts/
 
 EXPOSE 8000
 

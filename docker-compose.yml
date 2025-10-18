@@ -38,7 +38,7 @@ services:
       dockerfile: infra/docker/Dockerfile.api
     container_name: carscout-api
     env_file:
-      - .env
+      - .env.docker
     ports:
       - "8000:8000"
     depends_on:
@@ -58,7 +58,7 @@ services:
       dockerfile: infra/docker/Dockerfile.bot
     container_name: carscout-bot
     env_file:
-      - .env
+      - .env.docker
     depends_on:
       postgres:
         condition: service_healthy
@@ -76,7 +76,7 @@ services:
       dockerfile: infra/docker/Dockerfile.worker
     container_name: carscout-worker-scrape
     env_file:
-      - .env
+      - .env.docker
     depends_on:
       postgres:
         condition: service_healthy
@@ -94,7 +94,7 @@ services:
       dockerfile: infra/docker/Dockerfile.worker
     container_name: carscout-worker-pipeline
     env_file:
-      - .env
+      - .env.docker
     depends_on:
       postgres:
         condition: service_healthy
@@ -112,7 +112,7 @@ services:
       dockerfile: infra/docker/Dockerfile.worker
     container_name: carscout-worker-notify
     env_file:
-      - .env
+      - .env.docker
     depends_on:
       postgres:
         condition: service_healthy
@@ -130,7 +130,7 @@ services:
       dockerfile: infra/docker/Dockerfile.worker
     container_name: carscout-scheduler
     env_file:
-      - .env
+      - .env.docker
     depends_on:
       postgres:
         condition: service_healthy

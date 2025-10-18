@@ -8,6 +8,7 @@ from workers.pipeline.celery_app import celery_app
 from libs.domain.database import get_sync_session
 from libs.domain.models import ListingRaw, ListingNormalized, Seller
 from libs.domain.normalization import BrandModelNormalizer, FieldNormalizer
+from workers.pipeline.tasks.dedupe import deduplicate_listing
 
 
 @celery_app.task(bind=True, max_retries=3)
@@ -92,8 +93,7 @@ def normalize_listing(self, listing_id: str):
         session.commit()
         
         # Trigger next task (deduplication)
-        from workers.pipeline.tasks.dedupe import check_duplicate
-        check_duplicate.delay(str(normalized.id))
+        deduplicate_listing.delay(listing_id)
         
         return {
             "status": "normalized",

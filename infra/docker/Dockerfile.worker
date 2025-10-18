@@ -22,5 +22,8 @@ RUN playwright install --with-deps chromium
 COPY workers/ /app/workers/
 COPY libs/ /app/libs/
 COPY configs/ /app/configs/
+COPY migrations/ /app/migrations/
+COPY alembic.ini /app/
+COPY scripts/ /app/scripts/
 
 CMD ["celery", "-A", "workers.pipeline.celery_app", "worker", "--loglevel=info"]
