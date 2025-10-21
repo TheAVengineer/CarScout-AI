@@ -36,16 +36,16 @@ celery_app.conf.update(
     worker_max_tasks_per_child=1000,
 )
 
-# Queue routing
-celery_app.conf.task_routes = {
-    "workers.pipeline.tasks.parse.*": {"queue": "parse.extract_fields"},
-    "workers.pipeline.tasks.normalize.*": {"queue": "normalize.apply"},
-    "workers.pipeline.tasks.dedupe.*": {"queue": "dedupe.check"},
-    "workers.pipeline.tasks.price.*": {"queue": "price.estimate"},
-    "workers.pipeline.tasks.ai.*": {"queue": "ai.classify"},
-    "workers.pipeline.tasks.score.*": {"queue": "score.rank_filter"},
-    "workers.pipeline.tasks.notify.*": {"queue": "notify.channel"},
-}
+# Queue routing - DISABLED for now (use default 'celery' queue)
+# celery_app.conf.task_routes = {
+#     "workers.pipeline.tasks.parse.*": {"queue": "parse.extract_fields"},
+#     "workers.pipeline.tasks.normalize.*": {"queue": "normalize.apply"},
+#     "workers.pipeline.tasks.dedupe.*": {"queue": "dedupe.check"},
+#     "workers.pipeline.tasks.price.*": {"queue": "price.estimate"},
+#     "workers.pipeline.tasks.ai.*": {"queue": "ai.classify"},
+#     "workers.pipeline.tasks.score.*": {"queue": "score.rank_filter"},
+#     "workers.pipeline.tasks.notify.*": {"queue": "notify.channel"},
+# }
 
 # Scheduled tasks (Celery Beat)
 celery_app.conf.beat_schedule = {

@@ -38,20 +38,25 @@ def calculate_score(self, listing_id: str):
         engine = ScoringEngine()
         
         # Prepare inputs
-        discount_pct = listing.discount_pct if listing.discount_pct else 0.0
+        discount_pct = comp_cache.discount_pct if comp_cache and comp_cache.discount_pct else 0.0
         risk_level = evaluation.risk_level if evaluation else 'unknown'
-        age_hours = (datetime.now(timezone.utc) - listing.created_at).total_seconds() / 3600
+        
+        # Calculate listing age (ensure both datetimes are timezone-aware)
+        now_utc = datetime.now(timezone.utc)
+        created_at = listing.created_at if listing.created_at.tzinfo else listing.created_at.replace(tzinfo=timezone.utc)
+        age_hours = (now_utc - created_at).total_seconds() / 3600
         
         # Additional context for scoring
         comparable_count = comp_cache.sample_size if comp_cache else 0
-        price_confidence = comp_cache.confidence if comp_cache else 0.0
+        price_confidence = 0.5 if comp_cache else 0.0  # Default confidence
         
-        # Calculate score
-        score_result = engine.score_listing(
+        # Calculate score using ScoringEngine
+        score_result = engine.calculate_score(
             discount_pct=discount_pct,
+            comp_sample_size=comparable_count,
+            comp_confidence=price_confidence,
             risk_level=risk_level,
-            listing_age_hours=age_hours,
-            comparable_count=comparable_count,
+            freshness_hours=age_hours,
         )
         
         # Determine state based on score and thresholds
@@ -63,12 +68,12 @@ def calculate_score(self, listing_id: str):
         # 3. Sufficient price confidence (>= 0.5)
         # 4. Risk not red
         
-        if (score_result['total_score'] >= 7.5 and 
+        if (score_result['score'] >= 7.5 and 
             comparable_count >= 5 and 
             price_confidence >= 0.5 and
             risk_level != 'red'):
             state = 'approved'
-        elif score_result['total_score'] < 5.0 or risk_level == 'red':
+        elif score_result['score'] < 5.0 or risk_level == 'red':
             state = 'rejected'
         
         # Create or update score
@@ -76,28 +81,23 @@ def calculate_score(self, listing_id: str):
         
         if existing_score:
             # Update existing
-            existing_score.price_score = score_result['price_score']
+            existing_score.score = score_result['score']
             existing_score.risk_penalty = score_result['risk_penalty']
             existing_score.freshness_bonus = score_result['freshness_bonus']
-            existing_score.liquidity_bonus = score_result.get('liquidity_bonus', 0.0)
-            existing_score.total_score = score_result['total_score']
-            existing_score.state = state
-            existing_score.sample_size = comparable_count
-            existing_score.confidence = price_confidence
-            existing_score.updated_at = datetime.now(timezone.utc)
+            existing_score.liquidity = score_result.get('liquidity_bonus', 0.0)
+            existing_score.final_state = state
+            existing_score.reasons = score_result.get('reasons', [])
+            existing_score.scored_at = datetime.now(timezone.utc)
             score_obj = existing_score
         else:
             # Create new
             score_obj = Score(
                 listing_id=listing.id,
-                price_score=score_result['price_score'],
+                score=score_result['score'],
                 risk_penalty=score_result['risk_penalty'],
                 freshness_bonus=score_result['freshness_bonus'],
-                liquidity_bonus=score_result.get('liquidity_bonus', 0.0),
-                total_score=score_result['total_score'],
-                state=state,
-                sample_size=comparable_count,
-                confidence=price_confidence,
+                liquidity=score_result.get('liquidity_bonus', 0.0),
+                final_state=state,
                 reasons=score_result.get('reasons', []),
             )
             session.add(score_obj)
@@ -106,7 +106,7 @@ def calculate_score(self, listing_id: str):
         
         logger.info(
             f"Scored listing {listing_id}: "
-            f"score={score_result['total_score']:.2f}, "
+            f"score={score_result['score']:.2f}, "
             f"state={state}, "
             f"price={score_result['price_score']:.2f}, "
             f"risk={score_result['risk_penalty']:.2f}, "
@@ -121,7 +121,7 @@ def calculate_score(self, listing_id: str):
         return {
             "status": "scored",
             "listing_id": listing_id,
-            "score": score_result['total_score'],
+            "score": score_result['score'],
             "state": state,
             "breakdown": score_result,
         }

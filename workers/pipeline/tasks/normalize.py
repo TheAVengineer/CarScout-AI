@@ -92,8 +92,12 @@ def normalize_listing(self, listing_id: str):
         
         session.commit()
         
-        # Trigger next task (deduplication)
-        deduplicate_listing.delay(listing_id)
+        # Get the normalized listing ID (not the raw ID!)
+        session.refresh(normalized)
+        normalized_id = str(normalized.id)
+        
+        # Trigger next task (deduplication) with the NORMALIZED listing ID
+        deduplicate_listing.delay(normalized_id)
         
         return {
             "status": "normalized",

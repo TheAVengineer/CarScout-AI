@@ -40,8 +40,8 @@ class PricingModel:
         # Build query
         query = self.session.query(ListingNormalized).filter(
             and_(
-                ListingNormalized.normalized_brand == brand,
-                ListingNormalized.normalized_model == model,
+                ListingNormalized.brand_id == brand,
+                ListingNormalized.model_id == model,
                 ListingNormalized.is_duplicate == False,
                 ListingNormalized.price_bgn.isnot(None),
                 ListingNormalized.price_bgn > 500,  # Minimum reasonable price
@@ -66,11 +66,11 @@ class PricingModel:
         
         # Add fuel type filter
         if fuel:
-            query = query.filter(ListingNormalized.normalized_fuel == fuel)
+            query = query.filter(ListingNormalized.fuel == fuel)
         
         # Add gearbox filter
         if gearbox:
-            query = query.filter(ListingNormalized.normalized_gearbox == gearbox)
+            query = query.filter(ListingNormalized.gearbox == gearbox)
         
         # Order by relevance (closest year and mileage)
         comparables = query.limit(limit).all()
@@ -102,26 +102,26 @@ class PricingModel:
     def estimate_price(self, listing: ListingNormalized) -> Optional[Dict[str, Any]]:
         """Estimate price for listing"""
         
-        if not listing.normalized_brand or not listing.normalized_model:
+        if not listing.brand_id or not listing.model_id:
             logger.warning(f"Listing {listing.id} missing brand/model")
             return None
         
         # Find comparable vehicles
         comparables = self.get_comparables(
-            brand=listing.normalized_brand,
-            model=listing.normalized_model,
+            brand=listing.brand_id,
+            model=listing.model_id,
             year=listing.year,
             mileage=listing.mileage_km,
-            fuel=listing.normalized_fuel,
-            gearbox=listing.normalized_gearbox,
+            fuel=listing.fuel,
+            gearbox=listing.gearbox,
         )
         
         if len(comparables) < 3:
-            logger.warning(f"Not enough comparables for {listing.normalized_brand} {listing.normalized_model} ({len(comparables)} found)")
+            logger.warning(f"Not enough comparables for {listing.brand_id} {listing.model_id} ({len(comparables)} found)")
             # Try with relaxed filters
             comparables = self.get_comparables(
-                brand=listing.normalized_brand,
-                model=listing.normalized_model,
+                brand=listing.brand_id,
+                model=listing.model_id,
                 year=listing.year,
                 mileage=listing.mileage_km,
                 max_age=365,  # 1 year
@@ -132,8 +132,8 @@ class PricingModel:
             logger.warning(f"Still not enough comparables ({len(comparables)} found)")
             return None
         
-        # Extract prices
-        prices = [comp.price_bgn for comp in comparables if comp.price_bgn]
+        # Extract prices and convert Decimal to float for NumPy
+        prices = [float(comp.price_bgn) for comp in comparables if comp.price_bgn]
         
         if len(prices) < 3:
             return None
@@ -144,10 +144,11 @@ class PricingModel:
         # Use median as predicted price
         predicted_price = stats['p50']
         
-        # Calculate discount percentage
+        # Calculate discount percentage (convert Decimal to float)
         discount_pct = 0.0
         if listing.price_bgn and predicted_price > 0:
-            discount_pct = ((predicted_price - listing.price_bgn) / predicted_price) * 100
+            listing_price = float(listing.price_bgn)
+            discount_pct = ((predicted_price - listing_price) / predicted_price) * 100
         
         # Calculate confidence based on sample size and variance
         # More comparables and lower variance = higher confidence
@@ -181,15 +182,6 @@ def estimate_price(self, listing_id: str):
             logger.error(f"Listing {listing_id} not found")
             return
         
-        # Skip if already priced recently
-        if listing.price_estimated_at:
-            hours_since = (datetime.now(timezone.utc) - listing.price_estimated_at).total_seconds() / 3600
-            if hours_since < 24:
-                logger.info(f"Listing {listing_id} already priced {hours_since:.1f}h ago")
-                # Still trigger next task
-                classify_risk.delay(listing_id)
-                return
-        
         # Initialize pricing model
         model = PricingModel(session)
         
@@ -205,30 +197,30 @@ def estimate_price(self, listing_id: str):
         # Update listing
         listing.predicted_price_bgn = result['predicted_price_bgn']
         listing.discount_pct = result['discount_pct']
-        listing.price_estimated_at = datetime.now(timezone.utc)
         
         # Create/update comp cache
         comp_cache = session.query(CompCache).filter_by(listing_id=listing.id).first()
         
         if comp_cache:
             # Update existing
-            comp_cache.predicted_price = result['predicted_price_bgn']
-            comp_cache.price_p10 = result['price_p10']
-            comp_cache.price_p50 = result['price_p50']
-            comp_cache.price_p90 = result['price_p90']
+            comp_cache.predicted_price_bgn = result['predicted_price_bgn']
+            comp_cache.discount_pct = result['discount_pct']
+            comp_cache.p10 = result['price_p10']
+            comp_cache.p50 = result['price_p50']
+            comp_cache.p90 = result['price_p90']
             comp_cache.sample_size = result['comparable_count']
-            comp_cache.confidence = result['confidence']
-            comp_cache.updated_at = datetime.now(timezone.utc)
+            comp_cache.computed_at = datetime.now(timezone.utc)
+            comp_cache.model_version = 'comparable_v1'
         else:
             # Create new
             comp_cache = CompCache(
                 listing_id=listing.id,
-                predicted_price=result['predicted_price_bgn'],
-                price_p10=result['price_p10'],
-                price_p50=result['price_p50'],
-                price_p90=result['price_p90'],
+                predicted_price_bgn=result['predicted_price_bgn'],
+                discount_pct=result['discount_pct'],
+                p10=result['price_p10'],
+                p50=result['price_p50'],
+                p90=result['price_p90'],
                 sample_size=result['comparable_count'],
-                confidence=result['confidence'],
                 model_version='comparable_v1',
             )
             session.add(comp_cache)
@@ -237,7 +229,7 @@ def estimate_price(self, listing_id: str):
         price_history = PriceHistory(
             listing_id=listing.id,
             price_bgn=listing.price_bgn,
-            price_eur=listing.price_eur,
+            seen_at=datetime.now(timezone.utc),
         )
         session.add(price_history)
         

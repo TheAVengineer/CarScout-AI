@@ -39,6 +39,7 @@ class ListingRaw(Base):
     site_ad_id = Column(String(100), nullable=False)
     url = Column(String(500), nullable=False)
     raw_html_path = Column(String(500))  # S3 path
+    raw_html = Column(Text)  # Temporary storage before S3 upload
     first_seen_at = Column(DateTime, nullable=False, default=datetime.utcnow)
     last_seen_at = Column(DateTime, nullable=False, default=datetime.utcnow)
     is_active = Column(Boolean, default=True)

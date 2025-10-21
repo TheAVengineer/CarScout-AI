@@ -1,14 +1,20 @@
 """
 Application settings
 """
+import os
+from pathlib import Path
+from typing import ClassVar
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
     """Application configuration settings"""
     
+    # Get project root (2 levels up from configs/settings.py)
+    PROJECT_ROOT: ClassVar[Path] = Path(__file__).parent.parent
+    
     model_config = SettingsConfigDict(
-        env_file=".env",
+        env_file=str(PROJECT_ROOT / ".env"),
         env_file_encoding="utf-8",
         case_sensitive=False,
         extra="ignore",
@@ -40,6 +46,11 @@ class Settings(BaseSettings):
     TELEGRAM_CHANNEL_ID: str
     TELEGRAM_WEBHOOK_SECRET: str
     TELEGRAM_WEBHOOK_URL: str
+    
+    # Telegram Channels (Three-Tier System)
+    TELEGRAM_PUBLIC_CHANNEL: str  # @CarScoutBG - Free public channel
+    TELEGRAM_PREMIUM_CHANNEL: str  # Premium subscribers channel ID
+    TELEGRAM_VIP_CHANNEL: str  # VIP subscribers channel ID
     
     # OpenAI
     OPENAI_API_KEY: str

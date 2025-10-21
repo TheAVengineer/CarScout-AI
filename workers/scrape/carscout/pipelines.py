@@ -58,6 +58,7 @@ class CarScoutPipeline:
                     site_ad_id=item['site_ad_id'],
                     url=item['url'],
                     raw_html_path=item.get('raw_html_path'),
+                    raw_html=item.get('raw_html'),  # Store HTML temporarily
                     first_seen_at=datetime.utcnow(),
                     last_seen_at=datetime.utcnow(),
                     is_active=item.get('is_active', True),
@@ -69,11 +70,7 @@ class CarScoutPipeline:
             
             # Trigger async parsing task
             # In production, upload raw_html to S3 first
-            parse_listing.delay(
-                listing_id=str(listing_raw.id),
-                raw_html_path=item.get('raw_html_path', ''),
-                source_id=item['source_id'],
-            )
+            parse_listing.delay(str(listing_raw.id))
             
             return item
             
