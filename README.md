@@ -22,7 +22,9 @@ CarScout AI is a comprehensive system that automatically:
 - Get instant notifications for matching cars
 - Make data-driven purchase decisions
 
-**Status**: ✅ **MVP Complete - Ready for Deployment** (95% complete)
+**Status**: ✅ **Pipeline Validated - All 7 Stages Operational** (95% complete)
+
+> 🔧 **Latest Update (Oct 2025)**: Fixed critical pipeline bugs and validated end-to-end execution. See [PIPELINE-DEBUG.md](PIPELINE-DEBUG.md) for details.
 
 ## ✨ Key Features
 
@@ -296,11 +298,22 @@ python scripts/test_setup.py
 
 ## 📖 Documentation
 
+### Getting Started
+- [QUICK-START.md](QUICK-START.md) - Step-by-step setup guide
+- [TESTING.md](TESTING.md) - Testing and validation guide
+- [PIPELINE-DEBUG.md](PIPELINE-DEBUG.md) - **Pipeline debugging & Windows setup** 🆕
+
+### Technical Documentation
 - [API Documentation](docs/API.md) - REST API reference
+- [Architecture Overview](docs/ARCHITECTURE.md) - System design
 - [Deployment Guide](docs/DEPLOYMENT.md) - Production deployment
 - [Contributing Guide](docs/CONTRIBUTING.md) - Development guidelines
-- [Architecture Overview](docs/ARCHITECTURE.md) - System design
 - [Project Structure](PROJECT-SRUCTURE.md) - Detailed specification
+
+### Development Guides
+- [AGENTS.md](AGENTS.md) - Complete task breakdown for reaching 100%
+- [STATUS.md](STATUS.md) - Current project status and completion metrics
+- [TELEGRAM-SETUP.md](TELEGRAM-SETUP.md) - Telegram bot configuration
 
 ## 🗂️ Project Structure
 
