@@ -211,21 +211,25 @@ def parse_listing(self, listing_raw_id: str):
             logger.error(f"No parser for source {listing_raw.source.name}")
             return
         
+        # Check if spider already extracted data
+        if listing_raw.parsed_data:
+            logger.info(f"Using spider-extracted data for {listing_raw_id}")
+            parsed_data = listing_raw.parsed_data
         # Check if we have HTML content
-        if not listing_raw.raw_html_path and not hasattr(listing_raw, 'html_content'):
+        elif not listing_raw.raw_html_path and not hasattr(listing_raw, 'html_content'):
             # For test listings without HTML, create placeholder parsed data
             logger.info(f"No HTML for listing {listing_raw_id}, using placeholder data")
             parsed_data = {
                 'title': f"Test Listing {listing_raw.site_ad_id}",
-                'price_bgn': 15000,
+                'price': 15000,
                 'currency': 'BGN',
                 'year': 2015,
                 'mileage_km': 150000,
-                'brand_id': 'BMW',
-                'model_id': '320d',
-                'fuel': 'Diesel',
+                'brand': 'BMW',
+                'model': '320d',
+                'fuel_type': 'Diesel',
                 'gearbox': 'Automatic',
-                'body': 'Sedan',
+                'body_type': 'Sedan',
                 'region': 'Sofia',
                 'description': 'Test listing - no HTML available',
             }
@@ -252,21 +256,24 @@ def parse_listing(self, listing_raw_id: str):
         
         if existing:
             logger.info(f"Listing {listing_raw_id} already parsed, updating...")
-            # Update existing
+            # Update existing (skip 'images' - it's a relationship, not a simple field)
             for key, value in parsed_data.items():
+                if key == 'images':
+                    continue  # Skip images - handled separately
                 if hasattr(existing, key) and value is not None:
                     setattr(existing, key, value)
             existing.updated_at = datetime.now(timezone.utc)
         else:
             # Create new normalized listing - map parser fields to model fields
+            # Handle both spider data (fuel, body) and parser data (fuel_type, body_type)
             normalized_data = {
                 'brand_id': parsed_data.get('brand'),
                 'model_id': parsed_data.get('model'),
                 'year': parsed_data.get('year'),
                 'mileage_km': parsed_data.get('mileage_km'),
-                'fuel': parsed_data.get('fuel_type'),
+                'fuel': parsed_data.get('fuel') or parsed_data.get('fuel_type'),
                 'gearbox': parsed_data.get('gearbox'),
-                'body': parsed_data.get('body_type'),
+                'body': parsed_data.get('body') or parsed_data.get('body_type'),
                 'price_bgn': parsed_data.get('price'),
                 'currency': parsed_data.get('currency', 'BGN'),
                 'region': parsed_data.get('region'),
@@ -290,12 +297,8 @@ def parse_listing(self, listing_raw_id: str):
         
         logger.info(f"Successfully parsed listing {listing_raw_id}")
         
-        # Trigger normalization
-        if existing:
-            normalize_listing.delay(str(existing.id))
-        else:
-            session.refresh(normalized)
-            normalize_listing.delay(str(normalized.id))
+        # Trigger normalization (pass raw_id, not normalized_id)
+        normalize_listing.delay(listing_raw_id)
         
         return {"status": "parsed", "listing_id": listing_raw_id}
         

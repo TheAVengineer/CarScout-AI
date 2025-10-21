@@ -6,6 +6,7 @@ import logging
 from typing import Optional, List, Tuple
 from uuid import UUID
 from datetime import datetime, timezone
+from decimal import Decimal
 from sqlalchemy import text
 
 from workers.pipeline.celery_app import celery_app
@@ -33,16 +34,16 @@ class DeduplicationEngine:
         # Combine key fields
         parts = []
         
-        if listing.normalized_brand:
-            parts.append(listing.normalized_brand.lower())
-        if listing.normalized_model:
-            parts.append(listing.normalized_model.lower())
+        if listing.brand_id:
+            parts.append(listing.brand_id.lower())
+        if listing.model_id:
+            parts.append(listing.model_id.lower())
         if listing.year:
             parts.append(str(listing.year))
-        if listing.normalized_fuel:
-            parts.append(listing.normalized_fuel.lower())
-        if listing.normalized_gearbox:
-            parts.append(listing.normalized_gearbox.lower())
+        if listing.fuel:
+            parts.append(listing.fuel.lower())
+        if listing.gearbox:
+            parts.append(listing.gearbox.lower())
         
         signature = ' '.join(parts)
         return signature
@@ -66,13 +67,13 @@ class DeduplicationEngine:
             Seller.phone_hash == listing.seller.phone_hash,
             ListingNormalized.id != listing.id,
             ListingNormalized.is_duplicate == False,
-            ListingNormalized.normalized_brand == listing.normalized_brand,
-            ListingNormalized.normalized_model == listing.normalized_model,
+            ListingNormalized.brand_id == listing.brand_id,
+            ListingNormalized.model_id == listing.model_id,
         ).filter(
             # Price within 10%
             ListingNormalized.price_bgn.between(
-                listing.price_bgn * 0.9,
-                listing.price_bgn * 1.1
+                listing.price_bgn * Decimal('0.9'),
+                listing.price_bgn * Decimal('1.1')
             ) if listing.price_bgn else True
         ).order_by(
             ListingNormalized.created_at.desc()
@@ -94,15 +95,13 @@ class DeduplicationEngine:
         # Use PostgreSQL trigram similarity
         # Find listings with similar text signature
         query = text("""
-            SELECT ln.id, similarity(ds.text_signature, :signature) AS sim
-            FROM dedupe_signature ds
-            JOIN listing_normalized ln ON ds.listing_id = ln.id
+            SELECT ln.id, similarity(ds.title_trgm, :signature) AS sim
+            FROM dedupe_signatures ds
+            JOIN listings_normalized ln ON ds.listing_id = ln.id
             WHERE ln.id != :listing_id
               AND ln.is_duplicate = false
-              AND ds.text_signature IS NOT NULL
-              AND similarity(ds.text_signature, :signature) > :threshold
-              AND ln.source_id = :source_id
-              AND ABS(EXTRACT(EPOCH FROM (ln.created_at - :created_at))) < 2592000  -- 30 days
+              AND ds.title_trgm IS NOT NULL
+              AND similarity(ds.title_trgm, :signature) > :threshold
             ORDER BY sim DESC
             LIMIT 1
         """)
@@ -216,11 +215,10 @@ class DeduplicationEngine:
         # Create signature
         signature = DedupeSignature(
             listing_id=listing.id,
-            phone_hash=listing.seller.phone_hash if listing.seller else None,
-            text_signature=text_signature,
-            description_hash=description_hash,
-            embedding=embedding,
-            # image_phash will be set separately when images are processed
+            title_trgm=text_signature,  # Use title_trgm for text similarity
+            title_minhash=None,  # TODO: Generate minhash
+            desc_minhash=description_hash,
+            first_image_phash=None,  # TODO: Generate from images
         )
         
         self.session.add(signature)
