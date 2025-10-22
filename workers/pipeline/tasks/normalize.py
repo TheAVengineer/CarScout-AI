@@ -31,64 +31,56 @@ def normalize_listing(self, listing_id: str):
         # Check if normalized version exists
         normalized = session.query(ListingNormalized).filter_by(raw_id=raw_listing.id).first()
         
-        # Get parsed data (would come from parsing step in real implementation)
-        # For now, assume it's in raw_listing metadata
+        if not normalized:
+            return {"status": "error", "message": "Normalized listing not found (parse task must run first)"}
         
-        # Normalize brand/model
-        brand_raw = "BMW"  # TODO: Get from parsed data
-        model_raw = "X5"   # TODO: Get from parsed data
+        # Get brand/model from the already-parsed normalized listing
+        brand_raw = normalized.brand_id or "Unknown"
+        model_raw = normalized.model_id or "Unknown"
+        
+        # Normalize brand/model using the normalizer
         brand_id, model_id = normalizer.normalize(brand_raw, model_raw)
         
-        # Normalize other fields
-        fuel = FieldNormalizer.normalize_fuel("diesel")  # TODO: From parsed
-        gearbox = FieldNormalizer.normalize_gearbox("automatic")  # TODO: From parsed
-        body = FieldNormalizer.normalize_body("SUV")  # TODO: From parsed
-        mileage_km = FieldNormalizer.normalize_mileage(120000)  # TODO: From parsed
-        year = FieldNormalizer.normalize_year(2018)  # TODO: From parsed
-        price_bgn = FieldNormalizer.convert_price_to_bgn(30000, 'EUR')  # TODO: From parsed
+        # Normalize other fields from the existing normalized listing
+        fuel = FieldNormalizer.normalize_fuel(normalized.fuel) if normalized.fuel else None
+        gearbox = FieldNormalizer.normalize_gearbox(normalized.gearbox) if normalized.gearbox else None
+        body = FieldNormalizer.normalize_body(normalized.body) if normalized.body else None
+        mileage_km = FieldNormalizer.normalize_mileage(normalized.mileage_km) if normalized.mileage_km else None
+        year = FieldNormalizer.normalize_year(normalized.year) if normalized.year else None
         
-        # Handle seller
-        phone_hash = "sample_hash"  # TODO: From parsed
-        seller = session.query(Seller).filter_by(phone_hash=phone_hash).first()
-        if not seller:
-            seller = Seller(phone_hash=phone_hash)
-            session.add(seller)
-            session.flush()
+        # Price is already in BGN from parse task
+        price_bgn = normalized.price_bgn
         
-        # Generate description hash
-        description = "Sample description"  # TODO: From parsed
-        description_hash = hashlib.sha256(description.encode()).hexdigest()
+        # Handle seller (if phone hash available)
+        phone_hash = None  # TODO: Extract from parsed data when phone parsing is implemented
+        seller_id = None
+        if phone_hash:
+            seller = session.query(Seller).filter_by(phone_hash=phone_hash).first()
+            if not seller:
+                seller = Seller(phone_hash=phone_hash)
+                session.add(seller)
+                session.flush()
+            seller_id = seller.id
         
-        if normalized:
-            # Update existing
-            normalized.brand_id = brand_id
-            normalized.model_id = model_id
-            normalized.fuel = fuel
-            normalized.gearbox = gearbox
-            normalized.body = body
-            normalized.mileage_km = mileage_km
-            normalized.year = year
-            normalized.price_bgn = price_bgn
-            normalized.seller_id = seller.id
+        # Generate description hash if description exists
+        description_hash = None
+        if normalized.description:
+            description_hash = hashlib.sha256(normalized.description.encode()).hexdigest()
+        
+        # Update the normalized listing with standardized values
+        normalized.brand_id = brand_id
+        normalized.model_id = model_id
+        normalized.fuel = fuel
+        normalized.gearbox = gearbox
+        normalized.body = body
+        normalized.mileage_km = mileage_km
+        normalized.year = year
+        normalized.price_bgn = price_bgn
+        if seller_id:
+            normalized.seller_id = seller_id
+        if description_hash:
             normalized.description_hash = description_hash
-            normalized.listing_version += 1
-        else:
-            # Create new
-            normalized = ListingNormalized(
-                raw_id=raw_listing.id,
-                brand_id=brand_id,
-                model_id=model_id,
-                fuel=fuel,
-                gearbox=gearbox,
-                body=body,
-                mileage_km=mileage_km,
-                year=year,
-                price_bgn=price_bgn,
-                seller_id=seller.id,
-                description_hash=description_hash,
-                listing_version=1,
-            )
-            session.add(normalized)
+        normalized.listing_version += 1
         
         session.commit()
         

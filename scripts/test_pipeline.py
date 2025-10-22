@@ -6,6 +6,7 @@ Tests the complete flow from scraping to notification
 import sys
 import os
 import time
+import json
 from datetime import datetime
 
 # Add parent directory to path
@@ -103,11 +104,11 @@ def test_pipeline(listing_id: str):
     
     # Get normalized listing
     listing_raw = session.query(ListingRaw).filter_by(id=listing_id).first()
-    if not listing_raw.listing_normalized:
+    if not listing_raw.normalized:
         print("   ❌ No normalized listing created")
         return False
     
-    normalized_id = str(listing_raw.listing_normalized[0].id)
+    normalized_id = str(listing_raw.normalized.id)
     print(f"   📋 Normalized listing: {normalized_id}")
     
     # Stage 2: Normalize
@@ -165,27 +166,32 @@ def test_pipeline(listing_id: str):
     print("\n📊 Checking final state...")
     listing = session.query(ListingNormalized).filter_by(id=normalized_id).first()
     
-    print(f"   Brand: {listing.normalized_brand}")
-    print(f"   Model: {listing.normalized_model}")
+    print(f"   Brand: {listing.brand_id}")
+    print(f"   Model: {listing.model_id}")
     print(f"   Price: {listing.price_bgn} BGN")
     print(f"   Year: {listing.year}")
     print(f"   Mileage: {listing.mileage_km} km")
-    print(f"   Fuel: {listing.normalized_fuel}")
-    print(f"   Gearbox: {listing.normalized_gearbox}")
+    print(f"   Fuel: {listing.fuel}")
+    print(f"   Gearbox: {listing.gearbox}")
     print(f"   Is Duplicate: {listing.is_duplicate}")
     
-    if listing.predicted_price_bgn:
-        print(f"   Predicted Price: {listing.predicted_price_bgn:.0f} BGN")
-        print(f"   Discount: {listing.discount_pct:.1f}%")
+    # Check price prediction
+    if listing.comp_cache:
+        print(f"   Predicted Price: {listing.comp_cache.predicted_price_bgn:.0f} BGN")
+        print(f"   Discount: {listing.comp_cache.discount_pct:.1f}%")
+        print(f"   Sample Size: {listing.comp_cache.sample_size} comparables")
     
     # Check score
     score = session.query(Score).filter_by(listing_id=listing.id).first()
     if score:
-        print(f"\n   Score: {score.total_score:.2f}/10")
-        print(f"   State: {score.state}")
-        print(f"   Price Score: {score.price_score:.2f}")
+        print(f"\n   Final Score: {score.score:.2f}/10")
+        print(f"   State: {score.final_state}")
         print(f"   Risk Penalty: {score.risk_penalty:.2f}")
-        print(f"   Freshness: {score.freshness_bonus:.2f}")
+        print(f"   Freshness Bonus: {score.freshness_bonus:.2f}")
+        print(f"   Liquidity Bonus: {score.liquidity:.2f}")
+        # score.reasons is already a list (SQLAlchemy decodes JSON automatically)
+        reasons = score.reasons if isinstance(score.reasons, list) else json.loads(score.reasons)
+        print(f"   Reasons: {', '.join(reasons)}")
     
     session.close()
     return True

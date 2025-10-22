@@ -25,28 +25,51 @@ class MobileBgParser:
         try:
             soup = BeautifulSoup(html, 'html.parser')
             
-            # Extract title
-            title_elem = soup.select_one('h1.titleItem, h1.adPage__header__title')
-            title = title_elem.text.strip() if title_elem else None
+            # Extract title (contains brand, model, year, features)
+            title_elem = soup.select_one('title')
+            title_full = title_elem.text.strip() if title_elem else None
             
-            # Extract price
-            price_elem = soup.select_one('.price, .adPage__price')
-            price_text = price_elem.text.strip() if price_elem else None
+            # Extract brand/model from URL pattern: obiava-{id}-{brand}-{model}-...
+            brand = None
+            model = None
+            url_match = re.search(r'obiava-\d+-([^-]+)-([^-/\s]+)', url)
+            if url_match:
+                brand = url_match.group(1).strip()
+                model = url_match.group(2).strip()
+            
+            # Extract year from title (format: "Brand Model, 2021г.")
+            year = None
+            if title_full:
+                year_match = re.search(r'(\d{4})\s*г', title_full)
+                if year_match:
+                    year = int(year_match.group(1))
+            
+            # Extract price from HTML (appears multiple times, usually in format "25 250 лв")
             price = None
             currency = 'BGN'
             
-            if price_text:
-                # Extract number and currency
-                price_match = re.search(r'([\d\s]+)\s*(лв|EUR|€)', price_text)
-                if price_match:
-                    price = int(price_match.group(1).replace(' ', ''))
-                    currency_text = price_match.group(2)
-                    if currency_text in ['EUR', '€']:
+            # Try regex pattern - Mobile.bg embeds price in HTML
+            # Look for prices with at least 3 digits (to filter out navigation elements like "30 €")
+            price_matches = re.findall(r'(\d[\d\s]{3,})\s*(лв|€|EUR)', html)
+            if price_matches:
+                # Take the largest number (actual listing price, not UI elements)
+                prices = []
+                for price_text, currency_symbol in price_matches:
+                    try:
+                        value = int(price_text.replace(' ', ''))
+                        prices.append((value, currency_symbol))
+                    except ValueError:
+                        continue
+                
+                if prices:
+                    # Get the maximum price (most likely the actual listing price)
+                    price, currency_symbol = max(prices, key=lambda x: x[0])
+                    if currency_symbol in ['€', 'EUR']:
                         currency = 'EUR'
             
-            # Extract details table
+            # Extract details table (Mobile.bg uses various table structures)
             details = {}
-            detail_rows = soup.select('.dilarData tr, .adPage__content__features tr')
+            detail_rows = soup.select('tr')  # All table rows
             for row in detail_rows:
                 cells = row.find_all('td')
                 if len(cells) == 2:
@@ -54,26 +77,29 @@ class MobileBgParser:
                     value = cells[1].text.strip()
                     details[key] = value
             
-            # Extract brand and model from title or details
-            brand = details.get('Марка', None)
-            model = details.get('Модел', None)
+            # Fallback: Extract from table rows if URL parsing failed
+            if not brand:
+                brand = details.get('Марка', None)
+            if not model:
+                model = details.get('Модел', None)
             
-            # Try to extract from title if not in details
-            if not brand and title:
-                # Common pattern: "BMW 520 D - touring"
-                parts = title.split()
+            # Try to extract from title as last resort
+            if not brand and title_full:
+                # Common pattern: "BMW 520 D - touring, 2015г."
+                parts = title_full.split(',')[0].split()  # Take part before comma
                 if len(parts) > 0:
                     brand = parts[0]
                 if len(parts) > 1:
                     model = ' '.join(parts[1:3])  # Take next 1-2 words
             
-            # Extract other fields
-            year_text = details.get('Година', details.get('Първа регистрация', ''))
-            year = None
-            if year_text:
-                year_match = re.search(r'(\d{4})', year_text)
-                if year_match:
-                    year = int(year_match.group(1))
+            # Extract other fields from details table (if not already extracted)
+            # Year - only extract from table if not already found in title
+            if not year:
+                year_text = details.get('Година', details.get('Първа регистрация', ''))
+                if year_text:
+                    year_match = re.search(r'(\d{4})', year_text)
+                    if year_match:
+                        year = int(year_match.group(1))
             
             mileage_text = details.get('Пробег', '')
             mileage = None
@@ -134,7 +160,7 @@ class MobileBgParser:
             seller_name = seller_elem.text.strip() if seller_elem else None
             
             return {
-                'title': title,
+                'title': title_full,
                 'brand': brand,
                 'model': model,
                 'year': year,
@@ -256,12 +282,28 @@ def parse_listing(self, listing_raw_id: str):
         
         if existing:
             logger.info(f"Listing {listing_raw_id} already parsed, updating...")
-            # Update existing (skip 'images' - it's a relationship, not a simple field)
-            for key, value in parsed_data.items():
-                if key == 'images':
-                    continue  # Skip images - handled separately
-                if hasattr(existing, key) and value is not None:
-                    setattr(existing, key, value)
+            # Update existing - map parser fields to model fields
+            field_mapping = {
+                'brand': 'brand_id',
+                'model': 'model_id',
+                'year': 'year',
+                'mileage_km': 'mileage_km',
+                'fuel': 'fuel',
+                'fuel_type': 'fuel',
+                'gearbox': 'gearbox',
+                'body': 'body',
+                'body_type': 'body',
+                'price': 'price_bgn',
+                'currency': 'currency',
+                'region': 'region',
+                'title': 'title',
+                'description': 'description',
+            }
+            
+            for parser_field, model_field in field_mapping.items():
+                if parser_field in parsed_data and parsed_data[parser_field] is not None:
+                    setattr(existing, model_field, parsed_data[parser_field])
+            
             existing.updated_at = datetime.now(timezone.utc)
         else:
             # Create new normalized listing - map parser fields to model fields

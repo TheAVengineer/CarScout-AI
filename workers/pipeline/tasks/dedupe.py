@@ -112,7 +112,7 @@ class DeduplicationEngine:
                 'signature': signature,
                 'listing_id': listing.id,
                 'threshold': threshold,
-                'source_id': listing.source_id,
+                'source_id': listing.raw.source_id,
                 'created_at': listing.created_at
             }
         ).first()
@@ -227,20 +227,20 @@ class DeduplicationEngine:
     def find_duplicate(self, listing: ListingNormalized) -> Optional[UUID]:
         """Find duplicate using multiple methods in order of reliability"""
         
-        # Method 1: Phone hash (highest confidence)
+        # Method 1: Phone hash (highest confidence - heuristic method)
         duplicate_id = self.check_phone_duplicate(listing)
         if duplicate_id:
-            return duplicate_id, 'phone_hash', 0.95
+            return duplicate_id, 'heuristic', 0.95
         
         # Method 2: Image similarity (high confidence)
         duplicate_id = self.check_image_similarity(listing)
         if duplicate_id:
-            return duplicate_id, 'image_hash', 0.90
+            return duplicate_id, 'image', 0.90
         
-        # Method 3: Text similarity (medium confidence)
+        # Method 3: Text similarity (medium confidence - heuristic method)
         duplicate_id = self.check_text_similarity(listing, threshold=0.8)
         if duplicate_id:
-            return duplicate_id, 'text_similarity', 0.75
+            return duplicate_id, 'heuristic', 0.75
         
         # Method 4: Embedding similarity (medium confidence)
         # TODO: Enable when embeddings are generated
@@ -283,9 +283,9 @@ def deduplicate_listing(self, listing_id: str):
             # Log duplicate
             dup_log = DuplicateLog(
                 listing_id=listing.id,
-                original_listing_id=duplicate_id,
+                duplicate_of=duplicate_id,
                 method=method,
-                confidence=confidence,
+                score=confidence,
             )
             session.add(dup_log)
             session.commit()
