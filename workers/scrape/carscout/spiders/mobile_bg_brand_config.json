@@ -1,0 +1,895 @@
+{
+  "priority_brands": [
+    {
+      "brand": "Mercedes-Benz",
+      "slug": "mercedes-benz",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/mercedes-benz/namira-se-v-balgariya?sort=6",
+      "priority": true
+    },
+    {
+      "brand": "BMW",
+      "slug": "bmw",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/bmw/namira-se-v-balgariya?sort=6",
+      "priority": true
+    },
+    {
+      "brand": "Audi",
+      "slug": "audi",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/audi/namira-se-v-balgariya?sort=6",
+      "priority": true
+    },
+    {
+      "brand": "Volkswagen",
+      "slug": "volkswagen",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/volkswagen/namira-se-v-balgariya?sort=6",
+      "priority": true
+    },
+    {
+      "brand": "Toyota",
+      "slug": "toyota",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/toyota/namira-se-v-balgariya?sort=6",
+      "priority": true
+    },
+    {
+      "brand": "Ford",
+      "slug": "ford",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/ford/namira-se-v-balgariya?sort=6",
+      "priority": true
+    },
+    {
+      "brand": "Opel",
+      "slug": "opel",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/opel/namira-se-v-balgariya?sort=6",
+      "priority": true
+    },
+    {
+      "brand": "Skoda",
+      "slug": "skoda",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/skoda/namira-se-v-balgariya?sort=6",
+      "priority": true
+    },
+    {
+      "brand": "Renault",
+      "slug": "renault",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/renault/namira-se-v-balgariya?sort=6",
+      "priority": true
+    },
+    {
+      "brand": "Hyundai",
+      "slug": "hyundai",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/hyundai/namira-se-v-balgariya?sort=6",
+      "priority": true
+    },
+    {
+      "brand": "Nissan",
+      "slug": "nissan",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/nissan/namira-se-v-balgariya?sort=6",
+      "priority": true
+    },
+    {
+      "brand": "Honda",
+      "slug": "honda",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/honda/namira-se-v-balgariya?sort=6",
+      "priority": true
+    },
+    {
+      "brand": "Chevrolet",
+      "slug": "chevrolet",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/chevrolet/namira-se-v-balgariya?sort=6",
+      "priority": true
+    },
+    {
+      "brand": "Kia",
+      "slug": "kia",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/kia/namira-se-v-balgariya?sort=6",
+      "priority": true
+    },
+    {
+      "brand": "Mazda",
+      "slug": "mazda",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/mazda/namira-se-v-balgariya?sort=6",
+      "priority": true
+    },
+    {
+      "brand": "Citroen",
+      "slug": "citroen",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/citroen/namira-se-v-balgariya?sort=6",
+      "priority": true
+    },
+    {
+      "brand": "Fiat",
+      "slug": "fiat",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/fiat/namira-se-v-balgariya?sort=6",
+      "priority": true
+    },
+    {
+      "brand": "Volvo",
+      "slug": "volvo",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/volvo/namira-se-v-balgariya?sort=6",
+      "priority": true
+    },
+    {
+      "brand": "Mitsubishi",
+      "slug": "mitsubishi",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/mitsubishi/namira-se-v-balgariya?sort=6",
+      "priority": true
+    }
+  ],
+  "all_brands": [
+    {
+      "brand": "Abarth",
+      "slug": "abarth",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/abarth/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Acura",
+      "slug": "acura",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/acura/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Alfa Romeo",
+      "slug": "alfa-romeo",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/alfa-romeo/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Alpina",
+      "slug": "alpina",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/alpina/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Asia",
+      "slug": "asia",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/asia/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Aston Martin",
+      "slug": "aston-martin",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/aston-martin/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Audi",
+      "slug": "audi",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/audi/namira-se-v-balgariya?sort=6",
+      "priority": true
+    },
+    {
+      "brand": "Austin",
+      "slug": "austin",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/austin/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "BAIC",
+      "slug": "baic",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/baic/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "BAW",
+      "slug": "baw",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/baw/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Bentley",
+      "slug": "bentley",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/bentley/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "BENTU",
+      "slug": "bentu",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/bentu/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "BMW",
+      "slug": "bmw",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/bmw/namira-se-v-balgariya?sort=6",
+      "priority": true
+    },
+    {
+      "brand": "Brilliance",
+      "slug": "brilliance",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/brilliance/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Buick",
+      "slug": "buick",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/buick/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "BYD",
+      "slug": "byd",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/byd/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Cadillac",
+      "slug": "cadillac",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/cadillac/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Carbodies",
+      "slug": "carbodies",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/carbodies/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Changan",
+      "slug": "changan",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/changan/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Chery",
+      "slug": "chery",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/chery/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Chevrolet",
+      "slug": "chevrolet",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/chevrolet/namira-se-v-balgariya?sort=6",
+      "priority": true
+    },
+    {
+      "brand": "Chrysler",
+      "slug": "chrysler",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/chrysler/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Citroen",
+      "slug": "citroen",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/citroen/namira-se-v-balgariya?sort=6",
+      "priority": true
+    },
+    {
+      "brand": "Corvette",
+      "slug": "corvette",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/corvette/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Cupra",
+      "slug": "cupra",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/cupra/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Dacia",
+      "slug": "dacia",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/dacia/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Daewoo",
+      "slug": "daewoo",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/daewoo/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Daihatsu",
+      "slug": "daihatsu",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/daihatsu/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Daimler",
+      "slug": "daimler",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/daimler/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "DFSK",
+      "slug": "dfsk",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/dfsk/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Dkw",
+      "slug": "dkw",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/dkw/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Dodge",
+      "slug": "dodge",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/dodge/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "DONGFENG",
+      "slug": "dongfeng",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/dongfeng/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Dr",
+      "slug": "dr",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/dr/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "DR Automobiles",
+      "slug": "dr-automobiles",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/dr-automobiles/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "DS",
+      "slug": "ds",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/ds/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Eagle",
+      "slug": "eagle",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/eagle/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Ferrari",
+      "slug": "ferrari",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/ferrari/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Fiat",
+      "slug": "fiat",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/fiat/namira-se-v-balgariya?sort=6",
+      "priority": true
+    },
+    {
+      "brand": "Fisker",
+      "slug": "fisker",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/fisker/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Ford",
+      "slug": "ford",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/ford/namira-se-v-balgariya?sort=6",
+      "priority": true
+    },
+    {
+      "brand": "Foton",
+      "slug": "foton",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/foton/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Gaz",
+      "slug": "gaz",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/gaz/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Geely",
+      "slug": "geely",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/geely/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Genesis",
+      "slug": "genesis",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/genesis/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Gmc",
+      "slug": "gmc",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/gmc/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Gonow",
+      "slug": "gonow",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/gonow/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "GOUPIL",
+      "slug": "goupil",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/goupil/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Great Wall",
+      "slug": "great-wall",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/great-wall/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Haval",
+      "slug": "haval",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/haval/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Hino",
+      "slug": "hino",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/hino/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Honda",
+      "slug": "honda",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/honda/namira-se-v-balgariya?sort=6",
+      "priority": true
+    },
+    {
+      "brand": "Hummer",
+      "slug": "hummer",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/hummer/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Hyundai",
+      "slug": "hyundai",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/hyundai/namira-se-v-balgariya?sort=6",
+      "priority": true
+    },
+    {
+      "brand": "Infiniti",
+      "slug": "infiniti",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/infiniti/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Innocenti",
+      "slug": "innocenti",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/innocenti/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Isuzu",
+      "slug": "isuzu",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/isuzu/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Iveco",
+      "slug": "iveco",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/iveco/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "JAC",
+      "slug": "jac",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/jac/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Jaguar",
+      "slug": "jaguar",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/jaguar/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Jeep",
+      "slug": "jeep",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/jeep/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Jetour",
+      "slug": "jetour",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/jetour/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "JMC",
+      "slug": "jmc",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/jmc/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Kia",
+      "slug": "kia",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/kia/namira-se-v-balgariya?sort=6",
+      "priority": true
+    },
+    {
+      "brand": "Lada",
+      "slug": "lada",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/lada/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Lamborghini",
+      "slug": "lamborghini",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/lamborghini/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Lancia",
+      "slug": "lancia",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/lancia/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Land Rover",
+      "slug": "land-rover",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/land-rover/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Landwind",
+      "slug": "landwind",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/landwind/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "LEAPMOTOR",
+      "slug": "leapmotor",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/leapmotor/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Lexus",
+      "slug": "lexus",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/lexus/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Lifan",
+      "slug": "lifan",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/lifan/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Lincoln",
+      "slug": "lincoln",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/lincoln/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Lotus",
+      "slug": "lotus",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/lotus/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "LTI",
+      "slug": "lti",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/lti/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "LuAZ",
+      "slug": "luaz",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/luaz/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Luxgen",
+      "slug": "luxgen",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/luxgen/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Lynk & Co",
+      "slug": "lynk---co",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/lynk---co/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "MACAN",
+      "slug": "macan",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/macan/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "MAN",
+      "slug": "man",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/man/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Maruti",
+      "slug": "maruti",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/maruti/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Maserati",
+      "slug": "maserati",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/maserati/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Maxus",
+      "slug": "maxus",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/maxus/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Maybach",
+      "slug": "maybach",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/maybach/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Mazda",
+      "slug": "mazda",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/mazda/namira-se-v-balgariya?sort=6",
+      "priority": true
+    },
+    {
+      "brand": "Mercedes-Benz",
+      "slug": "mercedes-benz",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/mercedes-benz/namira-se-v-balgariya?sort=6",
+      "priority": true
+    },
+    {
+      "brand": "Microcar",
+      "slug": "microcar",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/microcar/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "MINI",
+      "slug": "mini",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/mini/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Mitsubishi",
+      "slug": "mitsubishi",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/mitsubishi/namira-se-v-balgariya?sort=6",
+      "priority": true
+    },
+    {
+      "brand": "Morgan",
+      "slug": "morgan",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/morgan/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "MossMotors",
+      "slug": "mossmotors",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/mossmotors/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Moskvich",
+      "slug": "moskvich",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/moskvich/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "NIO",
+      "slug": "nio",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/nio/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Nissan",
+      "slug": "nissan",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/nissan/namira-se-v-balgariya?sort=6",
+      "priority": true
+    },
+    {
+      "brand": "OFY",
+      "slug": "ofy",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/ofy/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Oldsmobile",
+      "slug": "oldsmobile",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/oldsmobile/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Opel",
+      "slug": "opel",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/opel/namira-se-v-balgariya?sort=6",
+      "priority": true
+    },
+    {
+      "brand": "PEUGEOT",
+      "slug": "peugeot",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/peugeot/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Piaggio",
+      "slug": "piaggio",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/piaggio/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Plymouth",
+      "slug": "plymouth",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/plymouth/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Polaris",
+      "slug": "polaris",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/polaris/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Pontiac",
+      "slug": "pontiac",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/pontiac/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Porsche",
+      "slug": "porsche",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/porsche/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Proton",
+      "slug": "proton",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/proton/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Puch",
+      "slug": "puch",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/puch/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "RAM",
+      "slug": "ram",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/ram/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Renault",
+      "slug": "renault",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/renault/namira-se-v-balgariya?sort=6",
+      "priority": true
+    },
+    {
+      "brand": "Rolls-Royce",
+      "slug": "rolls-royce",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/rolls-royce/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Rover",
+      "slug": "rover",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/rover/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Saab",
+      "slug": "saab",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/saab/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Saturn",
+      "slug": "saturn",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/saturn/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "SEAT",
+      "slug": "seat",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/seat/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "SERES",
+      "slug": "seres",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/seres/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Skoda",
+      "slug": "skoda",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/skoda/namira-se-v-balgariya?sort=6",
+      "priority": true
+    },
+    {
+      "brand": "smart",
+      "slug": "smart",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/smart/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "SsangYong",
+      "slug": "ssangyong",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/ssangyong/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Subaru",
+      "slug": "subaru",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/subaru/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Suzuki",
+      "slug": "suzuki",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/suzuki/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Tata",
+      "slug": "tata",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/tata/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Tesla",
+      "slug": "tesla",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/tesla/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Think",
+      "slug": "think",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/think/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Toyota",
+      "slug": "toyota",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/toyota/namira-se-v-balgariya?sort=6",
+      "priority": true
+    },
+    {
+      "brand": "UAZ",
+      "slug": "uaz",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/uaz/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Vauxhall",
+      "slug": "vauxhall",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/vauxhall/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Volkswagen",
+      "slug": "volkswagen",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/volkswagen/namira-se-v-balgariya?sort=6",
+      "priority": true
+    },
+    {
+      "brand": "Volvo",
+      "slug": "volvo",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/volvo/namira-se-v-balgariya?sort=6",
+      "priority": true
+    },
+    {
+      "brand": "Wartburg",
+      "slug": "wartburg",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/wartburg/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "Yugo",
+      "slug": "yugo",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/yugo/namira-se-v-balgariya?sort=6",
+      "priority": false
+    },
+    {
+      "brand": "ZAZ",
+      "slug": "zaz",
+      "url": "https://www.mobile.bg/search/avtomobili-dzhipove/zaz/namira-se-v-balgariya?sort=6",
+      "priority": false
+    }
+  ],
+  "total_brands": 129
+}

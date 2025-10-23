@@ -1,0 +1,3694 @@
+{
+  "generation_date": "2025-10-22",
+  "strategy": "hybrid_brand_model",
+  "description": "Brand-level searches for comprehensive coverage + model-level searches for popular brands to bypass pagination limits",
+  "search_urls": [
+    {
+      "type": "brand",
+      "brand": "Abarth",
+      "brand_slug": "abarth",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/abarth/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Acura",
+      "brand_slug": "acura",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/acura/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Alfa Romeo",
+      "brand_slug": "alfa-romeo",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/alfa-romeo/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Alpina",
+      "brand_slug": "alpina",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/alpina/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Asia",
+      "brand_slug": "asia",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/asia/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Aston Martin",
+      "brand_slug": "aston-martin",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/aston-martin/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Audi",
+      "brand_slug": "audi",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/audi/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3000
+    },
+    {
+      "type": "brand",
+      "brand": "Austin",
+      "brand_slug": "austin",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/austin/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "BAIC",
+      "brand_slug": "baic",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/baic/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "BAW",
+      "brand_slug": "baw",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/baw/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Bentley",
+      "brand_slug": "bentley",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bentley/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "BENTU",
+      "brand_slug": "bentu",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bentu/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "BMW",
+      "brand_slug": "bmw",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3000
+    },
+    {
+      "type": "brand",
+      "brand": "Brilliance",
+      "brand_slug": "brilliance",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/brilliance/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Buick",
+      "brand_slug": "buick",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/buick/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "BYD",
+      "brand_slug": "byd",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/byd/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Cadillac",
+      "brand_slug": "cadillac",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/cadillac/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Carbodies",
+      "brand_slug": "carbodies",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/carbodies/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Changan",
+      "brand_slug": "changan",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/changan/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Chery",
+      "brand_slug": "chery",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/chery/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Chevrolet",
+      "brand_slug": "chevrolet",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/chevrolet/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3000
+    },
+    {
+      "type": "brand",
+      "brand": "Chrysler",
+      "brand_slug": "chrysler",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/chrysler/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Citroen",
+      "brand_slug": "citroen",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/citroen/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3000
+    },
+    {
+      "type": "brand",
+      "brand": "Corvette",
+      "brand_slug": "corvette",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/corvette/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Cupra",
+      "brand_slug": "cupra",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/cupra/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Dacia",
+      "brand_slug": "dacia",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/dacia/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Daewoo",
+      "brand_slug": "daewoo",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/daewoo/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Daihatsu",
+      "brand_slug": "daihatsu",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/daihatsu/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Daimler",
+      "brand_slug": "daimler",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/daimler/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "DFSK",
+      "brand_slug": "dfsk",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/dfsk/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Dkw",
+      "brand_slug": "dkw",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/dkw/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Dodge",
+      "brand_slug": "dodge",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/dodge/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "DONGFENG",
+      "brand_slug": "dongfeng",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/dongfeng/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Dr",
+      "brand_slug": "dr",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/dr/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "DR Automobiles",
+      "brand_slug": "dr-automobiles",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/dr-automobiles/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "DS",
+      "brand_slug": "ds",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/ds/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Eagle",
+      "brand_slug": "eagle",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/eagle/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Ferrari",
+      "brand_slug": "ferrari",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/ferrari/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Fiat",
+      "brand_slug": "fiat",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/fiat/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3000
+    },
+    {
+      "type": "brand",
+      "brand": "Fisker",
+      "brand_slug": "fisker",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/fisker/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Ford",
+      "brand_slug": "ford",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/ford/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3000
+    },
+    {
+      "type": "brand",
+      "brand": "Foton",
+      "brand_slug": "foton",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/foton/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Gaz",
+      "brand_slug": "gaz",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/gaz/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Geely",
+      "brand_slug": "geely",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/geely/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Genesis",
+      "brand_slug": "genesis",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/genesis/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Gmc",
+      "brand_slug": "gmc",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/gmc/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Gonow",
+      "brand_slug": "gonow",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/gonow/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "GOUPIL",
+      "brand_slug": "goupil",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/goupil/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Great Wall",
+      "brand_slug": "great-wall",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/great-wall/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Haval",
+      "brand_slug": "haval",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/haval/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Hino",
+      "brand_slug": "hino",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/hino/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Honda",
+      "brand_slug": "honda",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/honda/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3000
+    },
+    {
+      "type": "brand",
+      "brand": "Hummer",
+      "brand_slug": "hummer",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/hummer/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Hyundai",
+      "brand_slug": "hyundai",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/hyundai/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3000
+    },
+    {
+      "type": "brand",
+      "brand": "Infiniti",
+      "brand_slug": "infiniti",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/infiniti/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Innocenti",
+      "brand_slug": "innocenti",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/innocenti/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Isuzu",
+      "brand_slug": "isuzu",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/isuzu/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Iveco",
+      "brand_slug": "iveco",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/iveco/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "JAC",
+      "brand_slug": "jac",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/jac/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Jaguar",
+      "brand_slug": "jaguar",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/jaguar/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Jeep",
+      "brand_slug": "jeep",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/jeep/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Jetour",
+      "brand_slug": "jetour",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/jetour/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "JMC",
+      "brand_slug": "jmc",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/jmc/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Kia",
+      "brand_slug": "kia",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/kia/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3000
+    },
+    {
+      "type": "brand",
+      "brand": "Lada",
+      "brand_slug": "lada",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/lada/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Lamborghini",
+      "brand_slug": "lamborghini",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/lamborghini/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Lancia",
+      "brand_slug": "lancia",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/lancia/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Land Rover",
+      "brand_slug": "land-rover",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/land-rover/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Landwind",
+      "brand_slug": "landwind",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/landwind/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "LEAPMOTOR",
+      "brand_slug": "leapmotor",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/leapmotor/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Lexus",
+      "brand_slug": "lexus",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/lexus/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Lifan",
+      "brand_slug": "lifan",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/lifan/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Lincoln",
+      "brand_slug": "lincoln",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/lincoln/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Lotus",
+      "brand_slug": "lotus",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/lotus/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "LTI",
+      "brand_slug": "lti",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/lti/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "LuAZ",
+      "brand_slug": "luaz",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/luaz/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Luxgen",
+      "brand_slug": "luxgen",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/luxgen/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Lynk & Co",
+      "brand_slug": "lynk---co",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/lynk---co/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "MACAN",
+      "brand_slug": "macan",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/macan/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "MAN",
+      "brand_slug": "man",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/man/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Maruti",
+      "brand_slug": "maruti",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/maruti/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Maserati",
+      "brand_slug": "maserati",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/maserati/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Maxus",
+      "brand_slug": "maxus",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/maxus/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Maybach",
+      "brand_slug": "maybach",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/maybach/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Mazda",
+      "brand_slug": "mazda",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mazda/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3000
+    },
+    {
+      "type": "brand",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3000
+    },
+    {
+      "type": "brand",
+      "brand": "Microcar",
+      "brand_slug": "microcar",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/microcar/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "MINI",
+      "brand_slug": "mini",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mini/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Mitsubishi",
+      "brand_slug": "mitsubishi",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mitsubishi/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3000
+    },
+    {
+      "type": "brand",
+      "brand": "Morgan",
+      "brand_slug": "morgan",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/morgan/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "MossMotors",
+      "brand_slug": "mossmotors",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mossmotors/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Moskvich",
+      "brand_slug": "moskvich",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/moskvich/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "NIO",
+      "brand_slug": "nio",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/nio/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Nissan",
+      "brand_slug": "nissan",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/nissan/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3000
+    },
+    {
+      "type": "brand",
+      "brand": "OFY",
+      "brand_slug": "ofy",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/ofy/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Oldsmobile",
+      "brand_slug": "oldsmobile",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/oldsmobile/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Opel",
+      "brand_slug": "opel",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/opel/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3000
+    },
+    {
+      "type": "brand",
+      "brand": "PEUGEOT",
+      "brand_slug": "peugeot",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/peugeot/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Piaggio",
+      "brand_slug": "piaggio",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/piaggio/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Plymouth",
+      "brand_slug": "plymouth",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/plymouth/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Polaris",
+      "brand_slug": "polaris",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/polaris/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Pontiac",
+      "brand_slug": "pontiac",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/pontiac/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Porsche",
+      "brand_slug": "porsche",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/porsche/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Proton",
+      "brand_slug": "proton",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/proton/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Puch",
+      "brand_slug": "puch",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/puch/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "RAM",
+      "brand_slug": "ram",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/ram/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Renault",
+      "brand_slug": "renault",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/renault/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3000
+    },
+    {
+      "type": "brand",
+      "brand": "Rolls-Royce",
+      "brand_slug": "rolls-royce",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/rolls-royce/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Rover",
+      "brand_slug": "rover",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/rover/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Saab",
+      "brand_slug": "saab",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/saab/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Saturn",
+      "brand_slug": "saturn",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/saturn/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "SEAT",
+      "brand_slug": "seat",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/seat/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "SERES",
+      "brand_slug": "seres",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/seres/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Skoda",
+      "brand_slug": "skoda",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/skoda/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3000
+    },
+    {
+      "type": "brand",
+      "brand": "smart",
+      "brand_slug": "smart",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/smart/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "SsangYong",
+      "brand_slug": "ssangyong",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/ssangyong/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Subaru",
+      "brand_slug": "subaru",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/subaru/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Suzuki",
+      "brand_slug": "suzuki",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/suzuki/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Tata",
+      "brand_slug": "tata",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/tata/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Tesla",
+      "brand_slug": "tesla",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/tesla/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Think",
+      "brand_slug": "think",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/think/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Toyota",
+      "brand_slug": "toyota",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/toyota/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3000
+    },
+    {
+      "type": "brand",
+      "brand": "UAZ",
+      "brand_slug": "uaz",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/uaz/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Vauxhall",
+      "brand_slug": "vauxhall",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/vauxhall/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Volkswagen",
+      "brand_slug": "volkswagen",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/volkswagen/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3000
+    },
+    {
+      "type": "brand",
+      "brand": "Volvo",
+      "brand_slug": "volvo",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/volvo/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3000
+    },
+    {
+      "type": "brand",
+      "brand": "Wartburg",
+      "brand_slug": "wartburg",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/wartburg/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "Yugo",
+      "brand_slug": "yugo",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/yugo/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "brand",
+      "brand": "ZAZ",
+      "brand_slug": "zaz",
+      "model": null,
+      "model_slug": null,
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/zaz/namira-se-v-balgariya?sort=6",
+      "priority": false,
+      "estimated_listings": 1000
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "114",
+      "model_slug": "114",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/114/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 2400
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "116",
+      "model_slug": "116",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/116/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4300
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "118",
+      "model_slug": "118",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/118/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 5050
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "120",
+      "model_slug": "120",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/120/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4500
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "125",
+      "model_slug": "125",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/125/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 1050
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "130",
+      "model_slug": "130",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/130/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 300
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "135",
+      "model_slug": "135",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/135/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 2750
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "218",
+      "model_slug": "218",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/218/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3600
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "220",
+      "model_slug": "220",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/220/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 2750
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "225",
+      "model_slug": "225",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/225/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 1350
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "228",
+      "model_slug": "228",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/228/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 1500
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "230",
+      "model_slug": "230",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/230/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 450
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "235",
+      "model_slug": "235",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/235/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 1650
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "316",
+      "model_slug": "316",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/316/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4150
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "318",
+      "model_slug": "318",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/318/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 5000
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "320",
+      "model_slug": "320",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/320/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 6000
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "323",
+      "model_slug": "323",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/323/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 2700
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "325",
+      "model_slug": "325",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/325/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3900
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "328",
+      "model_slug": "328",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/328/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4050
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "330",
+      "model_slug": "330",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/330/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 6050
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "335",
+      "model_slug": "335",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/335/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4350
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "340",
+      "model_slug": "340",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/340/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3650
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "418",
+      "model_slug": "418",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/418/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 800
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "420",
+      "model_slug": "420",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/420/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3950
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "425",
+      "model_slug": "425",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/425/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 300
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "428",
+      "model_slug": "428",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/428/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4050
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "430",
+      "model_slug": "430",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/430/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4100
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "435",
+      "model_slug": "435",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/435/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3900
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "440",
+      "model_slug": "440",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/440/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4100
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "520",
+      "model_slug": "520",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/520/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 5050
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "523",
+      "model_slug": "523",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/523/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3150
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "525",
+      "model_slug": "525",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/525/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4400
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "528",
+      "model_slug": "528",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/528/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3650
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "530",
+      "model_slug": "530",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/530/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 6000
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "535",
+      "model_slug": "535",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/535/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 5550
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "540",
+      "model_slug": "540",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/540/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 5200
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "545",
+      "model_slug": "545",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/545/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3050
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "550",
+      "model_slug": "550",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/550/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4400
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "630",
+      "model_slug": "630",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/630/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3250
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "635",
+      "model_slug": "635",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/635/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 2400
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "640",
+      "model_slug": "640",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/640/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4400
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "645",
+      "model_slug": "645",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/645/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3450
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "650",
+      "model_slug": "650",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/650/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4050
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "730",
+      "model_slug": "730",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/730/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 5600
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "735",
+      "model_slug": "735",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/735/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 2950
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "740",
+      "model_slug": "740",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/740/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 5300
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "745",
+      "model_slug": "745",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/745/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3000
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "750",
+      "model_slug": "750",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/750/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4950
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "760",
+      "model_slug": "760",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/760/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4100
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "840",
+      "model_slug": "840",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/840/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4150
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "850",
+      "model_slug": "850",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/850/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3750
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "X1",
+      "model_slug": "x1",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/x1/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 5200
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "X2",
+      "model_slug": "x2",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/x2/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3300
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "X3",
+      "model_slug": "x3",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/x3/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 6150
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "X4",
+      "model_slug": "x4",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/x4/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 5400
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "X5",
+      "model_slug": "x5",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/x5/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 6050
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "X6",
+      "model_slug": "x6",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/x6/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 6100
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "X7",
+      "model_slug": "x7",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/x7/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4600
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "Z3",
+      "model_slug": "z3",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/z3/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 1350
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "Z4",
+      "model_slug": "z4",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/z4/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3150
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "M2",
+      "model_slug": "m2",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/m2/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3450
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "M3",
+      "model_slug": "m3",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/m3/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3950
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "M4",
+      "model_slug": "m4",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/m4/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3600
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "M5",
+      "model_slug": "m5",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/m5/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3900
+    },
+    {
+      "type": "model",
+      "brand": "Bmw",
+      "brand_slug": "bmw",
+      "model": "M6",
+      "model_slug": "m6",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/m6/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4550
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "A-140",
+      "model_slug": "a-140",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/a-140/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 2850
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "A-150",
+      "model_slug": "a-150",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/a-150/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3600
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "A-160",
+      "model_slug": "a-160",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/a-160/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3750
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "A-170",
+      "model_slug": "a-170",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/a-170/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3150
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "A-180",
+      "model_slug": "a-180",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/a-180/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 5100
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "A-200",
+      "model_slug": "a-200",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/a-200/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3650
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "A-220",
+      "model_slug": "a-220",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/a-220/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4300
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "A-250",
+      "model_slug": "a-250",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/a-250/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3300
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "B-150",
+      "model_slug": "b-150",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/b-150/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 2400
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "B-160",
+      "model_slug": "b-160",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/b-160/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 800
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "B-170",
+      "model_slug": "b-170",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/b-170/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3650
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "B-180",
+      "model_slug": "b-180",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/b-180/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4250
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "B-200",
+      "model_slug": "b-200",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/b-200/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3600
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "B-220",
+      "model_slug": "b-220",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/b-220/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 2900
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "B-250",
+      "model_slug": "b-250",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/b-250/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 2150
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "C-180",
+      "model_slug": "c-180",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/c-180/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4350
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "C-200",
+      "model_slug": "c-200",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/c-200/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 5950
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "C-220",
+      "model_slug": "c-220",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/c-220/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 6000
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "C-230",
+      "model_slug": "c-230",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/c-230/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3200
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "C-240",
+      "model_slug": "c-240",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/c-240/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 2550
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "C-250",
+      "model_slug": "c-250",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/c-250/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 5150
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "C-270",
+      "model_slug": "c-270",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/c-270/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3750
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "C-280",
+      "model_slug": "c-280",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/c-280/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3800
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "C-300",
+      "model_slug": "c-300",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/c-300/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 5450
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "C-320",
+      "model_slug": "c-320",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/c-320/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4450
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "C-350",
+      "model_slug": "c-350",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/c-350/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4500
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "CLA-180",
+      "model_slug": "cla-180",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/cla-180/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3750
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "CLA-200",
+      "model_slug": "cla-200",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/cla-200/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4950
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "CLA-220",
+      "model_slug": "cla-220",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/cla-220/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4650
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "CLA-250",
+      "model_slug": "cla-250",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/cla-250/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4100
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "CLS-220",
+      "model_slug": "cls-220",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/cls-220/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 150
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "CLS-250",
+      "model_slug": "cls-250",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/cls-250/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3450
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "CLS-300",
+      "model_slug": "cls-300",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/cls-300/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 150
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "CLS-320",
+      "model_slug": "cls-320",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/cls-320/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4500
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "CLS-350",
+      "model_slug": "cls-350",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/cls-350/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 6100
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "CLS-400",
+      "model_slug": "cls-400",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/cls-400/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4350
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "CLS-500",
+      "model_slug": "cls-500",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/cls-500/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4400
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "CLS-550",
+      "model_slug": "cls-550",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/cls-550/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3750
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "E-200",
+      "model_slug": "e-200",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/e-200/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 5700
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "E-220",
+      "model_slug": "e-220",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/e-220/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 5950
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "E-230",
+      "model_slug": "e-230",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/e-230/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 1500
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "E-240",
+      "model_slug": "e-240",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/e-240/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3450
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "E-250",
+      "model_slug": "e-250",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/e-250/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4650
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "E-270",
+      "model_slug": "e-270",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/e-270/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3600
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "E-280",
+      "model_slug": "e-280",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/e-280/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3900
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "E-300",
+      "model_slug": "e-300",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/e-300/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4500
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "E-320",
+      "model_slug": "e-320",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/e-320/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4200
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "E-350",
+      "model_slug": "e-350",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/e-350/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 6150
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "E-400",
+      "model_slug": "e-400",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/e-400/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4250
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "E-500",
+      "model_slug": "e-500",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/e-500/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4300
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "G-270",
+      "model_slug": "g-270",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/g-270/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 750
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "G-320",
+      "model_slug": "g-320",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/g-320/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 1800
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "G-350",
+      "model_slug": "g-350",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/g-350/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3900
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "G-400",
+      "model_slug": "g-400",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/g-400/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3850
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "G-500",
+      "model_slug": "g-500",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/g-500/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 5300
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "GLA-180",
+      "model_slug": "gla-180",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/gla-180/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 1950
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "GLA-200",
+      "model_slug": "gla-200",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/gla-200/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4700
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "GLA-220",
+      "model_slug": "gla-220",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/gla-220/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4950
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "GLA-250",
+      "model_slug": "gla-250",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/gla-250/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3800
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "GLC-200",
+      "model_slug": "glc-200",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/glc-200/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4950
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "GLC-220",
+      "model_slug": "glc-220",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/glc-220/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 5300
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "GLC-250",
+      "model_slug": "glc-250",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/glc-250/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 5650
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "GLC-300",
+      "model_slug": "glc-300",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/glc-300/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 5150
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "GLC-350",
+      "model_slug": "glc-350",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/glc-350/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4500
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "GLE-250",
+      "model_slug": "gle-250",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/gle-250/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 2900
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "GLE-300",
+      "model_slug": "gle-300",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/gle-300/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 1650
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "GLE-350",
+      "model_slug": "gle-350",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/gle-350/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 6200
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "GLE-400",
+      "model_slug": "gle-400",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/gle-400/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 6000
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "GLE-450",
+      "model_slug": "gle-450",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/gle-450/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4050
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "GLE-500",
+      "model_slug": "gle-500",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/gle-500/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3650
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "GLS-350",
+      "model_slug": "gls-350",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/gls-350/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4300
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "GLS-400",
+      "model_slug": "gls-400",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/gls-400/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4250
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "GLS-450",
+      "model_slug": "gls-450",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/gls-450/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3900
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "GLS-500",
+      "model_slug": "gls-500",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/gls-500/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4700
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "ML-230",
+      "model_slug": "ml-230",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/ml-230/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 300
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "ML-270",
+      "model_slug": "ml-270",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/ml-270/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3200
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "ML-280",
+      "model_slug": "ml-280",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/ml-280/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4350
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "ML-300",
+      "model_slug": "ml-300",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/ml-300/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 1850
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "ML-320",
+      "model_slug": "ml-320",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/ml-320/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4700
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "ML-350",
+      "model_slug": "ml-350",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/ml-350/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 6050
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "ML-400",
+      "model_slug": "ml-400",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/ml-400/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 2850
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "ML-420",
+      "model_slug": "ml-420",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/ml-420/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3300
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "ML-500",
+      "model_slug": "ml-500",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/ml-500/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3300
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "ML-550",
+      "model_slug": "ml-550",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/ml-550/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3500
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "S-280",
+      "model_slug": "s-280",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/s-280/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 1650
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "S-300",
+      "model_slug": "s-300",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/s-300/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 1350
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "S-320",
+      "model_slug": "s-320",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/s-320/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4050
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "S-350",
+      "model_slug": "s-350",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/s-350/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 6050
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "S-400",
+      "model_slug": "s-400",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/s-400/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 5050
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "S-420",
+      "model_slug": "s-420",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/s-420/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 2450
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "S-450",
+      "model_slug": "s-450",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/s-450/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4350
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "S-500",
+      "model_slug": "s-500",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/s-500/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 6150
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "S-550",
+      "model_slug": "s-550",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/s-550/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4400
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "S-600",
+      "model_slug": "s-600",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/s-600/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3750
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "SL-400",
+      "model_slug": "sl-400",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/sl-400/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 150
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "SL-500",
+      "model_slug": "sl-500",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/sl-500/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3950
+    },
+    {
+      "type": "model",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "model": "SL-600",
+      "model_slug": "sl-600",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/sl-600/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 600
+    },
+    {
+      "type": "model",
+      "brand": "Audi",
+      "brand_slug": "audi",
+      "model": "A1",
+      "model_slug": "a1",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/audi/a1/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4750
+    },
+    {
+      "type": "model",
+      "brand": "Audi",
+      "brand_slug": "audi",
+      "model": "A3",
+      "model_slug": "a3",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/audi/a3/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 6100
+    },
+    {
+      "type": "model",
+      "brand": "Audi",
+      "brand_slug": "audi",
+      "model": "A4",
+      "model_slug": "a4",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/audi/a4/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 6100
+    },
+    {
+      "type": "model",
+      "brand": "Audi",
+      "brand_slug": "audi",
+      "model": "A5",
+      "model_slug": "a5",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/audi/a5/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 5250
+    },
+    {
+      "type": "model",
+      "brand": "Audi",
+      "brand_slug": "audi",
+      "model": "A6",
+      "model_slug": "a6",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/audi/a6/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 6050
+    },
+    {
+      "type": "model",
+      "brand": "Audi",
+      "brand_slug": "audi",
+      "model": "A7",
+      "model_slug": "a7",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/audi/a7/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 6100
+    },
+    {
+      "type": "model",
+      "brand": "Audi",
+      "brand_slug": "audi",
+      "model": "A8",
+      "model_slug": "a8",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/audi/a8/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 6100
+    },
+    {
+      "type": "model",
+      "brand": "Audi",
+      "brand_slug": "audi",
+      "model": "Q2",
+      "model_slug": "q2",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/audi/q2/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4700
+    },
+    {
+      "type": "model",
+      "brand": "Audi",
+      "brand_slug": "audi",
+      "model": "Q3",
+      "model_slug": "q3",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/audi/q3/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 5700
+    },
+    {
+      "type": "model",
+      "brand": "Audi",
+      "brand_slug": "audi",
+      "model": "Q5",
+      "model_slug": "q5",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/audi/q5/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 6050
+    },
+    {
+      "type": "model",
+      "brand": "Audi",
+      "brand_slug": "audi",
+      "model": "Q7",
+      "model_slug": "q7",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/audi/q7/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 6000
+    },
+    {
+      "type": "model",
+      "brand": "Audi",
+      "brand_slug": "audi",
+      "model": "Q8",
+      "model_slug": "q8",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/audi/q8/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 6150
+    },
+    {
+      "type": "model",
+      "brand": "Audi",
+      "brand_slug": "audi",
+      "model": "TT",
+      "model_slug": "tt",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/audi/tt/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3900
+    },
+    {
+      "type": "model",
+      "brand": "Audi",
+      "brand_slug": "audi",
+      "model": "R8",
+      "model_slug": "r8",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/audi/r8/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 2650
+    },
+    {
+      "type": "model",
+      "brand": "Audi",
+      "brand_slug": "audi",
+      "model": "S3",
+      "model_slug": "s3",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/audi/s3/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4050
+    },
+    {
+      "type": "model",
+      "brand": "Audi",
+      "brand_slug": "audi",
+      "model": "S4",
+      "model_slug": "s4",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/audi/s4/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4100
+    },
+    {
+      "type": "model",
+      "brand": "Audi",
+      "brand_slug": "audi",
+      "model": "S5",
+      "model_slug": "s5",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/audi/s5/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4250
+    },
+    {
+      "type": "model",
+      "brand": "Audi",
+      "brand_slug": "audi",
+      "model": "S6",
+      "model_slug": "s6",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/audi/s6/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 5050
+    },
+    {
+      "type": "model",
+      "brand": "Audi",
+      "brand_slug": "audi",
+      "model": "S7",
+      "model_slug": "s7",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/audi/s7/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3800
+    },
+    {
+      "type": "model",
+      "brand": "Audi",
+      "brand_slug": "audi",
+      "model": "S8",
+      "model_slug": "s8",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/audi/s8/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 5750
+    },
+    {
+      "type": "model",
+      "brand": "Audi",
+      "brand_slug": "audi",
+      "model": "RS3",
+      "model_slug": "rs3",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/audi/rs3/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3800
+    },
+    {
+      "type": "model",
+      "brand": "Audi",
+      "brand_slug": "audi",
+      "model": "RS4",
+      "model_slug": "rs4",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/audi/rs4/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 1850
+    },
+    {
+      "type": "model",
+      "brand": "Audi",
+      "brand_slug": "audi",
+      "model": "RS5",
+      "model_slug": "rs5",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/audi/rs5/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3650
+    },
+    {
+      "type": "model",
+      "brand": "Audi",
+      "brand_slug": "audi",
+      "model": "RS6",
+      "model_slug": "rs6",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/audi/rs6/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4350
+    },
+    {
+      "type": "model",
+      "brand": "Audi",
+      "brand_slug": "audi",
+      "model": "RS7",
+      "model_slug": "rs7",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/audi/rs7/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4250
+    },
+    {
+      "type": "model",
+      "brand": "Toyota",
+      "brand_slug": "toyota",
+      "model": "AURIS",
+      "model_slug": "auris",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/toyota/auris/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 5800
+    },
+    {
+      "type": "model",
+      "brand": "Toyota",
+      "brand_slug": "toyota",
+      "model": "AVENSIS",
+      "model_slug": "avensis",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/toyota/avensis/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 5550
+    },
+    {
+      "type": "model",
+      "brand": "Toyota",
+      "brand_slug": "toyota",
+      "model": "AYGO",
+      "model_slug": "aygo",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/toyota/aygo/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3900
+    },
+    {
+      "type": "model",
+      "brand": "Toyota",
+      "brand_slug": "toyota",
+      "model": "CAMRY",
+      "model_slug": "camry",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/toyota/camry/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3900
+    },
+    {
+      "type": "model",
+      "brand": "Toyota",
+      "brand_slug": "toyota",
+      "model": "COROLLA",
+      "model_slug": "corolla",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/toyota/corolla/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 6050
+    },
+    {
+      "type": "model",
+      "brand": "Toyota",
+      "brand_slug": "toyota",
+      "model": "HIGHLANDER",
+      "model_slug": "highlander",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/toyota/highlander/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3800
+    },
+    {
+      "type": "model",
+      "brand": "Toyota",
+      "brand_slug": "toyota",
+      "model": "HILUX",
+      "model_slug": "hilux",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/toyota/hilux/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4550
+    },
+    {
+      "type": "model",
+      "brand": "Toyota",
+      "brand_slug": "toyota",
+      "model": "LAND-CRUISER",
+      "model_slug": "land-cruiser",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/toyota/land-cruiser/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 6000
+    },
+    {
+      "type": "model",
+      "brand": "Toyota",
+      "brand_slug": "toyota",
+      "model": "PRIUS",
+      "model_slug": "prius",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/toyota/prius/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3900
+    },
+    {
+      "type": "model",
+      "brand": "Toyota",
+      "brand_slug": "toyota",
+      "model": "RAV4",
+      "model_slug": "rav4",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/toyota/rav4/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 6150
+    },
+    {
+      "type": "model",
+      "brand": "Toyota",
+      "brand_slug": "toyota",
+      "model": "VERSO",
+      "model_slug": "verso",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/toyota/verso/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 5100
+    },
+    {
+      "type": "model",
+      "brand": "Toyota",
+      "brand_slug": "toyota",
+      "model": "YARIS",
+      "model_slug": "yaris",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/toyota/yaris/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 5900
+    },
+    {
+      "type": "model",
+      "brand": "Toyota",
+      "brand_slug": "toyota",
+      "model": "C-HR",
+      "model_slug": "c-hr",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/toyota/c-hr/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 6300
+    },
+    {
+      "type": "model",
+      "brand": "Opel",
+      "brand_slug": "opel",
+      "model": "ASTRA",
+      "model_slug": "astra",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/opel/astra/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 6100
+    },
+    {
+      "type": "model",
+      "brand": "Opel",
+      "brand_slug": "opel",
+      "model": "CORSA",
+      "model_slug": "corsa",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/opel/corsa/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4650
+    },
+    {
+      "type": "model",
+      "brand": "Opel",
+      "brand_slug": "opel",
+      "model": "INSIGNIA",
+      "model_slug": "insignia",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/opel/insignia/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 5850
+    },
+    {
+      "type": "model",
+      "brand": "Opel",
+      "brand_slug": "opel",
+      "model": "MERIVA",
+      "model_slug": "meriva",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/opel/meriva/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 5250
+    },
+    {
+      "type": "model",
+      "brand": "Opel",
+      "brand_slug": "opel",
+      "model": "MOKKA",
+      "model_slug": "mokka",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/opel/mokka/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 5350
+    },
+    {
+      "type": "model",
+      "brand": "Opel",
+      "brand_slug": "opel",
+      "model": "VECTRA",
+      "model_slug": "vectra",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/opel/vectra/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3750
+    },
+    {
+      "type": "model",
+      "brand": "Opel",
+      "brand_slug": "opel",
+      "model": "ZAFIRA",
+      "model_slug": "zafira",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/opel/zafira/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4650
+    },
+    {
+      "type": "model",
+      "brand": "Opel",
+      "brand_slug": "opel",
+      "model": "ADAM",
+      "model_slug": "adam",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/opel/adam/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3350
+    },
+    {
+      "type": "model",
+      "brand": "Opel",
+      "brand_slug": "opel",
+      "model": "KARL",
+      "model_slug": "karl",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/opel/karl/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 2500
+    },
+    {
+      "type": "model",
+      "brand": "Ford",
+      "brand_slug": "ford",
+      "model": "FIESTA",
+      "model_slug": "fiesta",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/ford/fiesta/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 5000
+    },
+    {
+      "type": "model",
+      "brand": "Ford",
+      "brand_slug": "ford",
+      "model": "FOCUS",
+      "model_slug": "focus",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/ford/focus/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4750
+    },
+    {
+      "type": "model",
+      "brand": "Ford",
+      "brand_slug": "ford",
+      "model": "MONDEO",
+      "model_slug": "mondeo",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/ford/mondeo/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4200
+    },
+    {
+      "type": "model",
+      "brand": "Ford",
+      "brand_slug": "ford",
+      "model": "KUGA",
+      "model_slug": "kuga",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/ford/kuga/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 6250
+    },
+    {
+      "type": "model",
+      "brand": "Ford",
+      "brand_slug": "ford",
+      "model": "ECOSPORT",
+      "model_slug": "ecosport",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/ford/ecosport/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4600
+    },
+    {
+      "type": "model",
+      "brand": "Ford",
+      "brand_slug": "ford",
+      "model": "EDGE",
+      "model_slug": "edge",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/ford/edge/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3550
+    },
+    {
+      "type": "model",
+      "brand": "Ford",
+      "brand_slug": "ford",
+      "model": "GALAXY",
+      "model_slug": "galaxy",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/ford/galaxy/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4900
+    },
+    {
+      "type": "model",
+      "brand": "Ford",
+      "brand_slug": "ford",
+      "model": "S-MAX",
+      "model_slug": "s-max",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/ford/s-max/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4400
+    },
+    {
+      "type": "model",
+      "brand": "Ford",
+      "brand_slug": "ford",
+      "model": "MUSTANG",
+      "model_slug": "mustang",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/ford/mustang/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4800
+    },
+    {
+      "type": "model",
+      "brand": "Renault",
+      "brand_slug": "renault",
+      "model": "CLIO",
+      "model_slug": "clio",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/renault/clio/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4750
+    },
+    {
+      "type": "model",
+      "brand": "Renault",
+      "brand_slug": "renault",
+      "model": "MEGANE",
+      "model_slug": "megane",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/renault/megane/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 5250
+    },
+    {
+      "type": "model",
+      "brand": "Renault",
+      "brand_slug": "renault",
+      "model": "SCENIC",
+      "model_slug": "scenic",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/renault/scenic/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4100
+    },
+    {
+      "type": "model",
+      "brand": "Renault",
+      "brand_slug": "renault",
+      "model": "LAGUNA",
+      "model_slug": "laguna",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/renault/laguna/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3600
+    },
+    {
+      "type": "model",
+      "brand": "Renault",
+      "brand_slug": "renault",
+      "model": "CAPTUR",
+      "model_slug": "captur",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/renault/captur/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4650
+    },
+    {
+      "type": "model",
+      "brand": "Renault",
+      "brand_slug": "renault",
+      "model": "KADJAR",
+      "model_slug": "kadjar",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/renault/kadjar/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4500
+    },
+    {
+      "type": "model",
+      "brand": "Renault",
+      "brand_slug": "renault",
+      "model": "KOLEOS",
+      "model_slug": "koleos",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/renault/koleos/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4450
+    },
+    {
+      "type": "model",
+      "brand": "Renault",
+      "brand_slug": "renault",
+      "model": "TALISMAN",
+      "model_slug": "talisman",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/renault/talisman/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3900
+    },
+    {
+      "type": "model",
+      "brand": "Renault",
+      "brand_slug": "renault",
+      "model": "TWINGO",
+      "model_slug": "twingo",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/renault/twingo/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3650
+    },
+    {
+      "type": "model",
+      "brand": "Peugeot",
+      "brand_slug": "peugeot",
+      "model": "206",
+      "model_slug": "206",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/peugeot/206/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3200
+    },
+    {
+      "type": "model",
+      "brand": "Peugeot",
+      "brand_slug": "peugeot",
+      "model": "207",
+      "model_slug": "207",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/peugeot/207/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4350
+    },
+    {
+      "type": "model",
+      "brand": "Peugeot",
+      "brand_slug": "peugeot",
+      "model": "208",
+      "model_slug": "208",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/peugeot/208/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 5800
+    },
+    {
+      "type": "model",
+      "brand": "Peugeot",
+      "brand_slug": "peugeot",
+      "model": "301",
+      "model_slug": "301",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/peugeot/301/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3300
+    },
+    {
+      "type": "model",
+      "brand": "Peugeot",
+      "brand_slug": "peugeot",
+      "model": "307",
+      "model_slug": "307",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/peugeot/307/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 3750
+    },
+    {
+      "type": "model",
+      "brand": "Peugeot",
+      "brand_slug": "peugeot",
+      "model": "308",
+      "model_slug": "308",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/peugeot/308/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 6000
+    },
+    {
+      "type": "model",
+      "brand": "Peugeot",
+      "brand_slug": "peugeot",
+      "model": "407",
+      "model_slug": "407",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/peugeot/407/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4200
+    },
+    {
+      "type": "model",
+      "brand": "Peugeot",
+      "brand_slug": "peugeot",
+      "model": "408",
+      "model_slug": "408",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/peugeot/408/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 1950
+    },
+    {
+      "type": "model",
+      "brand": "Peugeot",
+      "brand_slug": "peugeot",
+      "model": "508",
+      "model_slug": "508",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/peugeot/508/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4550
+    },
+    {
+      "type": "model",
+      "brand": "Peugeot",
+      "brand_slug": "peugeot",
+      "model": "2008",
+      "model_slug": "2008",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/peugeot/2008/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 6050
+    },
+    {
+      "type": "model",
+      "brand": "Peugeot",
+      "brand_slug": "peugeot",
+      "model": "3008",
+      "model_slug": "3008",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/peugeot/3008/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 6250
+    },
+    {
+      "type": "model",
+      "brand": "Peugeot",
+      "brand_slug": "peugeot",
+      "model": "5008",
+      "model_slug": "5008",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/peugeot/5008/namira-se-v-balgariya?sort=6",
+      "priority": true,
+      "estimated_listings": 4850
+    }
+  ],
+  "summary": {
+    "total_searches": 368,
+    "brand_only_searches": 129,
+    "model_specific_searches": 239,
+    "priority_searches": 258,
+    "estimated_total_listings": 1147200
+  }
+}

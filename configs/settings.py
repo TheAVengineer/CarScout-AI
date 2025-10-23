@@ -78,6 +78,10 @@ class Settings(BaseSettings):
     USE_PROXY: bool = False
     PROXY_URL: str = ""
     
+    # Mobile.bg Authentication (optional - enables authenticated scraping)
+    MOBILE_BG_EMAIL: str = "orsini.sunny@gmail.com"
+    MOBILE_BG_PASSWORD: str = "$MgLwna6fF5x@Cr"
+    
     # ML/AI
     PRICING_MODEL_VERSION: str = "v1"
     EMBEDDING_MODEL: str = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"

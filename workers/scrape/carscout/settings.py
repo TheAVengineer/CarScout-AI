@@ -35,6 +35,31 @@ DOWNLOAD_HANDLERS = {
     "https": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
 }
 
+# Playwright timeout settings (prevent infinite hangs)
+PLAYWRIGHT_DEFAULT_NAVIGATION_TIMEOUT = 30000  # 30 seconds max wait for page load
+PLAYWRIGHT_BROWSER_TYPE = 'chromium'
+DOWNLOAD_TIMEOUT = 60  # 60 seconds for downloads
+
+# Playwright browser context settings (prevent hangs after timeouts)
+PLAYWRIGHT_LAUNCH_OPTIONS = {
+    'timeout': 60000,  # 60 seconds to launch browser
+}
+PLAYWRIGHT_CONTEXTS = {
+    'default': {
+        'ignore_https_errors': True,
+    },
+}
+PLAYWRIGHT_MAX_PAGES_PER_CONTEXT = 1  # Force new context per page to avoid stuck state
+
+# Retry settings (handle failed requests gracefully)
+RETRY_ENABLED = True
+RETRY_TIMES = 2  # Reduce to 2 retries (was causing extra hangs)
+RETRY_HTTP_CODES = [500, 502, 503, 504, 408, 404, 0]  # Add 0 for timeout errors
+RETRY_BACKOFF_MULTIPLIER = 2
+
+# Close idle browser/context to prevent resource leaks
+PLAYWRIGHT_ABORT_REQUEST = lambda req: req.resource_type in ('image', 'stylesheet', 'font', 'media')
+
 # Configure item pipelines
 ITEM_PIPELINES = {
     'carscout.pipelines.CarScoutPipeline': 300,

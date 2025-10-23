@@ -263,9 +263,27 @@ def parse_listing(self, listing_raw_id: str):
             # Parse HTML
             html_content = listing_raw.raw_html
             if not html_content and listing_raw.raw_html_path:
-                # TODO: Load HTML from S3/file system
-                logger.error(f"HTML path exists but content not loaded: {listing_raw.raw_html_path}")
-                return
+                # Load HTML from file system (or S3 in production)
+                import os
+                html_file_path = listing_raw.raw_html_path
+                if not os.path.isabs(html_file_path):
+                    # Relative path - join with project root
+                    # Assume Scrapy saved to PROJECT_ROOT/raw/...
+                    from pathlib import Path
+                    project_root = Path(__file__).parent.parent.parent.parent
+                    html_file_path = os.path.join(project_root, html_file_path)
+                
+                if os.path.exists(html_file_path):
+                    try:
+                        with open(html_file_path, 'r', encoding='utf-8') as f:
+                            html_content = f.read()
+                        logger.info(f"Loaded HTML from file: {html_file_path}")
+                    except Exception as e:
+                        logger.error(f"Failed to read HTML file {html_file_path}: {e}")
+                        return
+                else:
+                    logger.error(f"HTML file not found: {html_file_path}")
+                    return
             
             parsed_data = parser_class.parse(html_content, listing_raw.url)
         
