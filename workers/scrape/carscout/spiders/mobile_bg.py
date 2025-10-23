@@ -556,8 +556,19 @@ class MobileBgSpider(scrapy.Spider):
         return False
     
     def errback_listing(self, failure):
-        """Handle request failures"""
-        self.logger.warning(f"Request failed: {failure.request.url} - {failure.value}")
+        """Handle request failures gracefully"""
+        request = failure.request
+        
+        # Check if it's a non-200 response (deleted/inactive listings)
+        if hasattr(failure.value, 'response'):
+            response = failure.value.response
+            if response.status == 404 or response.status == 410:
+                self.logger.info(f"⏭️  Listing not found (likely deleted), skipping: {request.url}")
+                return
+        
+        # Log other failures as warnings but don't crash
+        self.logger.warning(f"⚠️ Request failed: {request.url} - {failure.value}")
+        # Continue processing other listings
     
     async def parse_listing_detail(self, response):
         """Parse individual listing detail page with Playwright support"""
@@ -577,6 +588,13 @@ class MobileBgSpider(scrapy.Spider):
                     await page.close()
         
         self.logger.info(f"🔍 Parsing listing detail from: {response.url}")
+        
+        # Check if listing is deleted or inactive
+        # Mobile.bg shows: "Търсената от Вас обява е изтрита или не е активна"
+        body_text = response.text
+        if 'изтрита или не е активна' in body_text or 'deleted' in body_text.lower():
+            self.logger.warning(f"⚠️ Listing deleted or inactive, skipping: {response.url}")
+            return
         
         # Extract site_ad_id from URL
         # Mobile.bg format: /obiava-XXXXXXXXXXXXXXXXX-brand-model
