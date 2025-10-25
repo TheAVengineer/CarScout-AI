@@ -17,35 +17,49 @@ class MobileBgSpider(scrapy.Spider):
     
     custom_settings = {
         "CONCURRENT_REQUESTS": 1,  # Keep low for Playwright (browsers are heavy)
-        "DOWNLOAD_DELAY": 5.0,  # Increase delay for browser automation
+        "CONCURRENT_REQUESTS_PER_DOMAIN": 1,  # Only 1 request at a time to mobile.bg
+        "DOWNLOAD_DELAY": 8.0,  # INCREASED: More human-like delays to avoid detection
         "ROBOTSTXT_OBEY": False,
         "COOKIES_ENABLED": True,
-        "RETRY_TIMES": 3,
+        "RETRY_TIMES": 2,  # Retry twice for reliability
         "RETRY_HTTP_CODES": [500, 502, 503, 504, 408, 429],
+        "DOWNLOAD_TIMEOUT": 60,  # Give requests more time
+        "CLOSESPIDER_TIMEOUT": 0,  # DISABLED: Let it run until completion
         # Playwright-specific settings
         "PLAYWRIGHT_BROWSER_TYPE": "chromium",
         "PLAYWRIGHT_LAUNCH_OPTIONS": {
-            "headless": True,  # Run without UI (set False for debugging)
-            "timeout": 30000,  # 30 second timeout
+            "headless": True,
+            "timeout": 30000,  # 30s browser launch timeout
+            "args": [
+                '--disable-blink-features=AutomationControlled',  # Hide automation
+                '--disable-dev-shm-usage',  # Prevent memory issues
+                '--no-sandbox',  # Stability
+            ],
         },
-        "PLAYWRIGHT_DEFAULT_NAVIGATION_TIMEOUT": 30000,
+        "PLAYWRIGHT_DEFAULT_NAVIGATION_TIMEOUT": 60000,  # 60s for navigation (slow pages)
+        "PLAYWRIGHT_MAX_PAGES_PER_CONTEXT": 50,  # Restart browser every 50 pages (not 10)
         # Use persistent context to share cookies across requests
         "PLAYWRIGHT_CONTEXTS": {
             "default": {
                 "viewport": {"width": 1920, "height": 1080},
                 "ignore_https_errors": True,
+                "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
             }
         },
         # Add random delays
         "AUTOTHROTTLE_ENABLED": True,
-        "AUTOTHROTTLE_START_DELAY": 5,
-        "AUTOTHROTTLE_MAX_DELAY": 15,
+        "AUTOTHROTTLE_START_DELAY": 8.0,
+        "AUTOTHROTTLE_MAX_DELAY": 20.0,
         "AUTOTHROTTLE_TARGET_CONCURRENCY": 1.0,
     }
     
     def __init__(self, *args, **kwargs):
         """Initialize spider with login credentials"""
         super().__init__(*args, **kwargs)
+        
+        # Track last successful scrape to detect hangs
+        self.last_scrape_time = None
+        self.pages_scraped = 0
         
         # Check if login should be skipped (explicit parameter)
         skip_login_param = kwargs.get('skip_login', '').lower()
@@ -690,6 +704,11 @@ class MobileBgSpider(scrapy.Spider):
         
         # Save raw HTML path
         raw_html_path = f"raw/{self.source_id}/{site_ad_id}.html"
+        
+        # Update scrape tracking
+        import time
+        self.last_scrape_time = time.time()
+        self.pages_scraped += 1
         
         self.logger.info(f"✅ Scraped: {brand} {model} {year} - {price} {currency}")
         
