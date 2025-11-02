@@ -15,7 +15,10 @@ ROBOTSTXT_OBEY = False
 CONCURRENT_REQUESTS = 8
 
 # Configure a delay for requests for the same website
-DOWNLOAD_DELAY = 1
+# POOR NETWORK (UK): Use 3 seconds
+# GOOD NETWORK: Use 2 seconds (NOW ACTIVE - fast internet!)
+# DOWNLOAD_DELAY = 3  # Use this for poor network
+DOWNLOAD_DELAY = 2.0  # Fast network - ACTIVE
 
 # Enable or disable spider middlewares
 SPIDER_MIDDLEWARES = {
@@ -36,13 +39,14 @@ DOWNLOAD_HANDLERS = {
 }
 
 # Playwright timeout settings (prevent infinite hangs)
-PLAYWRIGHT_DEFAULT_NAVIGATION_TIMEOUT = 30000  # 30 seconds max wait for page load
+# OPTIMIZED for FAST NETWORK: Reduced timeouts for quick failure/retry
+PLAYWRIGHT_DEFAULT_NAVIGATION_TIMEOUT = 20000  # 20 seconds (reduced from 30s)
 PLAYWRIGHT_BROWSER_TYPE = 'chromium'
-DOWNLOAD_TIMEOUT = 60  # 60 seconds for downloads
+DOWNLOAD_TIMEOUT = 30  # 30 seconds for downloads (reduced from 60s)
 
 # Playwright browser context settings (prevent hangs after timeouts)
 PLAYWRIGHT_LAUNCH_OPTIONS = {
-    'timeout': 60000,  # 60 seconds to launch browser
+    'timeout': 20000,  # 20 seconds to launch browser (reduced from 60s)
 }
 PLAYWRIGHT_CONTEXTS = {
     'default': {
@@ -61,8 +65,10 @@ RETRY_BACKOFF_MULTIPLIER = 2
 PLAYWRIGHT_ABORT_REQUEST = lambda req: req.resource_type in ('image', 'stylesheet', 'font', 'media')
 
 # Configure item pipelines
+# Use FastCarScoutPipeline for optimized scraping (memory-cached duplicates)
 ITEM_PIPELINES = {
-    'carscout.pipelines.CarScoutPipeline': 300,
+    'carscout.pipelines_fast.FastCarScoutPipeline': 300,
+    # 'carscout.pipelines.CarScoutPipeline': 300,  # Old slow pipeline
 }
 
 # Set settings whose default value is deprecated to a future-proof value

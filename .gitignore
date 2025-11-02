@@ -96,3 +96,88 @@ dmypy.json
 
 # OS
 Thumbs.db
+
+# ==================================================
+# CarScout-AI Specific Files
+# ==================================================
+
+# Documentation (temporary/working)
+*-OLD.md
+*-COMPLETE.md
+FAST_NETWORK_SCRAPING.md
+PARSE-TASK-FIXED.md
+QUICKSTART-OLD.md
+QUICKSTART-SCRAPING.md
+QUICKSTART-WORKERS.md
+RESUME_PLAN.md
+SCRAPING-STRATEGY-COMPLETE.md
+SCRAPING_REFERENCE.md
+SYSTEM-STATUS.md
+WORKFLOW.md
+BOT-FEATURES.md
+
+# Worker configs (generated)
+mobile_bg_config_worker_*.json
+test_*.json
+test_urls.txt
+listing_urls.txt
+
+# Brand configs (generated)
+configs/brand_configs/
+
+# Test/Debug Scripts (keep only production scripts)
+scripts/*_test*.py
+scripts/*_debug*.py
+scripts/*_check*.py
+scripts/*_monitor*.py
+scripts/*_analyze*.py
+scripts/*_inspect*.py
+scripts/*_diagnose*.py
+scripts/*_manual*.py
+scripts/*_seed*.py
+scripts/*_trigger*.py
+scripts/*_verify*.py
+scripts/*_scrape*.py
+scripts/*_extract*.py
+scripts/*_intercept*.py
+scripts/*_find*.py
+scripts/*_save*.py
+scripts/*_collect*.py
+scripts/*_queue*.py
+scripts/*_simple*.py
+scripts/*_process*.py
+scripts/*_run*.py
+scripts/*_cleanup*.py
+scripts/*_clear*.py
+scripts/*_add*.py
+scripts/*_create*.py
+
+# Shell scripts (monitoring/testing)
+scripts/*.sh
+!scripts/macos_quickstart.sh
+
+# Temporary Python modules
+scripts/status.py
+scripts/db_viewer.py
+
+# Worker-specific files
+workers/scrape/login_result.*
+workers/scrape/carscout/pipelines_fast.py
+workers/scrape/carscout/settings_optimized.py
+workers/pipeline/tasks/scrape_tasks.py
+
+# Bot handlers (temporary)
+apps/bot/handlers/deals.py
+apps/bot/main_webhook.py
+
+# Alert DSL (incomplete)
+libs/alert_dsl/
+
+# Documentation (work in progress)
+docs/BRAND-MODEL-STRATEGY.md
+docs/COVERAGE.md
+docs/MONITORING_GUIDE.md
+docs/OPTIMIZED_SCRAPING.md
+docs/PRODUCTION-READY.md
+docs/SCRAPING-GUIDE.md
+MULTI_WORKER_GUIDE.md

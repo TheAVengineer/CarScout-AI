@@ -118,6 +118,7 @@ class MobileBgSpider(scrapy.Spider):
                     "playwright_include_page": True,  # Access page object for JavaScript
                     "playwright_page_goto_kwargs": {
                         "wait_until": "networkidle",  # Wait for page to fully load
+                        "timeout": 20000,  # 20 seconds timeout (fast network)
                     },
                 },
             )
@@ -287,16 +288,26 @@ class MobileBgSpider(scrapy.Spider):
         
         # Load hybrid configuration
         import json
+        import os
         from pathlib import Path
         
         try:
-            # Get absolute path to project root
-            spider_file = Path(__file__).resolve()
-            project_root = spider_file.parent.parent.parent.parent.parent
+            # Check if custom config path is provided via environment variable
+            custom_config = os.environ.get('HYBRID_CONFIG_PATH')
             
-            # Try hybrid config first, fallback to brand config
-            hybrid_config_path = project_root / "mobile_bg_hybrid_config.json"
-            brand_config_path = project_root / "mobile_bg_brand_config.json"
+            if custom_config:
+                # Use custom config (for brand-specific scraping)
+                hybrid_config_path = Path(custom_config)
+                self.logger.info(f"🎯 Using custom config: {hybrid_config_path}")
+            else:
+                # Get absolute path to project root
+                spider_file = Path(__file__).resolve()
+                project_root = spider_file.parent.parent.parent.parent.parent
+                
+                # Try hybrid config first, fallback to brand config
+                hybrid_config_path = project_root / "mobile_bg_hybrid_config.json"
+            
+            brand_config_path = Path(__file__).resolve().parent.parent.parent.parent.parent / "mobile_bg_brand_config.json"
             
             search_urls = []
             
@@ -305,8 +316,8 @@ class MobileBgSpider(scrapy.Spider):
                 with open(hybrid_config_path, 'r', encoding='utf-8') as f:
                     hybrid_config = json.load(f)
                 
-                # Get all search URLs from hybrid config
-                all_searches = hybrid_config.get('search_urls', [])
+                # Get all search URLs from hybrid config (support both old and new format)
+                all_searches = hybrid_config.get('searches', hybrid_config.get('search_urls', []))
                 
                 # Filter based on target and priority
                 target_listings = int(getattr(self, 'target_listings', 0))
@@ -399,6 +410,7 @@ class MobileBgSpider(scrapy.Spider):
                         "playwright_include_page": True,
                         "playwright_page_goto_kwargs": {
                             "wait_until": "networkidle",
+                            "timeout": 20000,  # 20 seconds timeout (fast network)
                         },
                         "page_number": 1,  # Track current page within this search
                         "total_listings": 0,  # Track total listings across pages
@@ -479,6 +491,7 @@ class MobileBgSpider(scrapy.Spider):
                         "playwright_include_page": True,
                         "playwright_page_goto_kwargs": {
                             "wait_until": "networkidle",
+                            "timeout": 20000,  # 20 seconds timeout (fast network)
                         },
                     },
                 )
@@ -521,6 +534,7 @@ class MobileBgSpider(scrapy.Spider):
                     "playwright_include_page": True,
                     "playwright_page_goto_kwargs": {
                         "wait_until": "networkidle",
+                        "timeout": 20000,  # 20 seconds timeout (fast network)
                     },
                     "page_number": next_page_number,
                     "total_listings": total_listings,
