@@ -1,12 +1,128 @@
-#!/usr/bin/env python
+#!/Users/alexandervidenov/Desktop/CarScout-AI/.venv/bin/python3
 """
-Seed database with initial data
+Seed the database with initial listings for price comparison baseline
+
+This script:
+1. Scrapes all 10 brands in parallel (300 listings)
+2. Waits for scraping to complete
+3. Processes all listings (parse, normalize, score)
+4. Creates baseline data for future comparisons
+
+Run this ONCE before starting the automated system.
 """
 import sys
-import os
+from pathlib import Path
+import time
 
-# Add parent directory to path
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Add project root to path
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
+from workers.pipeline.tasks.scrape_tasks import scrape_all_brands
+from libs.domain.database import get_sync_session
+from libs.domain.models import ListingRaw, ListingNormalized, Score
+
+def check_database_status():
+    """Check current database counts"""
+    session = get_sync_session()
+    try:
+        raw_count = session.query(ListingRaw).count()
+        normalized_count = session.query(ListingNormalized).count()
+        scored_count = session.query(Score).count()
+        return raw_count, normalized_count, scored_count
+    finally:
+        session.close()
+
+def main():
+    print("=" * 60)
+    print("🌱 CarScout AI - Database Seeding")
+    print("=" * 60)
+    print()
+    
+    # Check initial status
+    print("📊 Current database status:")
+    raw, normalized, scored = check_database_status()
+    print(f"  Raw listings: {raw}")
+    print(f"  Normalized: {normalized}")
+    print(f"  Scored: {scored}")
+    print()
+    
+    if raw >= 100:
+        print("⚠️  Database already has 100+ listings.")
+        print("   Do you want to add more? (y/n): ", end="")
+        if input().strip().lower() != 'y':
+            print("❌ Seeding cancelled")
+            return
+        print()
+    
+    # Start seeding
+    print("🚀 Starting database seeding...")
+    print("   This will scrape ~300 listings (30 per brand)")
+    print("   Estimated time: 5-7 minutes")
+    print()
+    
+    # Trigger scraping task
+    print("📋 Scheduling scraping task...")
+    
+    try:
+        task = scrape_all_brands.delay()
+        print(f"   ✅ Task ID: {task.id}")
+        print(f"   Status: {task.status}")
+        print()
+    except Exception as e:
+        print(f"   ❌ Failed to schedule task: {e}")
+        print()
+        print("   This usually means Celery workers aren't running.")
+        print("   Make sure workers are started:")
+        print("     ./scripts/start_all.sh")
+        print()
+        print("   Or run scraping directly without Celery:")
+        print("     .venv/bin/python3 scripts/trigger_scrape.py")
+        return
+    
+    # Monitor progress
+    print("⏳ Waiting for scraping to complete...")
+    print("   (Monitor logs: tail -f logs/celery-worker.log)")
+    print()
+    
+    dots = 0
+    while task.status not in ['SUCCESS', 'FAILURE']:
+        print(f"\r   Status: {task.status} {'.' * (dots % 4)}", end="")
+        dots += 1
+        time.sleep(2)
+    
+    print()
+    print()
+    
+    if task.status == 'FAILURE':
+        print(f"❌ Scraping failed: {task.result}")
+        print("   Check logs for details: tail -50 logs/celery-worker.log")
+        return
+    
+    print("✅ Scraping completed!")
+    print()
+    
+    # Check final status
+    print("📊 Final database status:")
+    raw, normalized, scored = check_database_status()
+    print(f"  Raw listings: {raw}")
+    print(f"  Normalized: {normalized}")
+    print(f"  Scored: {scored}")
+    print()
+    
+    print("=" * 60)
+    print("🎉 Database seeding complete!")
+    print()
+    print("Next steps:")
+    print("1. Complete the parse task (workers/pipeline/tasks/parse.py)")
+    print("2. Test pipeline: tail -f logs/celery-worker.log")
+    print("3. Start automated system: ./scripts/start_all.sh")
+    print()
+    print("The system will now compare new listings against this baseline")
+    print("to identify great deals!")
+    print("=" * 60)
+
+if __name__ == "__main__":
+    main()
 
 from libs.domain.database import get_sync_session
 from libs.domain.models import Source, Plan, BrandModel
