@@ -1,0 +1,196 @@
+"""
+Deal Monitor Celery Tasks
+
+Purpose: Run the deal monitor spider periodically to detect new listings.
+This replaces bulk scraping with intelligent monitoring.
+"""
+
+import logging
+import subprocess
+from datetime import datetime
+from pathlib import Path
+from celery import shared_task
+
+logger = logging.getLogger(__name__)
+
+
+@shared_task(name="monitor_new_deals")
+def monitor_new_deals():
+    """
+    Run the deal monitor spider to check for new listings.
+    
+    This task should be scheduled to run every 5-10 minutes using Celery Beat.
+    """
+    
+    logger.info("🔍 Starting deal monitor run...")
+    
+    try:
+        # Path to scraper directory
+        scraper_dir = Path(__file__).parent.parent.parent / "scrape"
+        
+        # Run monitor spider
+        result = subprocess.run(
+            [
+                "scrapy", "crawl", "mobile_bg_monitor",
+                "-s", "LOG_LEVEL=INFO",
+                "-s", "LOG_FILE=/Users/alexandervidenov/Desktop/CarScout-AI/logs/monitor.log",
+            ],
+            cwd=str(scraper_dir),
+            capture_output=True,
+            text=True,
+            timeout=600,  # 10 minute timeout
+        )
+        
+        if result.returncode == 0:
+            logger.info("✅ Monitor run completed successfully")
+            return {
+                'status': 'success',
+                'timestamp': datetime.now().isoformat(),
+                'output': result.stdout[-500:] if result.stdout else ''  # Last 500 chars
+            }
+        else:
+            logger.error(f"❌ Monitor run failed: {result.stderr}")
+            return {
+                'status': 'error',
+                'timestamp': datetime.now().isoformat(),
+                'error': result.stderr[-500:] if result.stderr else ''
+            }
+    
+    except subprocess.TimeoutExpired:
+        logger.error("❌ Monitor run timed out after 10 minutes")
+        return {
+            'status': 'timeout',
+            'timestamp': datetime.now().isoformat()
+        }
+    
+    except Exception as e:
+        logger.error(f"❌ Monitor run exception: {e}")
+        return {
+            'status': 'exception',
+            'timestamp': datetime.now().isoformat(),
+            'error': str(e)
+        }
+
+
+@shared_task(name="monitor_specific_brand")
+def monitor_specific_brand(brand: str, model: str = None, filters: dict = None):
+    """
+    Monitor a specific brand/model for new listings.
+    
+    Args:
+        brand: Brand name (e.g., "mercedes-benz", "bmw")
+        model: Model name (e.g., "a-klasa", "3-seriya"), optional
+        filters: Custom filters to apply, optional
+    
+    Example:
+        monitor_specific_brand.delay("bmw", "3-seriya", {"price_max": 40000})
+    """
+    
+    logger.info(f"🔍 Monitoring {brand} {model or 'all models'}...")
+    
+    # Build URL
+    base_url = "https://www.mobile.bg/obiavi/avtomobili-dzhipove"
+    if brand:
+        base_url += f"/{brand}"
+    if model:
+        base_url += f"/{model}"
+    base_url += "?sort=6"  # Sort by newest
+    
+    # Create temporary config
+    import json
+    import tempfile
+    
+    temp_config = {
+        "watch_targets": [
+            {
+                "name": f"{brand} {model or 'all'} monitor",
+                "url": base_url,
+                "pages": 3,
+                "filters": filters or {}
+            }
+        ],
+        "ai_evaluation": {
+            "enabled": True,
+            "min_score_to_post": 7.5
+        }
+    }
+    
+    # Write temporary config
+    with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as f:
+        json.dump(temp_config, f)
+        config_path = f.name
+    
+    try:
+        scraper_dir = Path(__file__).parent.parent.parent / "scrape"
+        
+        result = subprocess.run(
+            [
+                "scrapy", "crawl", "mobile_bg_monitor",
+                "-s", f"MONITOR_CONFIG_PATH={config_path}",
+                "-s", "LOG_LEVEL=INFO",
+            ],
+            cwd=str(scraper_dir),
+            capture_output=True,
+            text=True,
+            timeout=300,  # 5 minute timeout
+        )
+        
+        # Clean up temp file
+        Path(config_path).unlink()
+        
+        if result.returncode == 0:
+            logger.info(f"✅ {brand} {model} monitor completed")
+            return {'status': 'success', 'brand': brand, 'model': model}
+        else:
+            logger.error(f"❌ {brand} {model} monitor failed")
+            return {'status': 'error', 'brand': brand, 'model': model}
+    
+    except Exception as e:
+        logger.error(f"❌ {brand} {model} monitor exception: {e}")
+        return {'status': 'exception', 'error': str(e)}
+
+
+@shared_task(name="update_monitor_cache")
+def update_monitor_cache():
+    """
+    Update the in-memory cache of existing listing IDs.
+    
+    This task should run before each monitor run to ensure
+    the duplicate detection is accurate.
+    """
+    
+    logger.info("🔄 Updating monitor cache...")
+    
+    try:
+        from libs.domain.database import get_session
+        from libs.domain.models import ListingRaw
+        from configs.settings import settings
+        from sqlalchemy import select
+        
+        session = next(get_session())
+        
+        # Get count of existing listings
+        result = session.execute(
+            select(ListingRaw.site_ad_id).where(
+                ListingRaw.source_id == settings.SOURCE_MOBILE_BG
+            )
+        )
+        
+        existing_ids = {row[0] for row in result}
+        session.close()
+        
+        logger.info(f"✅ Cache updated: {len(existing_ids)} listing IDs loaded")
+        
+        return {
+            'status': 'success',
+            'count': len(existing_ids),
+            'timestamp': datetime.now().isoformat()
+        }
+    
+    except Exception as e:
+        logger.error(f"❌ Cache update failed: {e}")
+        return {
+            'status': 'error',
+            'error': str(e),
+            'timestamp': datetime.now().isoformat()
+        }

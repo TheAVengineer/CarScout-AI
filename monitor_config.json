@@ -1,0 +1,171 @@
+{
+  "watch_targets": [
+    {
+      "name": "All New Premium Cars",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove?sort=6",
+      "pages": 50,
+      "filters": {
+        "price_min": 1000,
+        "price_max": 150000,
+        "year_min": 1,
+        "mileage_max": 200000,
+        "power_min": 100
+      }
+    },
+    {
+        "name": "Volkswagen Golf Deals",
+        "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/volkswagen/golf?sort=6",
+        "pages": 50,
+        "filters": {
+            "price_max": 40000,
+            "year_min": 2005,
+            "mileage_max": 200000,
+            "transmission": ["Автоматична", "Ръчна"],
+            "fuel_type": ["Дизел", "Бензин", "Хибрид"]
+        }
+    },
+    {
+        "name": "Toyota Corolla Deals",
+        "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/toyota/corolla?sort=6",
+        "pages": 50,
+        "filters": {
+            "price_max": 30000,
+            "year_min": 2008,
+            "mileage_max": 180000,
+            "transmission": ["Автоматична", "Ръчна"],
+            "fuel_type": ["Бензин", "Хибрид"]
+        }
+    },
+    {
+        "name": "Hatchback Deals",
+        "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove?sort=6",
+        "pages": 40,
+        "filters": {
+            "price_max": 35000,
+            "year_min": 2005,
+            "mileage_max": 150000,
+            "body_type": ["Хечбек"],
+            "transmission": ["Автоматична", "Ръчна"]
+        }
+    },
+    {
+        "name": "Porsche Deals",
+        "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/porsche?sort=6",
+        "pages": 20,
+        "filters": {
+            "price_max": 120000,
+            "year_min": 2000,
+            "mileage_max": 200000,
+            "transmission": ["Автоматична", "Ръчна"],
+            "power_min": 200
+        }
+    },
+    {
+        "name": "Mercedes-Benz Deals",
+        "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz?sort=6",
+        "pages": 50,
+        "filters": {
+            "price_max": 90000,
+            "year_min": 2005,
+            "mileage_max": 200000,
+            "transmission": ["Автоматична", "Ръчна"],
+            "fuel_type": ["Дизел", "Бензин", "Хибрид"]
+        }
+    },
+    {
+      "name": "Mercedes A-Class Deals",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/a-klasa?sort=6",
+      "pages": 50,
+      "filters": {
+        "price_max": 80000,
+        "year_min": 2010,
+        "mileage_max": 150000,
+        "transmission": ["Автоматична"],
+        "fuel_type": ["Бензин", "Хибрид"]
+      }
+    },
+    {
+      "name": "BMW 3 Series Deals",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/3-seriya?sort=6",
+      "pages": 50,
+      "filters": {
+        "price_max": 100000,
+        "year_min": 1990,
+        "mileage_max": 320000,
+        "transmission": ["Автоматична"],
+        "fuel_type": ["Дизел", "Бензин"]
+      }
+    },
+    {
+      "name": "Audi A4/A6 Deals",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/audi?sort=6",
+      "pages": 35,
+      "filters": {
+        "price_max": 50000,
+        "year_min": 2000,
+        "mileage_max": 180000,
+        "transmission": ["Автоматична"],
+        "power_min": 130
+      }
+    },
+    {
+      "name": "Electric & Hybrid Cars",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove?sort=6",
+      "pages": 25,
+      "filters": {
+        "price_max": 80000,
+        "year_min": 2015,
+        "mileage_max": 100000,
+        "fuel_type": ["Електричество", "Хибрид (plug-in)", "Хибрид"]
+      }
+    },
+    {
+      "name": "SUV Deals",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove?sort=6",
+      "pages": 30,
+      "filters": {
+        "price_max": 70000,
+        "year_min": 2006,
+        "mileage_max": 190000,
+        "body_type": ["Джип/SUV"]
+      }
+    },
+    {
+      "name": "Luxury Sedans (BMW 5, E-Class, A6)",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove?sort=6",
+      "pages": 30,
+      "filters": {
+        "price_min": 15000,
+        "price_max": 100000,
+        "year_min": 2010,
+        "mileage_max": 120000,
+        "transmission": ["Автоматична"],
+        "power_min": 200
+      }
+    },
+    {
+      "name": "Budget Deals (Under 15K)",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove?sort=6",
+      "pages": 80,
+      "filters": {
+        "price_max": 15000,
+        "year_min": 1999,
+        "mileage_max": 250000
+      }
+    }
+  ],
+  "ai_evaluation": {
+    "enabled": true,
+    "min_score_to_post": 7.0,
+    "evaluate_all": false,
+    "comment": "Only evaluate listings that pass pre-filters to save API costs"
+  },
+  "monitoring_interval": 300,
+  "telegram": {
+    "channel_id": "@carscout_deals",
+    "post_format": "rich",
+    "include_images": true,
+    "max_images": 3
+  },
+  "comment": "Monitor configuration for real-time deal detection. Adjust filters based on your target audience and deal criteria."
+}

@@ -3,8 +3,12 @@ Celery application configuration
 """
 from celery import Celery
 from celery.schedules import crontab
+import logging
 
 from configs.settings import settings
+
+# Reduce SQLAlchemy logging noise
+logging.getLogger('sqlalchemy.engine').setLevel(logging.WARNING)
 
 # Initialize Celery app
 celery_app = Celery(
@@ -19,6 +23,7 @@ celery_app = Celery(
         "workers.pipeline.tasks.ai",
         "workers.pipeline.tasks.score",
         "workers.pipeline.tasks.notify",
+        "workers.pipeline.tasks.monitor_tasks",  # Deal monitoring tasks
     ],
 )
 
@@ -49,14 +54,22 @@ celery_app.conf.update(
 
 # Scheduled tasks (Celery Beat)
 celery_app.conf.beat_schedule = {
-    "scrape-mobile-bg-every-2-minutes": {
-        "task": "workers.scrape.tasks.scrape_mobile_bg",
-        "schedule": crontab(minute="*/2"),
+    # REAL-TIME DEAL MONITORING (runs every 5 minutes)
+    "monitor-new-deals-every-5-minutes": {
+        "task": "monitor_new_deals",
+        "schedule": 300.0,  # 5 minutes in seconds
     },
-    "scrape-cars-bg-every-3-minutes": {
-        "task": "workers.scrape.tasks.scrape_cars_bg",
-        "schedule": crontab(minute="*/3"),
-    },
+    
+    # Legacy bulk scraping (disabled - use monitor instead)
+    # "scrape-mobile-bg-every-2-minutes": {
+    #     "task": "workers.scrape.tasks.scrape_mobile_bg",
+    #     "schedule": crontab(minute="*/2"),
+    # },
+    # "scrape-cars-bg-every-3-minutes": {
+    #     "task": "workers.scrape.tasks.scrape_cars_bg",
+    #     "schedule": crontab(minute="*/3"),
+    # },
+    
     "rescore-listings-hourly": {
         "task": "workers.pipeline.tasks.score.rescore_stale_listings",
         "schedule": crontab(minute=0),
