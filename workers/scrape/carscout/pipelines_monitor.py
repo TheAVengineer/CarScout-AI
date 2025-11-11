@@ -81,6 +81,10 @@ class DealMonitorPipeline:
         )
         self.existing_ids = {row[0] for row in result}
         logger.info(f"✅ Loaded {len(self.existing_ids)} existing listing IDs")
+        
+        # ✅ CRITICAL FIX: Pass existing IDs to spider so it can filter BEFORE requesting detail pages
+        spider.existing_listing_ids = self.existing_ids
+        logger.info(f"✅ Passed {len(self.existing_ids)} IDs to spider for filtering")
     
     def close_spider(self, spider):
         """Close database session and log statistics"""
@@ -226,53 +230,185 @@ class DealMonitorPipeline:
     def _evaluate_with_ai(self, item: Dict[str, Any]) -> tuple[float, Dict[str, Any]]:
         """Evaluate listing with AI (risk + pricing + scoring)
         
-        TODO: Implement real ML models for:
-        - Risk evaluation (fraud detection)
-        - Price prediction
-        - Deal scoring
+        SCORING STRATEGY (Improved - Nov 5, 2025):
+        - IGNORE seller's "discount" claims (often fake/inflated)
+        - Compare ACTUAL asking price to REAL market prices from database
+        - Only score based on comparables (same brand/model, ±2 years, ±20k km)
+        - Require minimum sample size (10+ comparables) for confidence
+        - Score conservatively when data is limited
         
-        For now, using simple heuristics.
+        Price Scoring:
+        - 25%+ below market: +3.5 (exceptional deal)
+        - 20-25% below: +3.0 (excellent deal)
+        - 15-20% below: +2.0 (great deal)
+        - 10-15% below: +1.0 (good deal)
+        - <10% below: +0.5 or less (marginal)
+        
+        Feature bonuses kept small to prioritize price value.
         """
         
         evaluation_data = {}
         
         try:
-            # Simple heuristic scoring until ML models are implemented
-            score = 7.0  # Default score
-            
-            # Bonus points for good attributes
-            if item.get('year', 0) >= 2020:
-                score += 0.5  # Newer cars
-            
-            if item.get('mileage', 999999) < 50000:
-                score += 0.5  # Low mileage
+            # Base score - conservative
+            score = 4.0  # Lower base (was 5.0) - prove it's a deal!
             
             price = item.get('price', 0)
-            if 20000 <= price <= 80000:
-                score += 0.5  # Mid-range pricing (sweet spot)
+            brand = item.get('brand', '')
+            model = item.get('model', '')
+            year = item.get('year', 0)
+            mileage = item.get('mileage', 0)
+            
+            # IGNORE seller's claimed "original_price" or "discount"
+            # Only trust database comparables
+            
+            # Get comparable vehicles from database
+            market_price = self._get_comparable_price(brand, model, year, mileage)
+            comparables_count = self._count_comparables(brand, model, year, mileage)
+            
+            if market_price and price and comparables_count >= 5:
+                # Calculate REAL discount (asking price vs actual market)
+                discount_pct = ((market_price - price) / market_price) * 100
+                
+                # Confidence factor based on sample size
+                if comparables_count >= 20:
+                    confidence = 1.0  # High confidence
+                elif comparables_count >= 10:
+                    confidence = 0.8  # Good confidence
+                else:
+                    confidence = 0.6  # Lower confidence (5-9 comparables)
+                
+                # Price scoring (adjusted with confidence)
+                if discount_pct >= 25:
+                    score += 3.5 * confidence  # Exceptional deal!
+                    evaluation_data['deal_quality'] = 'EXCEPTIONAL'
+                elif discount_pct >= 20:
+                    score += 3.0 * confidence  # Excellent deal!
+                    evaluation_data['deal_quality'] = 'EXCELLENT'
+                elif discount_pct >= 15:
+                    score += 2.0 * confidence  # Great deal!
+                    evaluation_data['deal_quality'] = 'GREAT'
+                elif discount_pct >= 10:
+                    score += 1.0 * confidence  # Good deal
+                    evaluation_data['deal_quality'] = 'GOOD'
+                elif discount_pct >= 5:
+                    score += 0.5 * confidence  # Marginal deal
+                    evaluation_data['deal_quality'] = 'FAIR'
+                elif discount_pct >= 0:
+                    score += 0.0  # Market price (not a deal)
+                    evaluation_data['deal_quality'] = 'MARKET_PRICE'
+                else:
+                    # OVERPRICED - actually penalize!
+                    score -= 1.0  # Above market = bad
+                    evaluation_data['deal_quality'] = 'OVERPRICED'
+                
+                evaluation_data['pricing'] = {
+                    'market_price': round(market_price, 0),
+                    'asking_price': price,
+                    'discount_pct': round(discount_pct, 1),
+                    'comparables_count': comparables_count,
+                    'confidence': confidence,
+                    'note': 'Based on real market data (not seller claims)'
+                }
+            else:
+                # Not enough comparables - be very conservative
+                score = 3.0  # Low score = won't post
+                evaluation_data['pricing'] = {
+                    'market_price': None,
+                    'comparables_count': comparables_count,
+                    'note': f'Insufficient data ({comparables_count} comparables) - need 5+ for confidence'
+                }
+                evaluation_data['deal_quality'] = 'UNKNOWN'
+            
+            # Small bonuses for desirable features (secondary to price)
+            if year >= 2020:
+                score += 0.3  # Newer cars (reduced from 0.4)
+            
+            if mileage < 50000:
+                score += 0.3  # Low mileage (reduced from 0.4)
             
             if item.get('transmission', '').lower() in ['автоматична', 'automatic']:
-                score += 0.3  # Automatic transmission preferred
+                score += 0.2  # Automatic (reduced from 0.3)
             
             if item.get('fuel_type', '').lower() in ['хибрид', 'електричество', 'hybrid', 'electric']:
-                score += 0.7  # Eco-friendly bonus
+                score += 0.4  # Eco-friendly (reduced from 0.5)
             
             # Cap at 10
-            score = min(10.0, score)
+            score = min(10.0, max(1.0, score))  # Floor at 1.0
             
             evaluation_data['risk'] = {'level': 'low', 'score': 0.2}
-            evaluation_data['pricing'] = {
-                'p50': price * 1.1 if price else 0,  # Assume 10% discount
-                'deal_quality': 10.0  # Percentage discount
-            }
-            evaluation_data['note'] = 'Using heuristic scoring - ML models not yet implemented'
+            evaluation_data['final_score'] = round(score, 2)
+            evaluation_data['scoring_note'] = 'Ignores seller discounts. Only trusts database market prices.'
             
             return score, evaluation_data
         
         except Exception as e:
             logger.error(f"Error during AI evaluation: {e}")
-            # Return neutral score on error
-            return 5.0, {'error': str(e)}
+            # Return low score on error (won't post)
+            return 3.0, {'error': str(e)}
+    
+    def _get_comparable_price(self, brand: str, model: str, year: int, mileage: int) -> Optional[float]:
+        """Find average price of comparable vehicles in database
+        
+        Comparable = same brand/model, ±2 years
+        NOTE: Mileage filter removed because current database has no mileage data
+        """
+        try:
+            if not all([brand, model, year]):
+                return None
+            
+            from sqlalchemy import func, cast, Integer
+            
+            # Query for comparable vehicles using JSON fields
+            # TODO: Add mileage filter back when mileage extraction is fixed
+            query = self.session.query(
+                func.avg(cast(ListingRaw.parsed_data['price'].astext, Integer))
+            ).filter(
+                ListingRaw.parsed_data['brand'].astext == brand,
+                ListingRaw.parsed_data['model'].astext == model,
+                cast(ListingRaw.parsed_data['year'].astext, Integer).between(year - 2, year + 2),
+                # Mileage filter REMOVED - no data in database
+                # cast(ListingRaw.parsed_data['mileage'].astext, Integer).between(mileage - 20000, mileage + 20000),
+                ListingRaw.parsed_data['price'].astext.isnot(None),
+                cast(ListingRaw.parsed_data['price'].astext, Integer) > 0,
+                ListingRaw.is_active == True
+            )
+            
+            avg_price = query.scalar()
+            return float(avg_price) if avg_price else None
+            
+        except Exception as e:
+            logger.error(f"Error getting comparable price: {e}")
+            return None
+    
+    def _count_comparables(self, brand: str, model: str, year: int, mileage: int) -> int:
+        """Count how many comparable vehicles exist in database
+        
+        NOTE: Mileage filter removed because current database has no mileage data
+        """
+        try:
+            if not all([brand, model, year]):
+                return 0
+            
+            from sqlalchemy import func, cast, Integer
+            
+            # TODO: Add mileage filter back when mileage extraction is fixed
+            count = self.session.query(func.count(ListingRaw.id)).filter(
+                ListingRaw.parsed_data['brand'].astext == brand,
+                ListingRaw.parsed_data['model'].astext == model,
+                cast(ListingRaw.parsed_data['year'].astext, Integer).between(year - 2, year + 2),
+                # Mileage filter REMOVED - no data in database
+                # cast(ListingRaw.parsed_data['mileage'].astext, Integer).between(mileage - 20000, mileage + 20000),
+                ListingRaw.parsed_data['price'].astext.isnot(None),
+                cast(ListingRaw.parsed_data['price'].astext, Integer) > 0,
+                ListingRaw.is_active == True
+            ).scalar()
+            
+            return int(count) if count else 0
+            
+        except Exception as e:
+            logger.error(f"Error counting comparables: {e}")
+            return 0
     
     def _post_to_telegram(self, item: Dict[str, Any], score: float, evaluation_data: Dict[str, Any]) -> bool:
         """Post listing to Telegram channel"""

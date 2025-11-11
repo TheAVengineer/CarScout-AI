@@ -14,31 +14,40 @@ from celery import shared_task
 logger = logging.getLogger(__name__)
 
 
-@shared_task(name="monitor_new_deals")
+@shared_task(name="monitor_new_deals", soft_time_limit=900, time_limit=1000)
 def monitor_new_deals():
     """
     Run the deal monitor spider to check for new listings.
     
-    This task should be scheduled to run every 5-10 minutes using Celery Beat.
+    This scans ONLY the newest listings (first 3 pages, sort=6) to find deals.
+    Completes in 3-5 minutes. Compares new listings to database for value assessment.
+    
+    This task should be scheduled to run every 5 minutes using Celery Beat.
     """
     
-    logger.info("🔍 Starting deal monitor run...")
+    logger.info("🔍 Starting deal monitor run (newest listings only)...")
     
     try:
         # Path to scraper directory
         scraper_dir = Path(__file__).parent.parent.parent / "scrape"
         
-        # Run monitor spider
+        # Path to scrapy in virtual environment
+        project_root = Path(__file__).parent.parent.parent.parent
+        scrapy_path = project_root / ".venv" / "bin" / "scrapy"
+        deal_monitor_config = project_root / "deal_monitor_config.json"
+        
+        # Run monitor spider with deal monitor config (fast, newest listings only)
         result = subprocess.run(
             [
-                "scrapy", "crawl", "mobile_bg_monitor",
+                str(scrapy_path), "crawl", "mobile_bg_monitor",
+                "-s", f"MONITOR_CONFIG_PATH={deal_monitor_config}",
                 "-s", "LOG_LEVEL=INFO",
-                "-s", "LOG_FILE=/Users/alexandervidenov/Desktop/CarScout-AI/logs/monitor.log",
+                "-s", "LOG_FILE=/Users/alexandervidenov/Desktop/CarScout-AI/logs/deal_monitor.log",
             ],
             cwd=str(scraper_dir),
             capture_output=True,
             text=True,
-            timeout=600,  # 10 minute timeout
+            timeout=900,  # 15 minute timeout (increased from 600 to allow detail page scraping)
         )
         
         if result.returncode == 0:
@@ -72,7 +81,7 @@ def monitor_new_deals():
         }
 
 
-@shared_task(name="monitor_specific_brand")
+@shared_task(name="monitor_specific_brand", soft_time_limit=900, time_limit=1000)
 def monitor_specific_brand(brand: str, model: str = None, filters: dict = None):
     """
     Monitor a specific brand/model for new listings.
@@ -123,9 +132,13 @@ def monitor_specific_brand(brand: str, model: str = None, filters: dict = None):
     try:
         scraper_dir = Path(__file__).parent.parent.parent / "scrape"
         
+        # Path to scrapy in virtual environment
+        project_root = Path(__file__).parent.parent.parent.parent
+        scrapy_path = project_root / ".venv" / "bin" / "scrapy"
+        
         result = subprocess.run(
             [
-                "scrapy", "crawl", "mobile_bg_monitor",
+                str(scrapy_path), "crawl", "mobile_bg_monitor",
                 "-s", f"MONITOR_CONFIG_PATH={config_path}",
                 "-s", "LOG_LEVEL=INFO",
             ],

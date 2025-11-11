@@ -223,6 +223,7 @@ class Score(Base):
     risk_penalty = Column(Float)
     final_state = Column(Enum("draft", "approved", "rejected", name="final_state_enum"))
     scored_at = Column(DateTime, default=datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     
     listing = relationship("ListingNormalized", back_populates="score")
     

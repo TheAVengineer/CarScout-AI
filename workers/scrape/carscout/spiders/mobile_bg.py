@@ -675,9 +675,15 @@ class MobileBgSpider(scrapy.Spider):
         year_match = re.search(r'(\d{4})\s*г', response.text)
         year = int(year_match.group(1).strip()) if year_match else None
         
-        # Mileage extraction
-        mileage_match = re.search(r'(\d+)\s*км', response.text)
-        mileage_km = int(mileage_match.group(1).strip()) if mileage_match else None
+        # Mileage extraction - Mobile.bg format: "123 456 км" (with spaces)
+        # Need to capture all digit groups, not just first one
+        mileage_match = re.search(r'([\d\s]+)\s*км', response.text)
+        if mileage_match:
+            # Remove all spaces and convert to int
+            mileage_str = mileage_match.group(1).replace(' ', '').replace('\xa0', '').strip()
+            mileage_km = int(mileage_str) if mileage_str.isdigit() else None
+        else:
+            mileage_km = None
         
         # Fuel type detection
         fuel = None

@@ -54,21 +54,34 @@ class MobileBgMonitorSpider(scrapy.Spider):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         
-        # Load monitoring configuration
-        self.config = self._load_monitor_config()
-        
         # Track processed listings in this run (prevent duplicates)
         self.seen_this_run = set()
         
-        self.logger.info(f"🔍 Monitor initialized with {len(self.config.get('watch_targets', []))} watch targets")
+        # Config will be loaded in start_requests where settings are available
+        self.config = None
+        
+        # Set to store existing listing IDs from database (populated by pipeline)
+        self.existing_listing_ids = set()
     
     def _load_monitor_config(self) -> Dict[str, Any]:
         """Load monitoring configuration from file"""
-        config_path = Path(__file__).resolve().parent.parent.parent.parent.parent / "monitor_config.json"
+        # Check if custom config path is provided via Scrapy settings
+        # Note: settings is available after from_crawler
+        custom_config = getattr(self, 'settings', None) and self.settings.get('MONITOR_CONFIG_PATH')
+        
+        if custom_config:
+            config_path = Path(custom_config)
+            self.logger.info(f"📋 Using custom config: {config_path}")
+        else:
+            # Default to monitor_config.json in project root
+            config_path = Path(__file__).resolve().parent.parent.parent.parent.parent / "monitor_config.json"
+            self.logger.info(f"📋 Using default config: {config_path}")
         
         if config_path.exists():
             with open(config_path, 'r', encoding='utf-8') as f:
-                return json.load(f)
+                config = json.load(f)
+                self.logger.info(f"✅ Loaded {len(config.get('watch_targets', []))} targets from config")
+                return config
         
         # Default configuration if file doesn't exist
         return {
@@ -114,6 +127,11 @@ class MobileBgMonitorSpider(scrapy.Spider):
     
     def start_requests(self):
         """Generate requests for all watch targets"""
+        # Load config here where settings are available
+        if self.config is None:
+            self.config = self._load_monitor_config()
+            self.logger.info(f"🔍 Monitor initialized with {len(self.config.get('watch_targets', []))} watch targets")
+        
         for target in self.config.get('watch_targets', []):
             target_name = target.get('name', 'Unknown')
             base_url = target.get('url')
@@ -145,49 +163,78 @@ class MobileBgMonitorSpider(scrapy.Spider):
         page_num = response.meta['page_num']
         target_name = target_config.get('name', 'Unknown')
         
+        self.logger.info(f"📄 Parsing page {page_num} of {target_name}")
+        
+        # Wait for listing links to load (like main spider)
         try:
-            self.logger.info(f"📄 Parsing page {page_num} of {target_name}")
+            await page.wait_for_selector('a[href*="/obiava-"]', timeout=10000)
+        except Exception as e:
+            self.logger.warning(f"⚠️ Timeout waiting for listings on page {page_num}: {e}")
+            await page.close()
+            return
+        
+        # Extract ALL links and filter for listings (like main spider)
+        all_links = response.css('a::attr(href)').getall()
+        listing_links = [link for link in all_links if self._is_listing_url(link)]
+        
+        if not listing_links:
+            self.logger.warning(f"⚠️ No listings found on page {page_num}")
+            await page.close()
+            return
+        
+        self.logger.info(f"✅ Found {len(listing_links)} listings on page {page_num}")
+        
+        # Process each listing
+        for link in listing_links:
+            full_url = response.urljoin(link)
             
-            # Wait for listing links to load (like main spider)
-            try:
-                await page.wait_for_selector('a[href*="/obiava-"]', timeout=10000)
-            except Exception as e:
-                self.logger.warning(f"⚠️ Timeout waiting for listings on page {page_num}: {e}")
-                await page.close()
-                return
+            # Extract listing ID from URL
+            # Format: /obiava-XXXXXXXXXXX-brand-model
+            listing_id = self._extract_listing_id(full_url)
             
-            # Extract ALL links and filter for listings (like main spider)
-            all_links = response.css('a::attr(href)').getall()
-            listing_links = [link for link in all_links if self._is_listing_url(link)]
+            if not listing_id:
+                continue
             
-            if not listing_links:
-                self.logger.warning(f"⚠️ No listings found on page {page_num}")
-                await page.close()
-                return
+            # Skip if already seen in this run
+            if listing_id in self.seen_this_run:
+                continue
             
-            self.logger.info(f"✅ Found {len(listing_links)} listings on page {page_num}")
+            # ✅ CRITICAL FIX: Skip if already in database!
+            if listing_id in self.existing_listing_ids:
+                # self.logger.debug(f"⏭️  Skipping {listing_id} - already in DB")
+                continue
             
-            # Process each listing
-            for link in listing_links:
-                full_url = response.urljoin(link)
-                
-                # Extract listing ID from URL
-                # Format: /obiava-XXXXXXXXXXX-brand-model
-                listing_id = self._extract_listing_id(full_url)
-                
-                if not listing_id:
-                    continue
-                
-                # Skip if already seen in this run
-                if listing_id in self.seen_this_run:
-                    continue
-                
-                self.seen_this_run.add(listing_id)
-                
-                # Yield request to scrape detail page
+            self.seen_this_run.add(listing_id)
+            self.logger.info(f"🆕 NEW listing found: {listing_id}")
+            
+            # Yield request to scrape detail page ONLY for NEW listings
+            yield scrapy.Request(
+                url=full_url,
+                callback=self.parse_listing_detail,
+                dont_filter=True,  # Force processing even if URL seen before
+                meta={
+                    'playwright': True,
+                    'playwright_include_page': True,
+                    'playwright_page_goto_kwargs': {
+                        'wait_until': 'networkidle',
+                        'timeout': 15000,
+                    },
+                    'listing_id': listing_id,
+                    'target_config': target_config,
+                },
+                errback=self.errback_close_page,
+            )
+            self.logger.info(f"📤 Yielded detail page request for {listing_id}: {full_url}")
+        
+        # Check if we should scrape next page
+        max_pages = target_config.get('pages', 3)
+        if page_num < max_pages:
+            # Find next page link
+            next_page = response.css('a.pageNumbersA:contains("Напред")::attr(href)').get()
+            if next_page:
                 yield scrapy.Request(
-                    url=full_url,
-                    callback=self.parse_listing_detail,
+                    url=response.urljoin(next_page),
+                    callback=self.parse_listing_page,
                     meta={
                         'playwright': True,
                         'playwright_include_page': True,
@@ -195,36 +242,14 @@ class MobileBgMonitorSpider(scrapy.Spider):
                             'wait_until': 'networkidle',
                             'timeout': 15000,
                         },
-                        'listing_id': listing_id,
                         'target_config': target_config,
+                        'page_num': page_num + 1,
                     },
                     errback=self.errback_close_page,
                 )
-            
-            # Check if we should scrape next page
-            max_pages = target_config.get('pages', 3)
-            if page_num < max_pages:
-                # Find next page link
-                next_page = response.css('a.pageNumbersA:contains("Напред")::attr(href)').get()
-                if next_page:
-                    yield scrapy.Request(
-                        url=response.urljoin(next_page),
-                        callback=self.parse_listing_page,
-                        meta={
-                            'playwright': True,
-                            'playwright_include_page': True,
-                            'playwright_page_goto_kwargs': {
-                                'wait_until': 'networkidle',
-                                'timeout': 15000,
-                            },
-                            'target_config': target_config,
-                            'page_num': page_num + 1,
-                        },
-                        errback=self.errback_close_page,
-                    )
         
-        finally:
-            await page.close()
+        # Don't close page here - Scrapy-Playwright will handle it
+        # If we close here, yielded requests won't be processed
     
     async def parse_listing_detail(self, response):
         """Parse individual listing detail page"""

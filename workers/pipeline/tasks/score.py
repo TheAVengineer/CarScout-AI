@@ -149,7 +149,7 @@ def rescore_stale_listings(self):
         
         stale_scores = session.query(Score).join(ListingNormalized).filter(
             Score.updated_at < threshold,
-            Score.state == 'approved',
+            Score.final_state == 'approved',
             ListingNormalized.created_at >= listing_age_threshold,
             ListingNormalized.is_duplicate == False,
         ).limit(100).all()

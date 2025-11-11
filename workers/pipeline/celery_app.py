@@ -23,7 +23,8 @@ celery_app = Celery(
         "workers.pipeline.tasks.ai",
         "workers.pipeline.tasks.score",
         "workers.pipeline.tasks.notify",
-        "workers.pipeline.tasks.monitor_tasks",  # Deal monitoring tasks
+        "workers.pipeline.tasks.monitor_tasks",  # Legacy spider-based monitoring (broken)
+        "workers.pipeline.tasks.database_monitor",  # NEW: Database-based monitoring (working)
     ],
 )
 
@@ -54,11 +55,18 @@ celery_app.conf.update(
 
 # Scheduled tasks (Celery Beat)
 celery_app.conf.beat_schedule = {
-    # REAL-TIME DEAL MONITORING (runs every 5 minutes)
-    "monitor-new-deals-every-5-minutes": {
-        "task": "monitor_new_deals",
+    # DATABASE-BASED DEAL MONITORING (runs every 5 minutes)
+    # Processes new/updated listings from database instead of scraping
+    "monitor-database-deals-every-5-minutes": {
+        "task": "monitor_database_deals",
         "schedule": 300.0,  # 5 minutes in seconds
     },
+    
+    # Legacy spider-based monitoring (DISABLED - has Playwright yielding bug)
+    # "monitor-new-deals-every-5-minutes": {
+    #     "task": "monitor_new_deals",
+    #     "schedule": 300.0,
+    # },
     
     # Legacy bulk scraping (disabled - use monitor instead)
     # "scrape-mobile-bg-every-2-minutes": {
