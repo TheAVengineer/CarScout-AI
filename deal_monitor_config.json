@@ -1,0 +1,69 @@
+{
+  "comment": "DEAL MONITOR - Checks ONLY newest listings (first 3 pages) for deals. Runs frequently (every 5 min).",
+  "watch_targets": [
+    {
+      "name": "All New Premium Cars",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove?sort=6",
+      "pages": 3,
+      "comment": "sort=6 means newest first. Page 1-3 = ~360 newest listings"
+    },
+    {
+      "name": "Volkswagen Golf Deals",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/volkswagen/golf?sort=6",
+      "pages": 3
+    },
+    {
+      "name": "Toyota Corolla Deals",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/toyota/corolla?sort=6",
+      "pages": 3
+    },
+    {
+      "name": "Mercedes-Benz Deals",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz?sort=6",
+      "pages": 3
+    },
+    {
+      "name": "BMW 3 Series Deals",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/3-seriya?sort=6",
+      "pages": 3
+    },
+    {
+      "name": "Audi A4/A6 Deals",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/audi?sort=6",
+      "pages": 3
+    },
+    {
+      "name": "Porsche Deals",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/porsche?sort=6",
+      "pages": 3
+    },
+    {
+      "name": "Electric & Hybrid Cars",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove?sort=6&fuel=13,14,15",
+      "pages": 3,
+      "comment": "fuel=13,14,15 is Electric, Hybrid plug-in, Hybrid"
+    },
+    {
+      "name": "SUV Deals",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove?sort=6&body=5",
+      "pages": 3,
+      "comment": "body=5 is SUV/Jeep"
+    },
+    {
+      "name": "Budget Deals (Under 15K)",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove?sort=6&priceto=15000",
+      "pages": 5,
+      "comment": "More pages for budget category (high volume)"
+    }
+  ],
+  "ai_evaluation": {
+    "enabled": true,
+    "min_score_to_post": 7.0,
+    "comment": "Only listings scoring 7.0+ get posted to Telegram"
+  },
+  "monitoring_interval": 300,
+  "telegram": {
+    "enabled": true,
+    "post_immediately": true
+  }
+}

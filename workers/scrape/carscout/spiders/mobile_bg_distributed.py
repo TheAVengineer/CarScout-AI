@@ -11,6 +11,8 @@ This spider pulls work items from Redis queue:
 import scrapy
 import redis
 import json
+from scrapy import signals
+from scrapy.exceptions import DontCloseSpider
 from .mobile_bg import MobileBgSpider
 
 
@@ -38,65 +40,117 @@ class MobileBgDistributedSpider(MobileBgSpider):
         self.current_searches = []
         self.brands_completed = 0
         self.searches_completed = 0
+        self.current_brand_search_count = 0
+        self.current_brand_search_completed = 0
         
         self.logger.info(f"👷 Distributed Worker {self.worker_id} initialized")
         self.logger.info(f"🎚️  Performance mode: {self.performance_mode}")
     
-    def start_scraping(self):
-        """Pull work from Redis queue and scrape - CONTINUOUS MODE"""
+    @classmethod
+    def from_crawler(cls, crawler, *args, **kwargs):
+        spider = super(MobileBgDistributedSpider, cls).from_crawler(crawler, *args, **kwargs)
+        crawler.signals.connect(spider.spider_idle, signal=signals.spider_idle)
+        return spider
+    
+    def spider_idle(self, spider):
+        """Called when spider becomes idle - get next brand"""
+        try:
+            self.logger.info(f"⏸️  Worker {self.worker_id}: Spider idle, checking for more work...")
+            
+            # Mark current brand as completed if we were working on one
+            if self.current_brand:
+                self._complete_work()
+                self.brands_completed += 1
+                self.logger.info(f"✅ Worker {self.worker_id}: Completed '{self.current_brand}'")
+                self.logger.info(f"   Progress: {self.brands_completed} brands, {self.searches_completed} searches")
+            
+            # Try to get next brand
+            requests = list(self._get_next_brand_requests())
+            if requests:
+                # Schedule new requests
+                for request in requests:
+                    self.crawler.engine.crawl(request)
+                # Prevent spider from closing
+                raise DontCloseSpider
+            else:
+                self.logger.info(f"🏁 Worker {self.worker_id}: No more work available, stopping")
         
-        continuous_loop_count = 0
+        except DontCloseSpider:
+            # Re-raise DontCloseSpider to keep spider alive
+            raise
+        except Exception as e:
+            # Log error but don't crash - let spider continue
+            self.logger.error(f"❌ Error in spider_idle: {e}")
+            self.logger.exception("Full traceback:")
+            # Try to continue anyway by raising DontCloseSpider
+            raise DontCloseSpider
+    
+    
+    def start_requests(self):
+        """Override parent's start_requests to use Redis queue"""
+        self.logger.info(f"🚀 Worker {self.worker_id}: Starting distributed scraping from Redis queue")
         
-        while True:
-            # Get next work item
-            work_item = self._get_next_work()
+        # Start by getting the first brand
+        for request in self._get_next_brand_requests():
+            yield request
+    
+    def _get_next_brand_requests(self):
+        """Get requests for the next brand from Redis queue"""
+        
+        # Get next work item
+        work_item = self._get_next_work()
+        
+        if not work_item:
+            # Queue is empty - reinitialize and retry
+            self.logger.info(f"🔄 Worker {self.worker_id}: Queue empty, reinitializing...")
+            self.logger.info(f"   Completed: {self.brands_completed} brands, {self.searches_completed} searches")
             
-            if not work_item:
-                # Queue is empty - reinitialize and continue
-                continuous_loop_count += 1
-                self.logger.info(f"🔄 Worker {self.worker_id}: Queue empty, reinitializing... (Cycle #{continuous_loop_count})")
-                self.logger.info(f"   Completed this cycle: {self.brands_completed} brands, {self.searches_completed} searches")
-                
-                # Reinitialize the queue
-                if self._reinitialize_queue():
-                    self.logger.info(f"✅ Queue reinitialized! Starting cycle #{continuous_loop_count + 1}")
-                    # Reset counters for new cycle
-                    self.brands_completed = 0
-                    self.searches_completed = 0
-                    continue
-                else:
-                    self.logger.error(f"❌ Failed to reinitialize queue, stopping")
-                    break
+            if self._reinitialize_queue():
+                self.logger.info(f"✅ Queue reinitialized! Continuing...")
+                # Reset counters for new cycle
+                self.brands_completed = 0
+                self.searches_completed = 0
+                # Try again
+                work_item = self._get_next_work()
+            else:
+                self.logger.error(f"❌ Failed to reinitialize queue, stopping")
+                return
+        
+        if not work_item:
+            self.logger.info(f"🏁 Worker {self.worker_id}: No more work available")
+            return
+        
+        self.current_brand = work_item['brand']
+        self.current_searches = work_item['searches']
+        model_count = work_item['model_count']
+        
+        self.logger.info(f"🎯 Worker {self.worker_id}: Starting brand '{self.current_brand}'")
+        self.logger.info(f"   Models to scrape: {model_count}")
+        
+        # Track how many searches for this brand
+        self.current_brand_search_count = len(self.current_searches)
+        self.current_brand_search_completed = 0
+        
+        # Scrape all models for this brand
+        for search in self.current_searches:
+            url = search.get('url')
+            brand = search.get('brand')
+            model = search.get('model', 'Unknown')
             
-            self.current_brand = work_item['brand']
-            self.current_searches = work_item['searches']
-            model_count = work_item['model_count']
+            if not url:
+                continue
             
-            self.logger.info(f"🎯 Worker {self.worker_id}: Starting brand '{self.current_brand}'")
-            self.logger.info(f"   Models to scrape: {model_count}")
+            self.logger.info(f"🔍 Worker {self.worker_id}: Scraping {brand} {model}")
             
-            # Scrape all models for this brand
-            for search in self.current_searches:
-                url = search.get('url')
-                brand = search.get('brand')
-                model = search.get('model', 'Unknown')
-                
-                if not url:
-                    continue
-                
-                self.logger.info(f"🔍 Worker {self.worker_id}: Scraping {brand} {model}")
-                
-                # Yield request for this search
-                yield self._create_search_request(url, search)
-                
-                self.searches_completed += 1
+            # Create request with callback that will get next brand when done
+            request = self._create_search_request(url, search)
+            request.meta['brand_work_item'] = work_item
+            request.meta['is_last_search'] = (self.current_brand_search_completed == self.current_brand_search_count - 1)
             
-            # Mark brand as completed
-            self._complete_work()
-            self.brands_completed += 1
+            yield request
             
-            self.logger.info(f"✅ Worker {self.worker_id}: Completed '{self.current_brand}'")
-            self.logger.info(f"   Progress: {self.brands_completed} brands, {self.searches_completed} searches")
+            self.current_brand_search_completed += 1
+            self.searches_completed += 1
     
     def _get_next_work(self):
         """Get next work item from Redis queue"""
@@ -161,8 +215,8 @@ class MobileBgDistributedSpider(MobileBgSpider):
             import json
             from pathlib import Path
             
-            # Load hybrid config
-            config_path = Path(__file__).parent.parent.parent.parent.parent / "configs" / "scrape" / "mobile_bg_hybrid.json"
+            # Load hybrid config from project root
+            config_path = Path(__file__).parent.parent.parent.parent.parent / "mobile_bg_hybrid_config.json"
             
             if not config_path.exists():
                 self.logger.error(f"❌ Config not found: {config_path}")
@@ -171,11 +225,15 @@ class MobileBgDistributedSpider(MobileBgSpider):
             with open(config_path, 'r') as f:
                 config = json.load(f)
             
-            searches = config.get('searches', [])
+            # Try both 'search_urls' and 'searches' keys for compatibility
+            searches = config.get('search_urls', config.get('searches', []))
             
             if not searches:
                 self.logger.error(f"❌ No searches in config")
                 return False
+            
+            # USE ALL SEARCHES (both brand and model level) for maximum coverage
+            self.logger.info(f"📋 Found {len(searches)} total searches in config")
             
             # Group by brand
             brands = {}

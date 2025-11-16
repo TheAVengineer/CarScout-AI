@@ -41,19 +41,24 @@ def monitor_database_deals():
         # Get listings from last 5 minutes (matches run frequency)
         cutoff_time = datetime.now(timezone.utc) - timedelta(minutes=5)
         
+        # Query both NEW listings and UPDATED listings (price drops can be good deals!)
+        # But only show listings that are relatively fresh (added in last 7 days)
+        fresh_listing_cutoff = datetime.now(timezone.utc) - timedelta(days=7)
+        
         query = session.query(ListingRaw).filter(
             and_(
                 or_(
-                    ListingRaw.first_seen_at >= cutoff_time,
-                    ListingRaw.updated_at >= cutoff_time
+                    ListingRaw.first_seen_at >= cutoff_time,  # New listings
+                    ListingRaw.updated_at >= cutoff_time      # Updated listings (price drops!)
                 ),
+                ListingRaw.first_seen_at >= fresh_listing_cutoff,  # Only listings from last 7 days
                 ListingRaw.is_active == True,
                 ListingRaw.parsed_data.isnot(None)
             )
         ).order_by(ListingRaw.first_seen_at.desc())
         
         listings = query.all()
-        logger.info(f"📊 Found {len(listings)} new/updated listings to evaluate")
+        logger.info(f"📊 Found {len(listings)} new/updated listings to evaluate (max 7 days old)")
         
         if not listings:
             logger.info("✅ No new listings to process")
@@ -87,6 +92,24 @@ def monitor_database_deals():
                     logger.debug(f"⏭️  Skipping {listing.site_ad_id} - invalid year: {year}")
                     continue
                 
+                # Check mileage - skip if too high (>250k km) or missing
+                mileage_km = data.get('mileage_km')
+                if mileage_km is None:
+                    logger.debug(f"⏭️  Skipping {listing.site_ad_id} - missing mileage data")
+                    continue
+                
+                # Convert mileage to int if needed
+                try:
+                    mileage_km = int(mileage_km) if isinstance(mileage_km, str) else mileage_km
+                except (ValueError, TypeError):
+                    logger.debug(f"⏭️  Skipping {listing.site_ad_id} - invalid mileage: {mileage_km}")
+                    continue
+                
+                # Filter out high mileage cars (>250k km)
+                if mileage_km > 250000:
+                    logger.debug(f"⏭️  Skipping {listing.site_ad_id} - mileage too high: {mileage_km:,} km")
+                    continue
+                
                 # Score the listing
                 score_result = _evaluate_listing(session, listing.site_ad_id, brand, model, year, price)
                 
@@ -110,12 +133,12 @@ def monitor_database_deals():
                     else:
                         score_distribution['7.5+'] += 1
                 
-                if score and score >= 7.5:
+                if score and score >= 8.3:
                     high_scores += 1
                     
                     # Rate limit: Only post first 3 high-score deals per run
                     if posted_count < MAX_POSTS_PER_RUN:
-                        logger.info(f"🎯 HIGH SCORE: {score:.1f}/10 - {brand} {model} {year} - {price:,.0f} BGN - {listing.url}")
+                        logger.info(f"🎯 HIGH SCORE: {score:.1f}/10 - {brand} {model} {year} - {price:,.0f} BGN - {mileage_km:,} km - {listing.url}")
                         
                         # Post to Telegram
                         if avg_price and comp_count:
@@ -331,22 +354,28 @@ def _post_to_telegram(listing: ListingRaw, score: float, avg_price: float, comp_
         model = data.get('model', '')
         year = data.get('year', '')
         price = data.get('price', 0)
-        mileage = data.get('mileage', 'N/A')
+        mileage_km = data.get('mileage_km')  # Fixed: use mileage_km
         fuel = data.get('fuel', '')
         gearbox = data.get('gearbox', '')
+        
+        # Format mileage for display
+        if mileage_km:
+            mileage_display = f"{mileage_km:,}"
+        else:
+            mileage_display = "N/A"
         
         # Calculate discount
         discount_pct = ((avg_price - price) / avg_price) * 100 if avg_price else 0
         
         # Build message (Telegram supports HTML and Markdown)
         message = f"""
-🎯 <b>ОТЛИЧНА ОФЕРТА</b> - Оценка: {score:.1f}/10
+🎯 <b>ОФЕРТА</b> - Оценка: {score:.1f}/10
 
 🚗 <b>{brand} {model}</b> ({year})
 💰 <b>Цена</b>: {price:,.0f} BGN
 📊 <b>Средна пазарна цена</b>: {avg_price:,.0f} BGN
 💵 <b>Отстъпка</b>: {discount_pct:.1f}% ({(avg_price - price):,.0f} BGN по-евтино!)
-📏 <b>Пробег</b>: {mileage} км
+📏 <b>Пробег</b>: {mileage_display} км
 ⛽ <b>Гориво</b>: {fuel}
 ⚙️ <b>Скоростна кутия</b>: {gearbox}
 📈 <b>Базирано на</b>: {comp_count} подобни обяви

@@ -158,7 +158,7 @@
     "enabled": true,
     "min_score_to_post": 7.0,
     "evaluate_all": false,
-    "comment": "Only evaluate listings that pass pre-filters to save API costs"
+    "comment": "Only post listings with score >= 7.0 to ensure quality deals. Score based on price value vs market."
   },
   "monitoring_interval": 300,
   "telegram": {

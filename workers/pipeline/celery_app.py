@@ -24,7 +24,9 @@ celery_app = Celery(
         "workers.pipeline.tasks.score",
         "workers.pipeline.tasks.notify",
         "workers.pipeline.tasks.monitor_tasks",  # Legacy spider-based monitoring (broken)
-        "workers.pipeline.tasks.database_monitor",  # NEW: Database-based monitoring (working)
+        "workers.pipeline.tasks.database_monitor",  # Database-based monitoring (working)
+        "workers.pipeline.tasks.database_monitor_enhanced",  # ENHANCED: Better scoring with price history
+        "workers.pipeline.tasks.scraper_trigger",  # Fresh deals spider trigger
     ],
 )
 
@@ -55,12 +57,23 @@ celery_app.conf.update(
 
 # Scheduled tasks (Celery Beat)
 celery_app.conf.beat_schedule = {
-    # DATABASE-BASED DEAL MONITORING (runs every 5 minutes)
-    # Processes new/updated listings from database instead of scraping
-    "monitor-database-deals-every-5-minutes": {
-        "task": "monitor_database_deals",
+    # FRESH DEALS SPIDER runs in continuous mode (started manually, runs forever)
+    # No schedule needed - runs in infinite loop scanning all brands repeatedly
+    # To start: celery_app.send_task('trigger_fresh_deals_spider')
+    # To stop: pkill -f "mobile_bg_fresh_deals"
+    
+    # ENHANCED DATABASE-BASED DEAL MONITORING (runs every 5 minutes)
+    # Uses improved scoring with price history and better comparable matching
+    "monitor-database-deals-enhanced-every-5-minutes": {
+        "task": "monitor_database_deals_enhanced",
         "schedule": 300.0,  # 5 minutes in seconds
     },
+    
+    # Original database monitor (disabled - using enhanced version)
+    # "monitor-database-deals-every-5-minutes": {
+    #     "task": "monitor_database_deals",
+    #     "schedule": 300.0,
+    # },
     
     # Legacy spider-based monitoring (DISABLED - has Playwright yielding bug)
     # "monitor-new-deals-every-5-minutes": {
