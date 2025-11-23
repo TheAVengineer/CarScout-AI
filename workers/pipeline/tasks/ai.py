@@ -49,9 +49,9 @@ def classify_risk(self, listing_id: str):
         if result['needs_llm']:
             llm_evaluate.delay(listing_id)
         else:
-            # Trigger scoring directly
-            from workers.pipeline.tasks.score import calculate_score
-            calculate_score.delay(listing_id)
+            # Trigger MARKET-AWARE scoring directly (NEW intelligent scoring!)
+            from workers.pipeline.tasks.market_score import market_aware_score
+            market_aware_score.delay(listing_id)
         
         return {
             "status": "classified",
@@ -120,9 +120,9 @@ def llm_evaluate(self, listing_id: str):
         
         session.commit()
         
-        # Trigger scoring
-        from workers.pipeline.tasks.score import calculate_score
-        calculate_score.delay(listing_id)
+        # Trigger MARKET-AWARE scoring (NEW intelligent scoring!)
+        from workers.pipeline.tasks.market_score import market_aware_score
+        market_aware_score.delay(listing_id)
         
         return {
             "status": "evaluated",

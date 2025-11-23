@@ -1,6 +1,8 @@
 """
 Notification task - Post to channel and send user alerts
 """
+import logging
+import asyncio
 from uuid import UUID
 from datetime import datetime, timezone
 
@@ -12,6 +14,8 @@ from libs.domain.database import get_sync_session
 from libs.domain.models import ListingNormalized, Score, ChannelPost, Image, AlertMatch, User
 from libs.domain.alert_matcher import AlertMatcher
 from configs.settings import settings
+
+logger = logging.getLogger(__name__)
 
 
 @celery_app.task(bind=True, max_retries=3)
@@ -117,45 +121,54 @@ def post_to_channel(self, listing_id: str):
             ],
         ])
         
-        # Post to Telegram
-        bot = Bot(token=settings.TELEGRAM_CHANNEL_BOT_TOKEN)
-        
-        if images and len(images) > 1:
-            # Post as media group
-            media = [
-                InputMediaPhoto(media=img.url, caption=message if i == 0 else "")
-                for i, img in enumerate(images)
-            ]
-            messages = bot.send_media_group(chat_id=settings.TELEGRAM_CHANNEL_ID, media=media)
-            message_id = messages[0].message_id if messages else 0
+        # Post to Telegram (async)
+        async def send_telegram_post():
+            bot = Bot(token=settings.TELEGRAM_CHANNEL_BOT_TOKEN)
             
-            # Send keyboard separately
-            if message_id:
-                bot.send_message(
-                    chat_id=settings.TELEGRAM_CHANNEL_ID,
-                    text="👆 Опции за тази обява:",
-                    reply_markup=keyboard,
-                )
-        else:
-            # Post single photo
-            photo_url = images[0].url if images else None
-            if photo_url:
-                result = bot.send_photo(
-                    chat_id=settings.TELEGRAM_CHANNEL_ID,
-                    photo=photo_url,
-                    caption=message,
-                    reply_markup=keyboard,
-                    parse_mode="HTML",
-                )
-                message_id = result.message_id
+            if images and len(images) > 1:
+                # Post as media group
+                media = [
+                    InputMediaPhoto(media=img.url, caption=message if i == 0 else "")
+                    for i, img in enumerate(images)
+                ]
+                messages = await bot.send_media_group(chat_id=settings.TELEGRAM_CHANNEL_ID, media=media)
+                msg_id = messages[0].message_id if messages else 0
+                
+                # Send keyboard separately
+                if msg_id:
+                    await bot.send_message(
+                        chat_id=settings.TELEGRAM_CHANNEL_ID,
+                        text="👆 Опции за тази обява:",
+                        reply_markup=keyboard,
+                    )
+                await bot.session.close()
+                return msg_id
             else:
-                result = bot.send_message(
-                    chat_id=settings.TELEGRAM_CHANNEL_ID,
-                    text=message,
-                    reply_markup=keyboard,
-                    parse_mode="HTML",
-                )
-                message_id = result.message_id
+                # Post single photo
+                photo_url = images[0].url if images else None
+                if photo_url:
+                    result = await bot.send_photo(
+                        chat_id=settings.TELEGRAM_CHANNEL_ID,
+                        photo=photo_url,
+                        caption=message,
+                        reply_markup=keyboard,
+                        parse_mode="HTML",
+                    )
+                    msg_id = result.message_id
+                else:
+                    result = await bot.send_message(
+                        chat_id=settings.TELEGRAM_CHANNEL_ID,
+                        text=message,
+                        reply_markup=keyboard,
+                        parse_mode="HTML",
+                    )
+                    msg_id = result.message_id
+                
+                await bot.session.close()
+                return msg_id
+        
+        # Run async function
+        message_id = asyncio.run(send_telegram_post())
         
         # Save channel post
         channel_post = ChannelPost(
@@ -178,7 +191,7 @@ def post_to_channel(self, listing_id: str):
         
     except Exception as e:
         session.rollback()
-        self.logger.error(f"Error posting to channel: {e}")
+        logger.error(f"Error posting to channel: {e}", exc_info=True)
         raise self.retry(exc=e, countdown=300)  # Retry after 5 minutes
     finally:
         session.close()
@@ -271,6 +284,7 @@ def _format_channel_message(listing: ListingNormalized, score: Score) -> str:
         score_emoji = "⭐"
     
     # Build message
+    mileage_str = f"{listing.mileage_km:,} км" if listing.mileage_km else "N/A"
     message = f"""
 {score_emoji} <b>{listing.title}</b>
 
@@ -279,7 +293,7 @@ def _format_channel_message(listing: ListingNormalized, score: Score) -> str:
 💰 Цена: <b>{listing.price_bgn:.0f} лв</b>
 📅 Година: {listing.year}
 ⛽ Гориво: {listing.fuel or 'N/A'}
-📏 Пробег: {listing.mileage_km:,} км
+📏 Пробег: {mileage_str}
 ⚙️ Скоростна кутия: {listing.gearbox or 'N/A'}
 
 📍 Регион: {listing.region or 'N/A'}

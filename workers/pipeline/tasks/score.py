@@ -59,22 +59,13 @@ def calculate_score(self, listing_id: str):
             freshness_hours=age_hours,
         )
         
-        # Determine state based on score and thresholds
-        state = 'draft'
-        
-        # Approval criteria:
-        # 1. Score >= 7.5
-        # 2. Sufficient comparables (>= 5)
-        # 3. Sufficient price confidence (>= 0.5)
-        # 4. Risk not red
-        
-        if (score_result['score'] >= 7.5 and 
-            comparable_count >= 5 and 
-            price_confidence >= 0.5 and
-            risk_level != 'red'):
+        # Determine state based on scoring engine's approval decision
+        if score_result['is_approved']:
             state = 'approved'
-        elif score_result['score'] < 5.0 or risk_level == 'red':
+        elif score_result['score'] < 3.0 or risk_level == 'red':
             state = 'rejected'
+        else:
+            state = 'draft'
         
         # Create or update score
         existing_score = session.query(Score).filter_by(listing_id=listing.id).first()

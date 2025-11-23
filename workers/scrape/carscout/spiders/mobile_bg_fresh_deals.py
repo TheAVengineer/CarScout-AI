@@ -56,6 +56,13 @@ class MobileBgFreshDealsSpider(MobileBgSpider):
         'AUTOTHROTTLE_TARGET_CONCURRENCY': 4.0,
         'RANDOMIZE_DOWNLOAD_DELAY': True,
         
+        # Timeouts to prevent hanging
+        'DOWNLOAD_TIMEOUT': 60,  # 60 second timeout for requests
+        'PLAYWRIGHT_TIMEOUT': 45000,  # 45 second timeout for Playwright (in ms)
+        
+        # Auto-close after 2 hours max (safety)
+        'CLOSESPIDER_TIMEOUT': 7200,  # 2 hours in seconds
+        
         # Log level
         'LOG_LEVEL': 'INFO',
     }
@@ -86,14 +93,11 @@ class MobileBgFreshDealsSpider(MobileBgSpider):
         'zaz', 'zhidou', 'zotye'
     ]
     
-    def __init__(self, brand=None, continuous=False, *args, **kwargs):
+    def __init__(self, brand=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
         
         # Disable login for fresh deals spider (not needed)
         self.skip_login = True
-        
-        # Continuous mode: scan all brands in infinite loop
-        self.continuous_mode = continuous in ('true', 'True', '1', True)
         
         # If specific brand provided, only scrape that one
         if brand:
@@ -101,56 +105,41 @@ class MobileBgFreshDealsSpider(MobileBgSpider):
             self.logger.info(f"🎯 Testing single brand: {brand}")
         else:
             self.brands_to_scrape = self.BRANDS
-            if self.continuous_mode:
-                self.logger.info(f"♾️  CONTINUOUS MODE: Scanning all {len(self.BRANDS)} brands in infinite loop")
-                self.logger.info(f"   Expected cycle time: ~11 hours per full scan")
-                self.logger.info(f"   Will restart automatically after each cycle")
-            else:
-                self.logger.info(f"🚀 Scraping all {len(self.BRANDS)} brands for fresh deals (single run)")
+            self.logger.info(f"🚀 Scraping all {len(self.BRANDS)} brands for fresh deals")
         
-        # Track cycle count for continuous mode
+        # Track cycle count
         self.cycle_count = 0
     
     def start_requests(self):
         """Generate requests for all brands with sort=7 (last 2 days)"""
         
-        while True:  # Continuous mode loop
-            self.cycle_count += 1
+        # Single pass through all brands (continuous mode handled by external scheduler)
+        self.cycle_count = 1
+        
+        self.logger.info(f"")
+        self.logger.info(f"{'='*60}")
+        self.logger.info(f"� Scraping all {len(self.brands_to_scrape)} brands for fresh deals (single run)")
+        self.logger.info(f"{'='*60}")
+        
+        for brand_slug in self.brands_to_scrape:
+            # Brand-level URL with sort=7 (last 2 days filter)
+            search_url = {
+                'type': 'brand',
+                'brand': brand_slug.replace('-', ' ').title(),  # Convert to title case
+                'brand_slug': brand_slug,
+                'model': None,
+                'model_slug': None,
+                'url': f"https://www.mobile.bg/obiavi/avtomobili-dzhipove/{brand_slug}/namira-se-v-balgariya?sort=7",
+                'priority': False,
+                'estimated_listings': 2000,  # Estimate for 2 days of data
+            }
             
-            if self.continuous_mode:
-                self.logger.info(f"")
-                self.logger.info(f"{'='*60}")
-                self.logger.info(f"🔄 Starting cycle #{self.cycle_count}")
-                self.logger.info(f"{'='*60}")
-            
-            for brand_slug in self.brands_to_scrape:
-                # Brand-level URL with sort=7 (last 2 days filter)
-                search_url = {
-                    'type': 'brand',
-                    'brand': brand_slug.replace('-', ' ').title(),  # Convert to title case
-                    'brand_slug': brand_slug,
-                    'model': None,
-                    'model_slug': None,
-                    'url': f"https://www.mobile.bg/obiavi/avtomobili-dzhipove/{brand_slug}/namira-se-v-balgariya?sort=7",
-                    'priority': False,
-                    'estimated_listings': 2000,  # Estimate for 2 days of data
-                }
-                
-                yield scrapy.Request(
-                    url=search_url['url'],
-                    callback=self.parse_search_page,  # Use parent's parse_search_page
-                    meta={
-                        'search_info': search_url,
-                        'playwright': True,
-                        'playwright_include_page': True,
-                    },
-                )
-            
-            # Break loop if not in continuous mode
-            if not self.continuous_mode:
-                break
-            
-            # Log cycle completion
-            self.logger.info(f"")
-            self.logger.info(f"✅ Cycle #{self.cycle_count} complete - Starting next cycle...")
-            self.logger.info(f"")
+            yield scrapy.Request(
+                url=search_url['url'],
+                callback=self.parse_search_page,  # Use parent's parse_search_page
+                meta={
+                    'search_info': search_url,
+                    'playwright': True,
+                    'playwright_include_page': True,
+                },
+            )
