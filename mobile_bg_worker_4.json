@@ -1,0 +1,74 @@
+{
+  "searches": [
+    {
+      "type": "brand",
+      "brand": "Škoda",
+      "brand_slug": "skoda",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/skoda/namira-se-v-balgariya?sort=7",
+      "priority": true
+    },
+    {
+      "type": "brand",
+      "brand": "Seat",
+      "brand_slug": "seat",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/seat/namira-se-v-balgariya?sort=7",
+      "priority": true
+    },
+    {
+      "type": "brand",
+      "brand": "Honda",
+      "brand_slug": "honda",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/honda/namira-se-v-balgariya?sort=7",
+      "priority": true
+    },
+    {
+      "type": "brand",
+      "brand": "Mazda",
+      "brand_slug": "mazda",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mazda/namira-se-v-balgariya?sort=7",
+      "priority": true
+    },
+    {
+      "type": "brand",
+      "brand": "Nissan",
+      "brand_slug": "nissan",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/nissan/namira-se-v-balgariya?sort=7",
+      "priority": true
+    },
+    {
+      "type": "brand",
+      "brand": "Hyundai",
+      "brand_slug": "hyundai",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/hyundai/namira-se-v-balgariya?sort=7",
+      "priority": true
+    },
+    {
+      "type": "brand",
+      "brand": "Kia",
+      "brand_slug": "kia",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/kia/namira-se-v-balgariya?sort=7",
+      "priority": true
+    },
+    {
+      "type": "brand",
+      "brand": "Volvo",
+      "brand_slug": "volvo",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/volvo/namira-se-v-balgariya?sort=7",
+      "priority": true
+    },
+    {
+      "type": "brand",
+      "brand": "Fiat",
+      "brand_slug": "fiat",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/fiat/namira-se-v-balgariya?sort=7",
+      "priority": true
+    },
+    {
+      "type": "brand",
+      "brand": "Alfa Romeo",
+      "brand_slug": "alfa-romeo",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/alfa-romeo/namira-se-v-balgariya?sort=7",
+      "priority": true
+    }
+  ]
+}

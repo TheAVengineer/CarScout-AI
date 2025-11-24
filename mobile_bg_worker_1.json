@@ -1,0 +1,18 @@
+{
+  "searches": [
+    {
+      "type": "brand",
+      "brand": "Mercedes-Benz",
+      "brand_slug": "mercedes-benz",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/mercedes-benz/namira-se-v-balgariya?sort=7",
+      "priority": true
+    },
+    {
+      "type": "brand",
+      "brand": "BMW",
+      "brand_slug": "bmw",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/bmw/namira-se-v-balgariya?sort=7",
+      "priority": true
+    }
+  ]
+}

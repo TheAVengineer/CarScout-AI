@@ -1,0 +1,39 @@
+{
+  "searches": [
+    {
+      "type": "brand",
+      "brand": "Ford",
+      "brand_slug": "ford",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/ford/namira-se-v-balgariya?sort=7",
+      "priority": true
+    },
+    {
+      "type": "brand",
+      "brand": "Toyota",
+      "brand_slug": "toyota",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/toyota/namira-se-v-balgariya?sort=7",
+      "priority": true
+    },
+    {
+      "type": "brand",
+      "brand": "Renault",
+      "brand_slug": "renault",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/renault/namira-se-v-balgariya?sort=7",
+      "priority": true
+    },
+    {
+      "type": "brand",
+      "brand": "Peugeot",
+      "brand_slug": "peugeot",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/peugeot/namira-se-v-balgariya?sort=7",
+      "priority": true
+    },
+    {
+      "type": "brand",
+      "brand": "Citroën",
+      "brand_slug": "citroen",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/citroen/namira-se-v-balgariya?sort=7",
+      "priority": true
+    }
+  ]
+}

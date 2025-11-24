@@ -1,0 +1,25 @@
+{
+  "searches": [
+    {
+      "type": "brand",
+      "brand": "Audi",
+      "brand_slug": "audi",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/audi/namira-se-v-balgariya?sort=7",
+      "priority": true
+    },
+    {
+      "type": "brand",
+      "brand": "Volkswagen",
+      "brand_slug": "volkswagen",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/volkswagen/namira-se-v-balgariya?sort=7",
+      "priority": true
+    },
+    {
+      "type": "brand",
+      "brand": "Opel",
+      "brand_slug": "opel",
+      "url": "https://www.mobile.bg/obiavi/avtomobili-dzhipove/opel/namira-se-v-balgariya?sort=7",
+      "priority": true
+    }
+  ]
+}
