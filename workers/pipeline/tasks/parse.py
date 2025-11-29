@@ -187,14 +187,130 @@ class MobileBgParser:
 
 
 class CarsBgParser:
-    """Parser for Cars.bg HTML"""
+    """Parser for Cars.bg - intelligently parses model strings
+    
+    Examples:
+    - "308 HDI/USB/NAVI" → model="308", engine="HDI" (diesel), trim="USB/NAVI"
+    - "C 220 CDI" → model="C 220", engine="CDI" (diesel)
+    - "320d xDrive" → model="320d", engine="d" (diesel), trim="xDrive"
+    - "Astra 1.6 CDTI" → model="Astra", engine_size="1.6", engine="CDTI" (diesel)
+    """
     
     @staticmethod
     def parse(html: str, url: str) -> Optional[Dict[str, Any]]:
-        """Parse Cars.bg listing page"""
-        # TODO: Implement Cars.bg parser
-        logger.warning("Cars.bg parser not implemented yet")
+        """Parse Cars.bg listing page
+        
+        Since the Cars.bg spider already extracts data in JSON format,
+        this parser should be called with spider-extracted data, not HTML.
+        """
+        # This should not be called - spider extracts data directly
+        logger.info("CarsBgParser: Using spider-extracted data (no HTML parsing needed)")
         return None
+    
+    @staticmethod
+    def parse_model_string(model_string: str) -> Dict[str, Any]:
+        """Parse a Cars.bg model string into components
+        
+        Args:
+            model_string: e.g., "308 HDI/USB/NAVI", "C 220 CDI", "320d xDrive"
+            
+        Returns:
+            dict with: model_base, engine_type, engine_size, power_hp, trim
+        """
+        if not model_string:
+            return {}
+        
+        result = {
+            'model_base': None,
+            'engine_type': None,  # CDI, HDI, TDI, d, i (diesel/petrol)
+            'engine_size': None,  # 1.6, 2.0, 3.0
+            'power_hp': None,  # 220, 320
+            'trim': None,  # xDrive, USB/NAVI, etc.
+        }
+        
+        # Clean the string
+        model_clean = model_string.strip()
+        
+        # Extract engine size (e.g., "1.6", "2.0", "3.0")
+        engine_size_match = re.search(r'\b(\d+\.\d+)\b', model_clean)
+        if engine_size_match:
+            result['engine_size'] = float(engine_size_match.group(1))
+        
+        # Extract power - ONLY if explicitly stated with "hp", "к.с.", or in parentheses
+        # DO NOT extract from BMW-style model codes (320d, 520i, etc.)
+        # Valid patterns: "150hp", "150к.с.", "150 к.с.", "(150hp)"
+        power_match = re.search(r'[(\[]?\s*(\d{2,3})\s*(?:hp|к\.с\.|к\.с|PS|HP|ch)\s*[)\]]?', model_clean, re.IGNORECASE)
+        if power_match:
+            result['power_hp'] = int(power_match.group(1))
+            # Note: BMW model codes like "320d" will NOT match this pattern
+        
+        # Detect engine type
+        engine_types = {
+            'CDI': 'diesel',  # Mercedes Common Rail Diesel
+            'TDI': 'diesel',  # VW/Audi Turbo Diesel
+            'HDI': 'diesel',  # Peugeot/Citroen High-pressure Diesel
+            'CDTI': 'diesel',  # Opel Common Rail Diesel
+            'JTD': 'diesel',  # Fiat Jet Turbo Diesel
+            'dCi': 'diesel',  # Renault diesel
+            'D': 'diesel',  # Generic diesel
+            'd': 'diesel',  # BMW/generic diesel (e.g., "320d")
+            'i': 'petrol',  # BMW/generic petrol (e.g., "320i")
+            'TSI': 'petrol',  # VW/Audi Turbo petrol
+            'TFSI': 'petrol',  # Audi Turbo petrol
+            'GTI': 'petrol',  # VW petrol sport
+        }
+        
+        for marker, fuel in engine_types.items():
+            if marker in model_clean:
+                result['engine_type'] = fuel
+                break
+        
+        # Extract model base (first 1-3 words/numbers before engine markers)
+        # Split by spaces and slashes
+        parts = re.split(r'[\s/]+', model_clean)
+        
+        # Model base is usually first 1-2 parts (e.g., "308", "C 220", "Astra", "320d")
+        # Exception: single alphanumeric+letter codes like "320d", "320i" ARE the model
+        # Stop at multi-letter engine markers or trim features
+        model_parts = []
+        for i, part in enumerate(parts[:3]):  # Max 3 parts
+            # Check if this is a BMW-style model (e.g., "320d", "520i")
+            if i == 0 and re.match(r'^\d{3}[dDi]$', part):
+                model_parts.append(part)
+                continue
+            
+            # Stop if we hit multi-letter engine markers (CDI, HDI, TDI, etc.)
+            # But allow single-letter suffixes in the first part
+            if i > 0 and any(marker in part.upper() for marker in ['CDI', 'TDI', 'HDI', 'CDTI', 'TSI', 'TFSI', 'GTI']):
+                break
+            
+            # Stop if we hit trim features (USB, NAVI, etc.)
+            if re.match(r'^(USB|NAVI|GPS|BT|AUX|MP3|DVD)$', part, re.IGNORECASE):
+                break
+                
+            model_parts.append(part)
+        
+        if model_parts:
+            result['model_base'] = ' '.join(model_parts)
+        
+        # Extract trim (everything after model base and engine type)
+        # Usually features like "xDrive", "Quattro", "USB/NAVI"
+        trim_patterns = [
+            'xDrive', 'Quattro', '4Motion', 'AWD', '4WD',
+            'Sport', 'M Sport', 'S Line', 'AMG',
+            'Elegance', 'Avantgarde', 'Executive',
+            'USB', 'NAVI', 'GPS', 'BT', 'AUX'
+        ]
+        
+        trim_found = []
+        for pattern in trim_patterns:
+            if pattern.lower() in model_clean.lower():
+                trim_found.append(pattern)
+        
+        if trim_found:
+            result['trim'] = '/'.join(trim_found)
+        
+        return result
 
 
 class OlxParser:
@@ -241,6 +357,38 @@ def parse_listing(self, listing_raw_id: str):
         if listing_raw.parsed_data:
             logger.info(f"Using spider-extracted data for {listing_raw_id}")
             parsed_data = listing_raw.parsed_data
+            
+            # For Cars.bg, parse the model string to extract engine details
+            if listing_raw.source.name in ['cars_bg', 'Cars.bg']:
+                model_string = parsed_data.get('model')
+                if model_string:
+                    logger.info(f"Parsing Cars.bg model string: {model_string}")
+                    model_components = CarsBgParser.parse_model_string(model_string)
+                    
+                    # Update parsed_data with extracted components
+                    if model_components.get('model_base'):
+                        parsed_data['model'] = model_components['model_base']
+                        logger.info(f"  → Model base: {model_components['model_base']}")
+                    
+                    if model_components.get('engine_type'):
+                        # Map to fuel type if not already set
+                        if not parsed_data.get('fuel_type'):
+                            parsed_data['fuel_type'] = model_components['engine_type'].capitalize()
+                            logger.info(f"  → Engine type: {parsed_data['fuel_type']}")
+                    
+                    if model_components.get('engine_size'):
+                        parsed_data['engine_size_cc'] = int(model_components['engine_size'] * 1000)
+                        logger.info(f"  → Engine size: {parsed_data['engine_size_cc']}cc")
+                    
+                    if model_components.get('power_hp'):
+                        parsed_data['power_hp'] = model_components['power_hp']
+                        logger.info(f"  → Power: {parsed_data['power_hp']}hp")
+                    
+                    if model_components.get('trim'):
+                        # Store trim in description or title
+                        if 'description' in parsed_data:
+                            parsed_data['description'] = f"[{model_components['trim']}] {parsed_data['description']}"
+                        logger.info(f"  → Trim: {model_components['trim']}")
         # Check if we have HTML content
         elif not listing_raw.raw_html_path and not hasattr(listing_raw, 'html_content'):
             # For test listings without HTML, create placeholder parsed data

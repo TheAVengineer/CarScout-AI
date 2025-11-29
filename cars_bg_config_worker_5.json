@@ -1,0 +1,36 @@
+{
+  "generation_date": "2025-11-30",
+  "strategy": "last_24_hours_all_brands",
+  "description": "Worker 5 - Cars.bg scraper for last 24 hours of listings",
+  "source": "cars_bg",
+  "base_url": "https://www.cars.bg/carslist.php",
+  "search_urls": [
+    {
+      "type": "recent_all",
+      "description": "All cars posted in last 24 hours",
+      "url": "https://www.cars.bg/carslist.php?subm=1&add_search=1&typeoffer=1&last=1",
+      "priority": true,
+      "estimated_listings": 200
+    }
+  ],
+  "scraping_settings": {
+    "concurrent_requests": 2,
+    "download_delay": 3.0,
+    "autothrottle_enabled": true,
+    "autothrottle_start_delay": 3.0,
+    "autothrottle_max_delay": 10.0,
+    "autothrottle_target_concurrency": 2.0,
+    "retry_enabled": true,
+    "retry_times": 3,
+    "retry_http_codes": [500, 502, 503, 504, 408, 429]
+  },
+  "scheduling": {
+    "scrape_interval_seconds": 3600,
+    "max_pages_per_run": 50,
+    "target_listings": null,
+    "description": "Scrape every hour for fresh listings"
+  },
+  "spider_name": "cars_bg",
+  "worker_id": 5,
+  "enabled": true
+}
